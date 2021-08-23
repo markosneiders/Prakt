@@ -1,21 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, Image, TextInput, Pressable, View} from 'react-native';
-
+import { SafeAreaView, StyleSheet, Text, Image, TextInput, Pressable, View, TabBarIOS} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 function WelcomeScreen(props) {
-
+    const navigation = useNavigation();
     return (
     <SafeAreaView style={styles.container}>
+        
         <View style={styles.logoView}>
         <Image style={styles.image} source={require("../Prakt_Logo.png")}/>
         <Text style={{fontSize: 30}}> PRAKT </Text>
-        </View>
-
+        </View> 
         <View style={styles.loginView}>
          <View style={styles.InputView}>
          <TextInput style={styles.textInput} placeholder='Email'/>
          <TextInput style={styles.textInput} placeholder='Password'/>
-         <Pressable style={styles.pressable} onPress={()=> console.log('Log In!')}>
+         <Pressable style={styles.pressable} onPress={()=> navigation.navigate('PrimaryScreen')}>
              <Text style={[{fontSize: 25},{color: '#fff'}]}> Log in </Text>
          </Pressable>
          </View>
