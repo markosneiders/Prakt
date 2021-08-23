@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, Image, TextInput, Pressable, View, YellowBox,} from 'react-native';
+import { SafeAreaView, StyleSheet, Text, Image, TextInput, Pressable, View} from 'react-native';
 
 function WelcomeScreen(props) {
 
