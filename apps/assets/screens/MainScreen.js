@@ -1,9 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView, Text, StyleSheet } from 'react-native';
 
 
-function MainScreen({navigate}) {
+function MainScreen() {
+const navigation = useNavigation();
     return (
         <SafeAreaView style={styles.container}>
             <Text>Hello World</Text>

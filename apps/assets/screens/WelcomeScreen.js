@@ -2,7 +2,11 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { SafeAreaView, StyleSheet, Text, Image, TextInput, Pressable, View, TabBarIOS} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-function WelcomeScreen({props}) {
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
+
+function WelcomeScreen() {
     const navigation = useNavigation();
     return (
     <SafeAreaView style={styles.container}>      
@@ -14,12 +18,13 @@ function WelcomeScreen({props}) {
          <View style={styles.InputView}>
          <TextInput style={styles.textInput} placeholder='Email'/>
          <TextInput style={styles.textInput} placeholder='Password'/>
-         <Pressable style={styles.pressable} onPress={()=> console.log("Vag")}>
+         <Pressable style={styles.pressable} onPress={()=> navigation.navigate("PrimaryScreen")}>
              <Text style={[{fontSize: 25},{color: '#fff'}]}> Log in </Text> 
          </Pressable>
          </View>
         </View>
     </SafeAreaView>
+    
     );
 }
 const styles = StyleSheet.create({
