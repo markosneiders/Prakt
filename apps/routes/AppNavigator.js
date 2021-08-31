@@ -11,7 +11,7 @@ const Tab = createBottomTabNavigator();
 const HomeNavigator = () => (
   <Tab.Navigator headerMode="none">
     <Tab.Screen name="MainScreen" component={MainScreen} />
-    <Tab.Screen name="Profile" component={Profile} options={{headerShown: false}} />
+    <Tab.Screen name="Profile" component={Profile} />
   </Tab.Navigator>
 );
 
