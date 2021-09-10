@@ -1,12 +1,14 @@
 import React from 'react';
-import {TextInput, StyleSheet, Text} from 'react-native';
+import {TextInput, StyleSheet, Text, View} from 'react-native';
 
 function BasicTextField(props) {
     return (
+        <View style={styles.View}>
         <TextInput style={styles.TextField}>
             <Text style={styles.FieldName}>{props.FieldName}  </Text>
             <Text style={styles.FieldContents}>{props.FieldContents}</Text>
         </TextInput>
+        </View>
     );
 }
 
@@ -15,15 +17,18 @@ const styles = StyleSheet.create({
         backgroundColor: 'lightgray',
         borderRadius: 10,
         paddingHorizontal: 10,
-        paddingVertical: 10,
-        height: 40,
-        fontSize: 20,
+        height: 60,
+        fontSize: 25,
     },
     FieldName: {
         color: 'black',
     },
     FieldContents: {
         color: 'gray'
+    },
+    View: {
+        marginTop: 10,
+        
     }
 })
 

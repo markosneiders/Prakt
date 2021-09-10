@@ -1,27 +1,24 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, StyleSheet, View, ScrollView } from 'react-native';
 import BasicTextField from '../components/BasicTextField/Index';
+import ProfilePicture from '../components/ProfilePicture/Index';
 
 function Profile() {
     return(
-        <SafeAreaView style={styles.container}>
-            <View style={styles.textContainer}>
+            <ScrollView contentContainerStyle={styles.container}>
+            <ProfilePicture Width={100} Height={100}/>
             <BasicTextField FieldName={"Name"} FieldContents={"Placeholder Name"}/>
             <BasicTextField FieldName={"Surname"} FieldContents={"Placeholder Surname"}/>
             <BasicTextField FieldName={"Email"} FieldContents={"Placeholder Email"}/>
-            </View>
-        </SafeAreaView>
+            </ScrollView>
+
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        marginHorizontal: 40
     },
-    textContainer: {
-        flex: 1,
-        marginHorizontal: 40,
-    }
 })
 
 
