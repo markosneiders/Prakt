@@ -1,3 +1,3 @@
-import ProfilePicture from "./ProfilePicture";
+import ProfilePicture from "../../assets/ProfilePicture";
 
 export default ProfilePicture;
