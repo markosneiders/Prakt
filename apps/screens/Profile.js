@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { SafeAreaView, StyleSheet, View, ScrollView } from 'react-native';
 import BasicTextField from '../components/BasicTextField/Index';
 import ProfilePicture from '../components/ProfilePicture/Index';

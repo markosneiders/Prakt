@@ -7,7 +7,7 @@ import { SafeAreaView, Text, StyleSheet } from 'react-native';
 function MainScreen() {
     return (
         <SafeAreaView style={styles.container}>
-            <Text>Hello World</Text>
+            <Text>Hello World!</Text>
         </SafeAreaView>
     );
 }
@@ -21,3 +21,5 @@ const styles = StyleSheet.create({
 })
 
 export default MainScreen;
+
+gggfdgsdgsdgsdgsg
