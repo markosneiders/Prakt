@@ -3,7 +3,7 @@ import { SafeAreaView, StyleSheet, View, ScrollView } from 'react-native';
 import BasicTextField from '../components/BasicTextField/Index';
 import ProfilePicture from '../components/ProfilePicture/Index';
 
-function Profile() {
+function Profile(props) {
     return(
             <ScrollView contentContainerStyle={styles.container}>
             <ProfilePicture Width={100} Height={100}/>
