@@ -4,7 +4,7 @@ import { AppNavigator } from "./apps/routes/AppNavigator";
 
 
 function App() {
-  return <AppNavigator/>
+  return <AppNavigator />
 }
 
 export default App;
