@@ -2,10 +2,9 @@ import React, {useState} from 'react';
 import {TextInput, StyleSheet, Text, View} from 'react-native';
 
 function BasicTextField(props) {
-    const [edit, setedit] = useState(false);
     return (
         <View style={styles.View}>
-        <TextInput editable={edit} style={styles.TextField}>
+        <TextInput editable={true} style={styles.TextField}>
             <Text style={styles.FieldName}>{props.FieldName}  </Text>
             <Text style={styles.FieldContents}>{props.FieldContents}</Text>
         </TextInput>
