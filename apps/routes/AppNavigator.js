@@ -16,13 +16,6 @@ const HomeNavigator = () => (
      name="Profile"
      component={Profile}
      options={{
-     
-      //headerRight: () => (
-      //  <Button
-      //    onPress={() => console.log("NABADIZBA")}
-      //    title="edit"
-      //  />
-      //),
     }}
       />
   </Tab.Navigator>
