@@ -17,12 +17,12 @@ const HomeNavigator = () => (
      component={Profile}
      options={{
      
-      headerRight: () => (
-        <Button
-          onPress={() => alert('This is a button!')}
-          title="edit"
-        />
-      ),
+      //headerRight: () => (
+      //  <Button
+      //    onPress={() => console.log("NABADIZBA")}
+      //    title="edit"
+      //  />
+      //),
     }}
       />
   </Tab.Navigator>

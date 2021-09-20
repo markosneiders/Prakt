@@ -4,7 +4,7 @@ import {TextInput, StyleSheet, Text, View} from 'react-native';
 function BasicTextField(props) {
     return (
         <View style={styles.View}>
-        <TextInput editable={true} style={styles.TextField}>
+        <TextInput editable={props.edit} style={styles.TextField}>
             <Text style={styles.FieldName}>{props.FieldName}  </Text>
             <Text style={styles.FieldContents}>{props.FieldContents}</Text>
         </TextInput>
