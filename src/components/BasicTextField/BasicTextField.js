@@ -5,16 +5,6 @@ function BasicTextField(props) {
   const [text, onChangeText] = React.useState("Useless Text");
 
   return (
-    
-    //<View style={styles.View}>
-    //  <TextInput
-    //    editable={props.edit}
-    //    style={styles.TextField}
-    //    placeholder={props.FieldName}
-    //    onChangeText={onChangeText}
-    //    text={text}
-    //  ></TextInput>
-    //</View>
 
     <View style={styles.View}>
       <View style={{flex:1, justifyContent: "center", alignItems: "flex-start"}}>
@@ -25,6 +15,7 @@ function BasicTextField(props) {
         style={styles.TextField}
         placeholder={props.FieldName}
         onChangeText={onChangeText}
+        multiline={props.Multi ? true : false}
         text={text}>
         </TextInput>
       </View>
@@ -40,7 +31,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     borderTopColor: "lightgray",
     borderTopWidth: 1,
-    top:-1
+    top:-1,
   },
   FieldName: {
     color: "black",

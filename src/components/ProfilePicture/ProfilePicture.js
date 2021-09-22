@@ -5,7 +5,7 @@ function ProfilePicture(props) {
   return (
     <View style={styles.container}>
       <Image
-        source={require("../../assets/images/DefaultProfilePic.png")}
+        source={props.pic != null ? {uri: props.pic} : require("../../assets/images/DefaultProfilePic.png")}
         style={{ width: props.Width, height: props.Height, borderRadius: 100 }}
       />
     </View>
