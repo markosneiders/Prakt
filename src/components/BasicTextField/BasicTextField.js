@@ -2,12 +2,17 @@ import React from "react";
 import { TextInput, StyleSheet, Text, View } from "react-native";
 
 function BasicTextField(props) {
+  const [text, onChangeText] = React.useState("Useless Text");
+
   return (
     <View style={styles.View}>
-      <TextInput editable={props.edit} style={styles.TextField}>
-        <Text style={styles.FieldName}>{props.FieldName} </Text>
-        <Text style={styles.FieldContents}>{props.FieldContents}</Text>
-      </TextInput>
+      <TextInput
+        editable={props.edit}
+        style={styles.TextField}
+        placeholder={props.FieldName}
+        onChangeText={onChangeText}
+        text={text}
+      ></TextInput>
     </View>
   );
 }

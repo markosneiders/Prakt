@@ -7,20 +7,49 @@ import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import MatchesScreen from "../screens/MatchesScreen";
 
-import {StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import Fontisto from "react-native-vector-icons/Fontisto";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const HomeNavigator = () => (
   <Tab.Navigator>
-    <Tab.Screen name="1" component={HomeScreen} />
-    <Tab.Screen name="2" component={MatchesScreen} />
-    <Tab.Screen name="3" component={ProfileScreen} options={{tabBarIcon: () => (
-     <FontAwesome name="user" size = {30} style={styles.tabbarstyle}/>),}}/>
-
+    <Tab.Screen
+      name="home"
+      component={HomeScreen}
+      options={{
+        tabBarIcon: () => (
+          <Fontisto name="home" size={30} style={styles.tabbarstyle} />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="matches"
+      component={MatchesScreen}
+      options={{
+        tabBarIcon: () => (
+          <MaterialCommunityIcons
+            name="star-four-points"
+            size={30}
+            style={styles.tabbarstyle}
+          />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="profile"
+      component={ProfileScreen}
+      options={{
+        tabBarIcon: () => (
+          <FontAwesome name="user" size={30} style={styles.tabbarstyle} />
+        ),
+      }}
+    />
   </Tab.Navigator>
 );
 
@@ -32,6 +61,6 @@ export const AppNavigator = () => (
 
 const styles = StyleSheet.create({
   tabbarstyle: {
-    top: 10
-  }
-})
+    top: 2,
+  },
+});
