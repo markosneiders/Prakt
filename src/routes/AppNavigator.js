@@ -20,16 +20,17 @@ const Tab = createBottomTabNavigator();
 const HomeNavigator = () => (
   <Tab.Navigator>
     <Tab.Screen
-      name="home"
+      name="Home"
       component={HomeScreen}
       options={{
+        headerShown:  null,
         tabBarIcon: () => (
           <Fontisto name="home" size={30} style={styles.tabbarstyle} />
         ),
       }}
     />
     <Tab.Screen
-      name="matches"
+      name="Matches"
       component={MatchesScreen}
       options={{
         tabBarIcon: () => (
@@ -42,7 +43,7 @@ const HomeNavigator = () => (
       }}
     />
     <Tab.Screen
-      name="profile"
+      name="Edit Profile"
       component={ProfileScreen}
       options={{
         tabBarIcon: () => (

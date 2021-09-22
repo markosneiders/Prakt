@@ -5,25 +5,42 @@ function BasicTextField(props) {
   const [text, onChangeText] = React.useState("Useless Text");
 
   return (
+    
+    //<View style={styles.View}>
+    //  <TextInput
+    //    editable={props.edit}
+    //    style={styles.TextField}
+    //    placeholder={props.FieldName}
+    //    onChangeText={onChangeText}
+    //    text={text}
+    //  ></TextInput>
+    //</View>
+
     <View style={styles.View}>
-      <TextInput
-        editable={props.edit}
+      <View style={{flex:1, justifyContent: "center", alignItems: "flex-start"}}>
+      <Text style={{fontSize: 17}}>{props.FieldName}</Text>
+      </View>
+      <View style={{flex: 3}}>
+        <TextInput
         style={styles.TextField}
         placeholder={props.FieldName}
         onChangeText={onChangeText}
-        text={text}
-      ></TextInput>
+        text={text}>
+        </TextInput>
+      </View>
     </View>
+
   );
 }
 
 const styles = StyleSheet.create({
   TextField: {
-    backgroundColor: "lightgray",
-    borderRadius: 10,
     paddingHorizontal: 10,
     height: 50,
-    fontSize: 25,
+    fontSize: 17,
+    borderTopColor: "lightgray",
+    borderTopWidth: 1,
+    top:-1
   },
   FieldName: {
     color: "black",
@@ -32,7 +49,8 @@ const styles = StyleSheet.create({
     color: "gray",
   },
   View: {
-    marginTop: 10,
+    flex:  1,
+    flexDirection: 'row'
   },
 });
 
