@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import MatchesScreen from "../screens/MatchesScreen";
+import SettingsScreen from "../screens/SettingsScreen";
 
 import { StyleSheet } from "react-native";
 
@@ -45,6 +46,15 @@ const HomeNavigator = () => (
     <Tab.Screen
       name="Edit Profile"
       component={ProfileScreen}
+      options={{
+        tabBarIcon: () => (
+          <FontAwesome name="user" size={30} style={styles.tabbarstyle} />
+        ),
+      }}
+    />
+    <Tab.Screen
+      name="Settings"
+      component={SettingsScreen}
       options={{
         tabBarIcon: () => (
           <FontAwesome name="user" size={30} style={styles.tabbarstyle} />
