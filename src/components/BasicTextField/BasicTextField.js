@@ -3,6 +3,7 @@ import { TextInput, StyleSheet, Text, View } from "react-native";
 
 function BasicTextField(props) {
   const [text, onChangeText] = React.useState("Useless Text");
+  const [hgt, changehgt] = React.useState(50)
 
   return (
 
@@ -12,12 +13,20 @@ function BasicTextField(props) {
       </View>
       <View style={{flex: 3}}>
         <TextInput
-        style={styles.TextField}
+        style={{
+          height: hgt,
+          paddingHorizontal: 10,
+          fontSize: 17,
+          borderTopColor: "lightgray",
+          borderTopWidth: 1,
+          top:-1,
+        }}
         placeholder={props.FieldName}
         onChangeText={onChangeText}
         multiline={props.Multi ? true : false}
-        text={text}>
-        </TextInput>
+        text={text}
+        onContentSizeChange={(e) => changehgt(30 + e.nativeEvent.contentSize.height)}
+        ></TextInput>
       </View>
     </View>
 
@@ -25,14 +34,6 @@ function BasicTextField(props) {
 }
 
 const styles = StyleSheet.create({
-  TextField: {
-    paddingHorizontal: 10,
-    height: 50,
-    fontSize: 17,
-    borderTopColor: "lightgray",
-    borderTopWidth: 1,
-    top:-1,
-  },
   FieldName: {
     color: "black",
   },
