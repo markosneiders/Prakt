@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { View, Image, StyleSheet, TouchableOpacity, Text } from "react-native";
-import * as ImagePicker from 'expo-image-picker';
-
 
 function ProfilePicture(props) {
-
-  const [image, setImage] = useState(".//");
-
 
   return (
     <View style={styles.container}>
       <Image
-        source={image.localUri != null ? { uri: image.localUri} : require("../../assets/images/DefaultProfilePic.png")}
-        style={{ width: props.Width, height: props.Height, borderRadius: 100 }}
+        source={props.image != null ? { uri: props.image} : require("../../assets/images/DefaultProfilePic.png")} //Determines what to display. Displays what is passed to it as a prop state but if its empty then it displays a default profile picture.
+        style={{ width: props.Width, height: props.Height, borderRadius: 100 }} //Uses the height and width props to determine size and border radius makes it round.
       />
     </View>
   );
