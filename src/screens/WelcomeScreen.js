@@ -1,3 +1,11 @@
+//
+//
+//
+//
+// OLD SCREEN NOT USED ANYMORE
+//
+//
+//
 import React from "react";
 import {
   SafeAreaView,

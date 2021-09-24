@@ -1,28 +1,23 @@
-import React, {useState} from "react"
-import { Button, Text, View } from "react-native"
-import { Switch } from "react-native-gesture-handler";
+import React from "react";
+import {ScrollView, StyleSheet} from "react-native";
+import ProfileSettingsCard from "../components/ProfileSettingsCard/Index";
 
 
-function SettingsScreen() {
-    const [switchValue, setSwitchValue] = useState(false);
 
-  const toggleSwitch = (value) => {
-    setSwitchValue(value);
-  };
-
+function SettingsScreen({navigation}) {
     return(
-        <View>
-        <Text>
-          {switchValue ? 'Switch is ON' : 'Switch is OFF'}
-        </Text>
-        <Switch
-          style={{marginTop: 30}}
-          onValueChange={toggleSwitch}
-          value={switchValue}
-        />
-      </View>
+        <ScrollView style={styles.container}>
+            <ProfileSettingsCard navigation={navigation}/>
+        </ScrollView>
         
     );
 }
+
+
+const styles = StyleSheet.create({
+    container: {
+    }
+})
+
 
 export default SettingsScreen;
