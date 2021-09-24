@@ -1,8 +1,9 @@
 import React from "react";
-import { StyleSheet, ScrollView,View, Text, Image} from "react-native";
+import { StyleSheet, ScrollView,View, Text, Image, ImageComponent} from "react-native";
 import { TouchableOpacity} from "react-native-gesture-handler";
 import BasicTextField from "../components/BasicTextField/Index";
 import ProfilePicture from "../components/ProfilePicture/Index";
+import ImageChooser from "../components/ImageChooser/Index";
 
 
 function ProfileScreen({ navigation }) {
@@ -16,6 +17,7 @@ function ProfileScreen({ navigation }) {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <ProfilePicture Width={100} Height={100} />
+      <ImageChooser/>
         <View style={styles.textcontainer}>
           <BasicTextField FieldName={"Name"} />
           <BasicTextField FieldName={"Surname"} />
