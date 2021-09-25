@@ -22,7 +22,11 @@ amplify/backend/awscloudformation
 amplify/backend/.temp
 build/
 dist/
+<<<<<<< HEAD
 aws-exports.js
+=======
+node_modules/
+>>>>>>> parent of 28bce38 (Update .gitignore)
 awsconfiguration.json
 amplifyconfiguration.json
 amplifyconfiguration.dart
