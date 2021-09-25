@@ -12,14 +12,7 @@ function BasicTextField(props) {
       </View>
       <View style={{flex: 3}}>
         <TextInput
-        style={{
-          height: hgt, //Style is here instead of style sheet cuz it for some reason starts ignoring the settings lol
-          paddingHorizontal: 10,
-          fontSize: 17,
-          borderTopColor: "lightgray",
-          borderTopWidth: 1,
-          top:-1,
-        }}
+        style={[styles.textInput, {height: hgt}]}
         placeholder={props.FieldName} //Displays this greyed out when field is empty
         onChangeText={props.settext}//Updates state with the field contents
         multiline={props.Multi ? true : false} //Bool prop if multiline is allowed
@@ -43,6 +36,13 @@ const styles =  StyleSheet.create({
     flex:  1,
     flexDirection: 'row'
   },
+  textInput: {
+    paddingHorizontal: 10,
+    fontSize: 17,
+    borderTopColor: "lightgray",
+    borderTopWidth: 1,
+    top:-1,
+  }
 });
 
 export default BasicTextField;
