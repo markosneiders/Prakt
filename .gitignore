@@ -12,6 +12,7 @@ web-build/
 # macOS
 .DS_Store
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
@@ -37,5 +38,7 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
+=======
+>>>>>>> parent of eaf0b4f (Added back-end config)
 =======
 >>>>>>> parent of eaf0b4f (Added back-end config)
