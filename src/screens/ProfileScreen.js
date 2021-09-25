@@ -7,12 +7,12 @@ import ImageChooser from "../components/ImageChooser/Index";
 
 function ProfileScreen() {
 
-  const [image, setimage] = useState(); //States to store user data
-  const [name, setname] = useState();
-  const [surname, setsurname] = useState();
-  const [phone, setphone] = useState(); 
-  const [email, setemail] = useState();
-  const [bio, setbio] = useState();
+  const [image, setImage] = useState(); //States to store user data
+  const [name, setName] = useState();
+  const [surname, setSurname] = useState();
+  const [phone, setPhone] = useState(); 
+  const [email, setEmail] = useState();
+  const [bio, setBio] = useState();
 
 
   return ( //Displays profile picture providing with what to display. 
@@ -21,13 +21,13 @@ function ProfileScreen() {
            //Also passes its respective states for display and update.
     <ScrollView contentContainerStyle={styles.container}>
       <ProfilePicture Width={100} Height={100} image={image}/> 
-      <ImageChooser setimage={setimage} image={image}/> 
+      <ImageChooser setimage={setImage} image={image}/> 
         <View style={styles.textcontainer}>
-          <BasicTextField FieldName={"Name"} text={name} settext={setname}/> 
-          <BasicTextField FieldName={"Surname"} text={surname} settext={setsurname}/>
-          <BasicTextField FieldName={"Phone number"} text={phone} settext={setphone}/>
-          <BasicTextField FieldName={"Email"} text={email} settext={setemail}/>
-          <BasicTextField FieldName={"Bio"} Multi={true} text={bio} settext={setbio}/>
+          <BasicTextField FieldName={"Name"} text={name} settext={setName}/> 
+          <BasicTextField FieldName={"Surname"} text={surname} settext={setSurname}/>
+          <BasicTextField FieldName={"Phone number"} text={phone} settext={setPhone}/>
+          <BasicTextField FieldName={"Email"} text={email} settext={setEmail}/>
+          <BasicTextField FieldName={"Bio"} Multi={true} text={bio} settext={setBio}/>
         </View>
     </ScrollView>
   );
