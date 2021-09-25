@@ -4,12 +4,16 @@ import { Auth } from "aws-amplify";
 
 import ProfileSettingsCard from "../components/ProfileSettingsCard/Index";
 import SettingsCard from "../components/SettingsCard/Index";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 function SettingsScreen({ navigation }) {
   return (
     <ScrollView style={styles.container}>
       <ProfileSettingsCard navigation={navigation} />
-      <Button title="Sign Out" onPress={() => handleSignOut()} color="red"/>
+      <SettingsCard icon={"crosshairs-gps"} color={"lightgreen"} title={"Search settings"}/>
+      <TouchableOpacity style={styles.signOutTouchable} onPress={() => handleSignOut()}>
+        <Text style={styles.signOutText}>Sign Out</Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 }
@@ -30,6 +34,14 @@ function handleSignOut() {
 
 const styles = StyleSheet.create({
   container: {},
+  signOutTouchable: {
+    paddingVertical: 30,
+    alignItems: 'center',
+  },
+  signOutText: {
+    color: 'red',
+    fontSize: 18,
+  }
 });
 
 export default SettingsScreen;

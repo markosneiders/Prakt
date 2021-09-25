@@ -7,6 +7,7 @@ import ImageChooser from "../components/ImageChooser/Index";
 
 function ProfileScreen() {
 
+  
   const [image, setImage] = useState(); //States to store user data
   const [name, setName] = useState();
   const [surname, setSurname] = useState();
