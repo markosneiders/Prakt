@@ -95,15 +95,29 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "image": {
-                    "name": "image",
+                "phone": {
+                    "name": "phone",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
+                "email": {
+                    "name": "email",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "bio": {
                     "name": "bio",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "sub": {
+                    "name": "sub",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
@@ -154,5 +168,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "e33d4b3d302f790f17de21f1b47bd83f"
+    "version": "6dea09d60d46d5712dfdaa3ac1a9e951"
 };

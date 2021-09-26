@@ -10,6 +10,11 @@
       "StackName": "amplify-praktify-staging-122845",
       "StackId": "arn:aws:cloudformation:eu-west-2:123766817989:stack/amplify-praktify-staging-122845/20e119f0-1dfc-11ec-b4bc-02e8e4bd7e66",
       "AmplifyAppId": "d2uyiwo6i4zs3w"
+    },
+    "categories": {
+      "auth": {
+        "Praktify": {}
+      }
     }
   }
 }

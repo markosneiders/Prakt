@@ -25,8 +25,10 @@ export declare class Match {
 export declare class User {
   readonly id: string;
   readonly name: string;
-  readonly image?: string;
+  readonly phone?: string;
+  readonly email: string;
   readonly bio: string;
+  readonly sub: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<User, UserMetaData>);
