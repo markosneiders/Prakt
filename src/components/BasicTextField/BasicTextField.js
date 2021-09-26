@@ -16,7 +16,7 @@ function BasicTextField(props) {
         <TextInput
           style={[styles.textInput, { height: hgt }]}
           placeholder={props.FieldName} //Displays this greyed out when field is empty
-          onChangeText={props.settext} //Updates state with the field contents
+          onChangeText={() => props.settext} //Updates state with the field contents
           multiline={props.Multi ? true : false} //Bool prop if multiline is allowed
           value={props.text} //Currently displayed text in the box
           onContentSizeChange={(e) =>

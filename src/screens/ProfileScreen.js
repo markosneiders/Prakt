@@ -92,14 +92,19 @@ function ProfileScreen() {
       <ProfilePicture Width={100} Height={100} image={image} />
       <ImageChooser setimage={setImage} image={image} />
       <View style={styles.textcontainer}>
-        <TextInput
+        {/*<TextInput
           style={styles.input}
           placeholder="Name..."
           value={name}
           onChangeText={setName}
+        /> */}
+        <BasicTextField
+          FieldName={"Name"} 
+          text={name}
+          setText={setName}
         />
         <TextInput
-          keyboardType={"phone-pad"}
+          keyboardType={"phone-pad"} 
           style={styles.input}
           placeholder="Phone..."
           value={phone}
@@ -121,8 +126,8 @@ function ProfileScreen() {
         />
         {/* <BasicTextField
           FieldName={"Name"}
-          value={name}
-          onChangeText={setName}
+          text={name}
+          setText={setName}
         />
         <BasicTextField
           FieldName={"Phone number"}
