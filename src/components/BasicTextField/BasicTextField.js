@@ -15,8 +15,9 @@ function BasicTextField(props) {
         style={[styles.textInput, {height: hgt}]}
         placeholder={props.FieldName} //Displays this greyed out when field is empty
         onChangeText={props.settext}//Updates state with the field contents
+        onEndEditing={props.update}
         multiline={props.Multi ? true : false} //Bool prop if multiline is allowed
-        text={props.text} //Currently displayed text in the box
+        value={props.text}
         onContentSizeChange={(e) => changehgt(30 + e.nativeEvent.contentSize.height)} // Increases text field size dynamicaly with the text
         ></TextInput>
       </View>
