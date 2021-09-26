@@ -5,8 +5,6 @@ import users from "../assets/data/users";
 
 import AnimatedStack from "../components/AnimatedStack/AnimatedStack";
 
-const ROTATION = 60;
-const SWIPE_VELOCITY = 800;
 
 const HomeScreen = () => {
   const onSwipeLeft = (user) => {

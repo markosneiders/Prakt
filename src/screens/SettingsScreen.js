@@ -20,10 +20,10 @@ function SettingsScreen({ navigation }) {
     </ScrollView>
   );
   function inc() {
-    setCount(count+1);
+    setCount(count++);
   }
   function dec() {
-    setCount(count-1);
+    setCount(count--);
   }
 }
 
@@ -35,7 +35,7 @@ function handleSignOut() {
       {text: "Cancel", style: "cancel"},
       { 
         text: "Sign out",
-        onPress: () => Auth.signOut(),
+        onPress: () => console.log("Sign out"),
       style: "destructive" }
     ]
      )
