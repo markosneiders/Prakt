@@ -5,8 +5,22 @@ import ProfileSettingsCard from "../components/ProfileSettingsCard/Index";
 import SettingsCard from "../components/SettingsCard/Index";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
+
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+
+
+import {increment} from "../Redux/reducer"
+import {decrement} from "../Redux/reducer"
+import {reset} from "../Redux/reducer"
+
+
 function SettingsScreen({ navigation }) {
-  const [count, setCount] = useState(0);
+  
+  const dispatch = useDispatch()
+
+  const counter = useSelector(state => state.counter)
+
   return (
     <ScrollView style={styles.container}>
       <ProfileSettingsCard navigation={navigation} />
@@ -14,17 +28,12 @@ function SettingsScreen({ navigation }) {
       <TouchableOpacity style={styles.signOutTouchable} onPress={() => handleSignOut()}>
         <Text style={styles.signOutText}>Sign Out</Text>
       </TouchableOpacity>
-      <Text style={{fontSize: 30}}>{count}</Text>
-      <Button title="Inc" onPress={() => inc()}/>
-      <Button title="Dec" onPress={() => dec()}/>
+      <Text style={{fontSize: 30}}>{counter}</Text>
+      <Button title="Inc" onPress={() => dispatch(increment())}/>
+      <Button title="Dec" onPress={() => dispatch(decrement())}/>
+      <Button title="Reset" onPress={() => dispatch(reset())}/>
     </ScrollView>
   );
-  function inc() {
-    setCount(count++);
-  }
-  function dec() {
-    setCount(count--);
-  }
 }
 
 function handleSignOut() {
