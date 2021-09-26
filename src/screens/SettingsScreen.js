@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { ScrollView, StyleSheet, Pressable, Text, Button, Alert } from "react-native";
-import { Auth } from "aws-amplify";
 
 import ProfileSettingsCard from "../components/ProfileSettingsCard/Index";
 import SettingsCard from "../components/SettingsCard/Index";
@@ -11,7 +10,7 @@ function SettingsScreen({ navigation }) {
   return (
     <ScrollView style={styles.container}>
       <ProfileSettingsCard navigation={navigation} />
-      <SettingsCard icon={"crosshairs-gps"} color={"lightgreen"} title={"Search settings"}/>
+      <SettingsCard icon={"crosshairs-gps"} color={"lightgreen"} title={"Search settings"} navigation={navigation}/>
       <TouchableOpacity style={styles.signOutTouchable} onPress={() => handleSignOut()}>
         <Text style={styles.signOutText}>Sign Out</Text>
       </TouchableOpacity>

@@ -1,12 +1,8 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-
-function SettingsCard(props) {
+function SettingsToggle(props) {
     return (
-        <TouchableOpacity onPress={() => props.navigation.navigate("Settings", { screen: "Search settings"})}>
+        <TouchableOpacity>
         <View style={styles.container}>
             <View style={[styles.icon, {backgroundColor: props.color}]}> 
                 <MaterialCommunityIcons name={props.icon} color="white" size={30}/>
@@ -25,7 +21,7 @@ const styles =  StyleSheet.create({
         flexDirection: 'row',
         paddingHorizontal: 15,
         paddingVertical: 10,
-        backgroundColor: "white",
+        backgroundColor: "white", 
         borderBottomWidth: 1,
         borderTopWidth: 1,
         borderTopColor: "lightgray",
@@ -45,4 +41,4 @@ const styles =  StyleSheet.create({
     }
 })
 
-export default SettingsCard;
+export default SettingsToggle;

@@ -64,6 +64,7 @@ function HomeNavigator() {
 }
 
 import ProfileScreen from "../screens/ProfileScreen"; // more screen imports
+import SearchSettings from "../screens/SearchSettings";
 
 const Stack = createNativeStackNavigator(); //defining variable for ease of reading again
 
@@ -77,6 +78,7 @@ function SettingsNavigator() {
         options={{ title: "Settings" }}
       />
       <Stack.Screen name="Edit Profile" component={ProfileScreen} />
+      <Stack.Screen name="Search settings" component={SearchSettings} />
     </Stack.Navigator>
   );
 }
