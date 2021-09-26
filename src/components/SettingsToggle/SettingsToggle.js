@@ -1,16 +1,23 @@
 import React from 'react';
 
+import { Text, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Switch } from 'react-native-gesture-handler';
+import { useState } from 'react';
+
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+
 function SettingsToggle(props) {
+    const toggleSwitch = () => props.setIsEnabled(previousState => !previousState);
     return (
-        <TouchableOpacity>
         <View style={styles.container}>
-            <View style={[styles.icon, {backgroundColor: props.color}]}> 
-                <MaterialCommunityIcons name={props.icon} color="white" size={30}/>
-            </View>
             <View style={{flex: 2}}><Text style={styles.text}>{props.title}</Text></View>
-            <MaterialCommunityIcons name="chevron-right" size={30} style={{opacity:0.3}}/>
+            <Switch
+        trackColor={{ false: "lightgray", true: "dodgerblue" }}
+        ios_backgroundColor="#3e3e3e"
+        onValueChange={toggleSwitch}
+        value={props.isEnabled}
+      />
         </View>
-        </TouchableOpacity>
     );
 }
 
@@ -26,14 +33,6 @@ const styles =  StyleSheet.create({
         borderTopWidth: 1,
         borderTopColor: "lightgray",
         borderBottomColor: "lightgray",    
-    },
-    icon: {
-        borderRadius: 10,
-        width: 35,
-        height: 35,
-        alignItems: 'center',
-        justifyContent: 'center'
-
     },
     text: {
         fontSize: 17,

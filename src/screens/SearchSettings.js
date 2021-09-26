@@ -1,11 +1,13 @@
-import React from 'react';
-import { SafeAreaView, Text } from 'react-native-safe-area-context';
+import React, { useState } from 'react';
+import {ScrollView, Text } from 'react-native';
+import SettingsToggle from '../components/SettingsToggle/SettingsToggle';
 
 function SearchSettings(props) {
+    const [setting1, setSettings1] = useState(false);
     return (
-        <SafeAreaView>
-            <Text>Search Settings</Text>
-        </SafeAreaView>
+        <ScrollView style={{paddingTop: 40}}>
+            <SettingsToggle title={"Toggle setting"} isEnabled={setting1} setIsEnabled={setSettings1}/>
+        </ScrollView>
     );
 }
 
