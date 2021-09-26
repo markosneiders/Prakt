@@ -9,7 +9,7 @@ function SettingsCard(props) {
         <TouchableOpacity>
         <View style={styles.container}>
             <View style={[styles.icon, {backgroundColor: props.color}]}> 
-                <MaterialCommunityIcons name={props.icon} size={30}/>
+                <MaterialCommunityIcons name={props.icon} color="white" size={30}/>
             </View>
             <View style={{flex: 2}}><Text style={styles.text}>{props.title}</Text></View>
             <MaterialCommunityIcons name="chevron-right" size={30} style={{opacity:0.3}}/>

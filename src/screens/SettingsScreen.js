@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ScrollView, StyleSheet, Pressable, Text, Button, Alert } from "react-native";
 import { Auth } from "aws-amplify";
 
@@ -7,6 +7,7 @@ import SettingsCard from "../components/SettingsCard/Index";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 function SettingsScreen({ navigation }) {
+  const [count, setCount] = useState(0);
   return (
     <ScrollView style={styles.container}>
       <ProfileSettingsCard navigation={navigation} />
@@ -14,8 +15,17 @@ function SettingsScreen({ navigation }) {
       <TouchableOpacity style={styles.signOutTouchable} onPress={() => handleSignOut()}>
         <Text style={styles.signOutText}>Sign Out</Text>
       </TouchableOpacity>
+      <Text style={{fontSize: 30}}>{count}</Text>
+      <Button title="Inc" onPress={() => inc()}/>
+      <Button title="Dec" onPress={() => dec()}/>
     </ScrollView>
   );
+  function inc() {
+    setCount(count+1);
+  }
+  function dec() {
+    setCount(count-1);
+  }
 }
 
 function handleSignOut() {
