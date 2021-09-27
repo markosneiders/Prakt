@@ -19,6 +19,7 @@ function BasicTextField(props) {
         multiline={props.Multi ? true : false} //Bool prop if multiline is allowed
         value={props.text}
         onContentSizeChange={(e) => changehgt(30 + e.nativeEvent.contentSize.height)} // Increases text field size dynamicaly with the text
+        keyboardType={props.type}
         ></TextInput>
       </View>
     </View>

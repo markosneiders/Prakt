@@ -1,19 +1,21 @@
 
 // Actions
 
-const SETNAME = "SETNAME"
-const SETSURNAME = "SETSURNAME"
-const SETPHONE = "SETPHONE"
-const SETEMAIL = "SETEMAIL"
-const SETBIO = "SETBIO"
+const SETPROFILENAME = "SETPROFILENAME"
+const SETPROFILESURNAME = "SETPROFILESURNAME"
+const SETPROFILEPHONE = "SETPROFILEPHONE"
+const SETPROFILEEMAIL = "SETPROFILEEMAIL"
+const SETPROFILEBIO = "SETPROFILEBIO"
+const SETPROFILEIMAGE = "SETPROFILEIMAGE"
 
 // Action creators
 
-export const setname = name => {return{ type: SETNAME, payload: name }}
-export const setsurname = surname => {return{ type: SETSURNAME, payload: surname }}
-export const setphone = phone => {return{ type: SETPHONE, payload: phone }}
-export const setemail = email => {return{ type: SETEMAIL, payload: email }}
-export const setbio = bio => {return{ type: SETBIO, payload: bio }}
+export const setprofilename = name => {return{ type: SETPROFILENAME, payload: name }}
+export const setprofilesurname = surname => {return{ type: SETPROFILESURNAME, payload: surname }}
+export const setprofilephone = phone => {return{ type: SETPROFILEPHONE, payload: phone }}
+export const setprofileemail = email => {return{ type: SETPROFILEEMAIL, payload: email }}
+export const setprofilebio = bio => {return{ type: SETPROFILEBIO, payload: bio }}
+export const setprofileimage = image => {return{ type: SETPROFILEIMAGE, payload: image}}
     
 
 
@@ -24,23 +26,21 @@ const initialState = {
     phone: "",
     email: "",
     bio: "",
+    image: ".//",
 }
 
 // Root reducer
-const rootReducer = (state = initialState, action) => {
+const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SETNAME: 
-        return {
-            ...state, 
-            name: state.name = action.payload
-        }
-        case SETSURNAME: return {...state, surname: state.surname = action.payload}
-        case SETPHONE: return {...state, phone: state.phone = action.payload}
-        case SETEMAIL: return {...state, email: state.email = action.payload}
-        case SETBIO: return {...state, bio: state.bio = action.payload}
+        case SETPROFILENAME: return {...state, name: state.name = action.payload}
+        case SETPROFILESURNAME: return {...state, surname: state.surname = action.payload}
+        case SETPROFILEPHONE: return {...state, phone: state.phone = action.payload}
+        case SETPROFILEEMAIL: return {...state, email: state.email = action.payload}
+        case SETPROFILEBIO: return {...state, bio: state.bio = action.payload}
+        case SETPROFILEIMAGE: return {...state, image: state.image = action.payload}
         default:
             return state
     }
 }
 
-export default rootReducer
+export default profileReducer

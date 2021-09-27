@@ -6,7 +6,7 @@ function ProfilePicture(props) {
   return (
     <View style={styles.container}>
       <Image
-        source={props.image != null ? { uri: props.image} : require("../../assets/images/DefaultProfilePic.png")} //Determines what to display. Displays what is passed to it as a prop state but if its empty then it displays a default profile picture.
+        source={props.image != ".//" ? { uri: props.image} : require("../../assets/images/DefaultProfilePic.png")} //Determines what to display. Displays what is passed to it as a prop state but if its empty then it displays a default profile picture.
         style={{ width: props.Width, height: props.Height, borderRadius: 100 }} //Uses the height and width props to determine size and border radius makes it round.
       />
     </View>
