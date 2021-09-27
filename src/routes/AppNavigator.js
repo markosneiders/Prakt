@@ -4,17 +4,20 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { AnimatedTabBarNavigator } from "react-native-animated-nav-tab-bar";
 import { StyleSheet } from "react-native";
 
 //importing screens for navigator to use
 import HomeScreen from "../screens/HomeScreen";
 import MatchesScreen from "../screens/MatchesScreen";
 import SettingsScreen from "../screens/SettingsScreen";
+import WelcomeScreen from "../screens/WelcomeScreen";
 
 //Imports for custom icons
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Fontisto from "react-native-vector-icons/Fontisto";
 import Ionicons from "react-native-vector-icons/Ionicons";
+
 
 //defining variable for ease of reading
 const Tab = createBottomTabNavigator();
@@ -22,7 +25,7 @@ const Tab = createBottomTabNavigator();
 // Main tab navigator containing home matches and settings
 function HomeNavigator() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator >
       <Tab.Screen // Home screen
         name="Home" //Screen name
         component={HomeScreen} //What screen to navigate to
@@ -31,7 +34,7 @@ function HomeNavigator() {
           headerShown: null, //If the header is shown
           tabBarIcon: () => (
             //Tab bar icon options
-            <Fontisto name="home" size={30} style={styles.tabbarstyle} />
+            <Fontisto name="home" size={25} style={styles.tabbarstyle} />
           ),
         }}
       />
@@ -42,7 +45,7 @@ function HomeNavigator() {
           tabBarIcon: () => (
             <Ionicons
               name="ios-chatbubbles"
-              size={30}
+              size={25}
               style={styles.tabbarstyle}
             />
           ),
@@ -55,7 +58,7 @@ function HomeNavigator() {
         options={{
           headerShown: null,
           tabBarIcon: () => (
-            <FontAwesome name="user" size={30} style={styles.tabbarstyle} />
+            <FontAwesome name="user" size={25} style={styles.tabbarstyle} />
           ),
         }}
       />
@@ -82,6 +85,7 @@ function SettingsNavigator() {
     </Stack.Navigator>
   );
 }
+
 
 export const AppNavigator = () => (
   //Exports navigator to be imported in App.js
