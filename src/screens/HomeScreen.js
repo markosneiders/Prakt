@@ -13,6 +13,9 @@ const Card =({card}) => (
 export default function MainScreen() {
     const window = useWindowDimensions();
     const [index, setIndex] = React.useState(0);
+    const onSwiped = () => {
+        setIndex(index+1)
+    }
     return(
         
         <View style={styles.container} >
@@ -29,6 +32,7 @@ export default function MainScreen() {
             stackSeparation={35}
             disableTopSwipe
             disableBottomSwipe
+            onSwiped={onSwiped}
             />
             <View  style={styles.buttoncontainer}>
             <TouchableOpacity><Ionicons name="ios-close-circle-outline" size={80} color={'rgba(255,0,0,0.7)'}/></TouchableOpacity>
