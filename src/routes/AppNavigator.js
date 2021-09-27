@@ -33,7 +33,7 @@ function HomeNavigator() {
           headerShown: null, //If the header is shown
           tabBarIcon: () => (
             //Tab bar icon options
-            <Fontisto name="home" size={25} style={styles.tabbarstyle} />
+            <Fontisto name="home" size={30} style={styles.tabbarstyle} />
           ),
         }}
       />
@@ -44,7 +44,7 @@ function HomeNavigator() {
           tabBarIcon: () => (
             <Ionicons
               name="ios-chatbubbles"
-              size={25}
+              size={30}
               style={styles.tabbarstyle}
             />
           ),
@@ -57,7 +57,7 @@ function HomeNavigator() {
         options={{
           headerShown: null,
           tabBarIcon: () => (
-            <FontAwesome name="user" size={25} style={styles.tabbarstyle} />
+            <FontAwesome name="user" size={30} style={styles.tabbarstyle} />
           ),
         }}
       />
