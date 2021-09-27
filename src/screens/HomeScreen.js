@@ -5,14 +5,13 @@ import users from "../assets/data/users";
 
 import AnimatedStack from "../components/AnimatedStack/AnimatedStack";
 
-
 const HomeScreen = () => {
   const onSwipeLeft = (user) => {
-    console.warn("swipe left: ", user.name);
+    // console.warn("swipe left: ", user.name);
   };
 
   const onSwipeRight = (user) => {
-    console.warn("swipe right: ", user.name);
+    // console.warn("swipe right: ", user.name);
   };
 
   return (
@@ -37,5 +36,3 @@ const styles = StyleSheet.create({
 });
 
 export default HomeScreen;
-
-
