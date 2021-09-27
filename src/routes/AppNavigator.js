@@ -11,7 +11,6 @@ import { StyleSheet } from "react-native";
 import HomeScreen from "../screens/HomeScreen";
 import MatchesScreen from "../screens/MatchesScreen";
 import SettingsScreen from "../screens/SettingsScreen";
-import WelcomeScreen from "../screens/WelcomeScreen";
 
 //Imports for custom icons
 import FontAwesome from "react-native-vector-icons/FontAwesome";
