@@ -10,21 +10,16 @@ const Card =({card}) => (
         <Image source={{uri: card.image}} style={styles.cardImage}/>
     </View>
 );
-
 export default function MainScreen() {
-
     const window = useWindowDimensions();
     const [index, setIndex] = React.useState(0);
     return(
         
         <View style={styles.container} >
             <View style={styles.backgroundContainer}>
-            <Image source={require("../assets/images/Maxima.jpg")}  blurRadius={3} style={styles.backgroundImage} resizeMode="cover"/>
+            <Image source={{uri: (data[index]).image}}  blurRadius={3} style={styles.backgroundImage} resizeMode="cover"/>
             </View>
             <Swiper
-            ref={swiper => {
-                swiper = swiper
-              }}
             backgroundColor="transparent"
             cards={data}
             cardIndex={index}
