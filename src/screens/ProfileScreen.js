@@ -1,5 +1,5 @@
 import React, { useEffect, useState, componentWillMount } from "react";
-import { StyleSheet, ScrollView,View, Text, Button} from "react-native";
+import { StyleSheet, ScrollView,View, KeyboardAvoidingView} from "react-native";
 import BasicTextField from "../components/BasicTextField/Index";
 import ProfilePicture from "../components/ProfilePicture/Index";
 import ImageChooser from "../components/ImageChooser/Index";
@@ -22,6 +22,7 @@ function ProfileScreen() {
   const [surname, setSurname] = useState(profileSurname);
   const [phone, setPhone] = useState(profilePhone); 
   const [email, setEmail] = useState(profileEmail);
+  const [birth, setBirth] = useState();
   const [bio, setBio] = useState(profileBio);
   const [image, setImage] = useState(profileImage); //States to store user data
 
@@ -34,16 +35,17 @@ function ProfileScreen() {
            //Calls the image chooser component. 
            //Adds our made text input component and passes some props to it to configure. 
            //Also passes its respective states for display and update.
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView contentContainerStyle={styles.container} >
       <ProfilePicture Width={100} Height={100} image={profileImage}/> 
       <ImageChooser setimage={setImage} image={image}/> 
-        <View style={styles.textcontainer}>
+        <KeyboardAvoidingView style={styles.textcontainer}>
           <BasicTextField FieldName={"Name"} text={name} settext={setName}  update={() => dispatch(setprofilename(name))}/> 
           <BasicTextField FieldName={"Surname"} text={surname} settext={setSurname} update={() => dispatch(setprofilesurname(surname))}/>
           <BasicTextField FieldName={"Phone number"} text={phone} settext={setPhone} type={"phone-pad"} update={() => dispatch(setprofilephone(phone))}/>
           <BasicTextField FieldName={"Email"} text={email} settext={setEmail} type={"email-address"} update={() => dispatch(setprofileemail(email))}/>
+          <BasicTextField FieldName={"Birth date"} text={birth} settext={setBirth} />
           <BasicTextField FieldName={"Bio"} Multi={true} text={bio} settext={setBio} update={() => dispatch(setprofilebio(bio))}/>
-        </View>
+        </KeyboardAvoidingView>
     </ScrollView>
   );
 }

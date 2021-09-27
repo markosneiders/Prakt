@@ -1,10 +1,14 @@
 export default [
     {
-      id: '40454230',
-      price: '$129.00',
-      name: 'BINGSTA',
-      image:
-        'https://www.ikea.com/us/en/images/products/bingsta-armchair__0793271_PE765307_S5.JPG?f=xs'
+      title: 'Pārdevējs',
+      name: 'Maxima',
+      rating: 4,
+      wage: 560,
+      hours: 8,
+      address: 'Gaismas iela',
+      image: 'https://pic.la.lv/2019/12/Maxima-Gaigalas-iela-29-1-800x534.jpg',
+      description: 'Maxima meklē kasieri!',
+      
     },
     {
       id: '70078463',

@@ -3,11 +3,14 @@ import React, { useState } from "react";
 
 import data from "../assets/data/data";
 import Swiper from "react-native-deck-swiper";
-import { View, StyleSheet, Image, Text, useWindowDimensions, TouchableOpacity} from "react-native";
+import { View, StyleSheet, Image, Text, useWindowDimensions, TouchableOpacity, Button} from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
+//import LinearGradient from "react-native-linear-gradient";
 const Card =({card}) => (
     <View style={styles.card}>
+        {/*<LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}> */}
         <Image source={{uri: card.image}} style={styles.cardImage}/>
+        {/*</LinearGradient> */}
     </View>
 );
 export default function MainScreen() {
@@ -19,26 +22,31 @@ export default function MainScreen() {
     return(
         
         <View style={styles.container} >
+            
             <View style={styles.backgroundContainer}>
             <Image source={{uri: (data[index]).image}}  blurRadius={3} style={styles.backgroundImage} resizeMode="cover"/>
             </View>
-            <Swiper
-            backgroundColor="transparent"
-            cards={data}
-            cardIndex={index}
-            renderCard={(card) => <Card card = {card}/>}
-            stackSize={4}
-            stackScale={10}
-            stackSeparation={35}
-            disableTopSwipe
-            disableBottomSwipe
-            onSwiped={onSwiped}
-            />
+            <View style={{marginTop: 60 }}><Button title="Change mode"/></View>
+            <View style={{flex:1}}/>
             <View  style={styles.buttoncontainer}>
             <TouchableOpacity><Ionicons name="ios-close-circle-outline" size={80} color={'rgba(255,0,0,0.7)'}/></TouchableOpacity>
             <TouchableOpacity><Ionicons name="md-arrow-back-circle-outline" size={80} color={'rgba(255,255,255,0.7)'} /></TouchableOpacity> 
             <TouchableOpacity><Ionicons name="ios-checkmark-circle-outline" size={80} color={'rgba(0,255,0,0.7)'}/></TouchableOpacity>
             </View>
+            <Swiper
+            cardVerticalMargin={140}
+            backgroundColor="transparent"
+            cards={data}
+            cardIndex={index}
+            renderCard={(card) => <Card card = {card}/>}
+            stackSize={5}
+            stackScale={10}
+            stackSeparation={40}
+            disableTopSwipe
+            disableBottomSwipe
+            onSwiped={onSwiped}
+            />
+            
   
         </View>
     );
@@ -48,8 +56,6 @@ export default function MainScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,  
-        alignItems: "center",
-        justifyContent: "flex-end",
         backgroundColor: "#FFF",
     },
     card: {
@@ -61,12 +67,13 @@ const styles = StyleSheet.create({
         shadowOffset: {width: 0, height: 0},
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#fff"
+        backgroundColor: "red",
     },
     cardImage: {
-         width: 160,
-         flex: 1,
-         resizeMode: "contain",
+        width: '100%',
+        height: '100%',
+        resizeMode:'cover',
+        borderRadius: 8,
     },
     backgroundContainer: {
         position: 'absolute',
@@ -84,5 +91,12 @@ const styles = StyleSheet.create({
     buttoncontainer: {
         flexDirection: "row",
         marginBottom: 40,
-    }
+        justifyContent: 'center'
+    },
+    linearGradient: {
+        flex: 1,
+        paddingLeft: 15,
+        paddingRight: 15,
+        borderRadius: 5
+      },
 })
