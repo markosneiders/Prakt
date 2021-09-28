@@ -18,7 +18,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import WelcomeUse from "./WelcomeScreens/WelcomeUse";
 
-function WelcomeScreen({ navigation }) {
+const WelcomeScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.backgroundContainer}>
@@ -29,6 +29,7 @@ function WelcomeScreen({ navigation }) {
           resizeMode="cover"
         />
       </View>
+
       <Image
         style={[styles.image, { bottom: 110 }]}
         source={require("../assets/prakt-logo.png")}
@@ -42,23 +43,25 @@ function WelcomeScreen({ navigation }) {
           package.
         </Text>
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate("UseFor")}>
-        <Animated.View style={[styles.button, { backgroundColor: "white" }]}>
-          <Text
-            style={[
-              styles.buttonText,
-              { color: "black" },
-              { fontWeight: "bold" },
-              { textAlign: "center" },
-            ]}
-          >
-            Get started
-          </Text>
-        </Animated.View>
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate("UseFor")}
+        style={styles.button}
+      >
+        <Text
+          style={[
+            styles.buttonText,
+            { color: "black" },
+            { fontWeight: "bold" },
+            { textAlign: "center" },
+          ]}
+        >
+          Get started
+        </Text>
       </TouchableOpacity>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -66,7 +69,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   button: {
-    marginBottom: 20,
     width: 360,
     alignItems: "center",
     backgroundColor: "#2196F3",
