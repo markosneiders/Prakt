@@ -1,3 +1,4 @@
+import { triggerFocus } from "antd/lib/input/Input";
 import React, { useState } from "react";
 import {
   StyleSheet,
@@ -38,6 +39,7 @@ const LoginScreen = () => {
           placeholderTextColor="#003f5c"
           secureTextEntry={true}
           onChangeText={(password) => setPassword(password)}
+          value={password}
         />
       </View>
 
@@ -73,15 +75,12 @@ const styles = StyleSheet.create({
     width: "70%",
     height: 45,
     marginBottom: 20,
-
-    alignItems: "center",
   },
 
   TextInput: {
     height: 50,
     flex: 1,
-    padding: 10,
-    marginLeft: 10,
+    paddingHorizontal: 20,
   },
 
   forgot_button: {
