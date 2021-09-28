@@ -16,14 +16,14 @@ import { Icon, SocialIcon } from "react-native-elements";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import WelcomeUse from "./WelcomeScreens/WelcomeUse";
+import WelcomeUse from "./WelcomeUse";
 
-const WelcomeScreen = () => {
+function WelcomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.backgroundContainer}>
         <Image
-          source={require("../assets/images/job-interview.jpg")}
+          source={require("../../assets/images/job-interview.jpg")}
           blurRadius={0.4}
           style={styles.backgroundImage}
           resizeMode="cover"
@@ -32,7 +32,7 @@ const WelcomeScreen = () => {
 
       <Image
         style={[styles.image, { bottom: 110 }]}
-        source={require("../assets/prakt-logo.png")}
+        source={require("../../assets/prakt-logo.png")}
       />
       <View style={styles.titleTextView}>
         <Text style={styles.titleText}>Praktify</Text>
@@ -42,26 +42,25 @@ const WelcomeScreen = () => {
           Jobs left and right, all you need to do is sign up for our premium
           package.
         </Text>
-      </View>
-
-      <TouchableOpacity
-        onPress={() => navigation.navigate("UseFor")}
-        style={styles.button}
-      >
-        <Text
-          style={[
-            styles.buttonText,
-            { color: "black" },
-            { fontWeight: "bold" },
-            { textAlign: "center" },
-          ]}
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Welcome Use")}
+          style={[styles.button, { marginTop: 50 }]}
         >
-          Get started
-        </Text>
-      </TouchableOpacity>
+          <Text
+            style={[
+              styles.buttonText,
+              { color: "black" },
+              { fontWeight: "bold" },
+              { textAlign: "center" },
+            ]}
+          >
+            Get started
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -82,13 +81,17 @@ const styles = StyleSheet.create({
     paddingLeft: 42,
     paddingRight: 42,
   },
+  buttonContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   icon: {
     marginLeft: 15,
   },
   image: {
-    borderRadius: 10,
-    width: 250,
-    height: 250,
+    width: 240,
+    height: 240,
     marginBottom: 100,
     alignItems: "center",
     justifyContent: "center",

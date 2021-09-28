@@ -10,7 +10,7 @@ import { StyleSheet } from "react-native";
 import HomeScreen from "../screens/HomeScreen";
 import MatchesScreen from "../screens/MatchesScreen";
 import SettingsScreen from "../screens/SettingsScreen";
-import WelcomeScreen from "../screens/WelcomeScreen";
+import WelcomeScreen from "../screens/WelcomeScreens/WelcomeScreen";
 import WelcomeUse from "../screens/WelcomeScreens/WelcomeUse";
 import LoginScreen from "../screens/LoginScreen";
 
