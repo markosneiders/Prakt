@@ -12,6 +12,7 @@ import MatchesScreen from "../screens/MatchesScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import WelcomeScreen from "../screens/WelcomeScreen";
 import WelcomeUse from "../screens/WelcomeScreens/WelcomeUse";
+import LoginScreen from "../screens/LoginScreen";
 
 //Imports for custom icons
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -70,6 +71,17 @@ function HomeNavigator() {
           headerShown: null,
           tabBarIcon: () => (
             <FontAwesome name="user" size={30} style={styles.tabbarstyle} />
+          ),
+        }}
+      />
+
+      <Tab.Screen //Login screen
+        name="Login"
+        component={LoginScreen}
+        options={{
+          headerShown: null,
+          tabBarIcon: () => (
+            <AntDesign name="login" size={30} style={styles.tabbarstyle} />
           ),
         }}
       />
