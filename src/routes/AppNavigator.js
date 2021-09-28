@@ -11,6 +11,7 @@ import HomeScreen from "../screens/HomeScreen";
 import MatchesScreen from "../screens/MatchesScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import WelcomeScreen from "../screens/WelcomeScreen";
+import WelcomeUse from "../screens/WelcomeScreens/WelcomeUse";
 
 //Imports for custom icons
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -18,14 +19,25 @@ import Fontisto from "react-native-vector-icons/Fontisto";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
-
 //defining variable for ease of reading
 const Tab = createBottomTabNavigator();
 
 // Main tab navigator containing home matches and settings
 function HomeNavigator() {
   return (
-    <Tab.Navigator initialRouteName="Home">
+    <Tab.Navigator>
+      <Tab.Screen // Home screen
+        name="Home" //Screen name
+        component={HomeScreen} //What screen to navigate to
+        options={{
+          //Options
+          headerShown: null, //If the header is shown
+          tabBarIcon: () => (
+            //Tab bar icon options
+            <Fontisto name="home" size={30} style={styles.tabbarstyle} />
+          ),
+        }}
+      />
       <Tab.Screen //Matches/Chat screen
         name="Matches"
         component={MatchesScreen}
@@ -39,23 +51,12 @@ function HomeNavigator() {
           ),
         }}
       />
-      <Tab.Screen // Home screen
-        name="Home" //Screen name
-        component={HomeScreen} //What screen to navigate to
-        options={{
-          //Options
-          headerShown: null, //If the header is shown
-          tabBarIcon: () => (
-            //Tab bar icon options
-            <Fontisto name="home" size={30} style={styles.tabbarstyle} />
-          ),
-        }}
-      />
 
       <Tab.Screen //Welcome screen
         name="Welcome"
-        component={WelcomeScreen}
+        component={WelcomeNavigator}
         options={{
+          headerShown: null,
           tabBarIcon: () => (
             <AntDesign name="info" size={30} style={styles.tabbarstyle} />
           ),
@@ -96,6 +97,18 @@ function SettingsNavigator() {
   );
 }
 
+function WelcomeNavigator() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Welcome Page"
+        component={WelcomeScreen}
+        options={{ title: "Welcome" }}
+      />
+      <Stack.Screen name="Welcome Use" component={WelcomeUse} />
+    </Stack.Navigator>
+  );
+}
 
 export const AppNavigator = () => (
   //Exports navigator to be imported in App.js

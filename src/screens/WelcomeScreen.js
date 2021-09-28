@@ -1,4 +1,4 @@
-import React, { Component, useRef } from "react";
+import React, { Component, useRef, useState, useEffect } from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -6,6 +6,7 @@ import {
   Image,
   View,
   Button,
+  Animated,
 } from "react-native";
 import {
   TouchableHighlight,
@@ -13,57 +14,59 @@ import {
 } from "react-native-gesture-handler";
 import { Icon, SocialIcon } from "react-native-elements";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { render } from "react-dom";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import WelcomeUse from "./WelcomeScreens/WelcomeUse";
 
-const WelcomeScreen = () => {
+function WelcomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
+      <View style={styles.backgroundContainer}>
+        <Image
+          source={require("../assets/images/job-interview.jpg")}
+          blurRadius={0.4}
+          style={styles.backgroundImage}
+          resizeMode="cover"
+        />
+      </View>
       <Image
-        style={styles.image}
+        style={[styles.image, { bottom: 110 }]}
         source={require("../assets/prakt-logo.png")}
       />
-      <TouchableOpacity onPress={() => console.warn("real nigga shit google")}>
-        {/* sign in w google */}
-        <View style={[styles.button, { backgroundColor: "white" }]}>
-          <SocialIcon type="google" style={[{ marginLeft: 15 }]} />
+      <View style={styles.titleTextView}>
+        <Text style={styles.titleText}>Praktify</Text>
+      </View>
+      <View style={styles.bottomTextView}>
+        <Text style={styles.bottomText}>
+          Jobs left and right, all you need to do is sign up for our premium
+          package.
+        </Text>
+      </View>
+      <TouchableOpacity onPress={() => navigation.navigate("UseFor")}>
+        <Animated.View style={[styles.button, { backgroundColor: "white" }]}>
           <Text
             style={[
               styles.buttonText,
               { color: "black" },
               { fontWeight: "bold" },
+              { textAlign: "center" },
             ]}
           >
-            Continue with Google
+            Get started
           </Text>
-        </View>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => console.warn("real nigga shit email")}>
-        {/* sign in w email */}
-        <View style={[styles.button, { backgroundColor: "#2fb3ff" }]}>
-          <Ionicons name="mail" size={60} style={[{ marginLeft: 15 }]} />
-          <Text
-            style={[
-              styles.buttonText,
-              { color: "black" },
-              { fontWeight: "bold" },
-            ]}
-          >
-            Continue with email
-          </Text>
-        </View>
+        </Animated.View>
       </TouchableOpacity>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 60,
+    paddingTop: 230,
     alignItems: "center",
   },
   button: {
-    marginBottom: 30,
+    marginBottom: 20,
     width: 360,
     alignItems: "center",
     backgroundColor: "#2196F3",
@@ -82,19 +85,51 @@ const styles = StyleSheet.create({
   },
   image: {
     borderRadius: 10,
-    width: 150,
-    height: 150,
+    width: 250,
+    height: 250,
     marginBottom: 100,
     alignItems: "center",
     justifyContent: "center",
   },
-  fadingContainer: {
-    padding: 20,
-    backgroundColor: "powderblue",
-  },
   imagecontainer: {
     paddingTop: "80%",
-  }
+  },
+  backgroundContainer: {
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    justifyContent: "center",
+    backgroundColor: "green",
+  },
+  backgroundImage: {
+    alignSelf: "center",
+    width: 400,
+    height: 400,
+    flex: 1,
+  },
+  titleText: {
+    fontSize: 40,
+    fontWeight: "bold",
+    color: "#313131",
+    textAlign: "center",
+  },
+  titleTextView: {
+    bottom: 150,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  bottomText: {
+    fontSize: 20,
+    textAlign: "center",
+  },
+  bottomTextView: {
+    bottom: 140,
+    alignSelf: "center",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
 
 export default WelcomeScreen;
