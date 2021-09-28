@@ -1,32 +1,72 @@
 import React, { useState } from "react";
 import data from "../assets/data/data";
 import Swiper from "react-native-deck-swiper";
-import { View, StyleSheet, Image, Text, useWindowDimensions, TouchableOpacity, Button} from "react-native";
+import {
+  View,
+  StyleSheet,
+  Image,
+  Text,
+  useWindowDimensions,
+  TouchableOpacity,
+  Button,
+} from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-
-const Card =({card}) => (
-    <View style={styles.card}>
-        <Image source={{uri: card.image}} style={styles.cardImage}/>
-        <View style={styles.cardTextContainer}>
-            <View>
-            <Text style={[styles.cardText, {fontSize: 40}]}>{card.position}</Text>
-            <Text style={[styles.cardText, {fontSize: 30}]}>{card.name}</Text>
-            <View style={{flexDirection: 'row'}}> 
-            <Ionicons name="star" size={30} color="yellow" style={[styles.stars, {opacity: 0.8}]}/>
-            <Ionicons name="star" size={30} color="yellow" style={[styles.stars, {opacity: 0.8}]}/>
-            <Ionicons name="star" size={30} color="yellow" style={[styles.stars, {opacity: 0.8}]}/>
-            <Ionicons name="star" size={30} color="yellow" style={[styles.stars, {opacity: 0.8}]}/>
-            <Ionicons name="star-outline" size={30} color="yellow" style={[styles.stars, {opacity: 0.3}]}/>
-            </View>
-            </View>
+const Card = ({ card }) => (
+  <View style={styles.card}>
+    <Image source={{ uri: card.image }} style={styles.cardImage} />
+    <View style={styles.cardTextContainer}>
+      <View>
+        <Text style={[styles.cardText, { fontSize: 40 }]}>{card.position}</Text>
+        <Text style={[styles.cardText, { fontSize: 30 }]}>{card.name}</Text>
+        <View style={{ flexDirection: "row" }}>
+          <Ionicons
+            name="star"
+            size={30}
+            color="yellow"
+            style={[styles.stars, { opacity: 0.8 }]}
+          />
+          <Ionicons
+            name="star"
+            size={30}
+            color="yellow"
+            style={[styles.stars, { opacity: 0.8 }]}
+          />
+          <Ionicons
+            name="star"
+            size={30}
+            color="yellow"
+            style={[styles.stars, { opacity: 0.8 }]}
+          />
+          <Ionicons
+            name="star"
+            size={30}
+            color="yellow"
+            style={[styles.stars, { opacity: 0.8 }]}
+          />
+          <Ionicons
+            name="star-outline"
+            size={30}
+            color="yellow"
+            style={[styles.stars, { opacity: 0.3 }]}
+          />
         </View>
-        <View style={[styles.cardTextContainer ,{flex: 0.6, alignItems: 'flex-end'}]}>
-                <Text style={[styles.cardText, {fontSize: 30, textAlign: 'right'}]}>{card.wage + "€"}</Text>
-                <Text style={[styles.cardText, {fontSize: 30, textAlign: 'right'}]}>{card.hours + "h"}</Text>
-                <Text style={[styles.cardText, {fontSize: 25, textAlign: 'right'}]}>{card.address}</Text>
-            </View>
+      </View>
     </View>
+    <View
+      style={[styles.cardTextContainer, { flex: 0.6, alignItems: "flex-end" }]}
+    >
+      <Text style={[styles.cardText, { fontSize: 30, textAlign: "right" }]}>
+        {card.wage + "€"}
+      </Text>
+      <Text style={[styles.cardText, { fontSize: 30, textAlign: "right" }]}>
+        {card.hours + "h"}
+      </Text>
+      <Text style={[styles.cardText, { fontSize: 25, textAlign: "right" }]}>
+        {card.address}
+      </Text>
+    </View>
+  </View>
 );
 export default function MainScreen() {
     const window = useWindowDimensions();
@@ -87,7 +127,6 @@ export default function MainScreen() {
         </View>
     );
 }
-
 
 const styles = StyleSheet.create({
     container: {
