@@ -1,16 +1,31 @@
 import React, { useState } from "react";
-
-
 import data from "../assets/data/data";
 import Swiper from "react-native-deck-swiper";
 import { View, StyleSheet, Image, Text, useWindowDimensions, TouchableOpacity, Button} from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-//import LinearGradient from "react-native-linear-gradient";
+
+
 const Card =({card}) => (
     <View style={styles.card}>
-        {/*<LinearGradient colors={['#4c669f', '#3b5998', '#192f6a']} style={styles.linearGradient}> */}
         <Image source={{uri: card.image}} style={styles.cardImage}/>
-        {/*</LinearGradient> */}
+        <View style={styles.cardTextContainer}>
+            <View>
+            <Text style={[styles.cardText, {fontSize: 40}]}>{card.position}</Text>
+            <Text style={[styles.cardText, {fontSize: 30}]}>{card.name}</Text>
+            <View style={{flexDirection: 'row'}}> 
+            <Ionicons name="star" size={30} color="yellow" style={[styles.stars, {opacity: 0.8}]}/>
+            <Ionicons name="star" size={30} color="yellow" style={[styles.stars, {opacity: 0.8}]}/>
+            <Ionicons name="star" size={30} color="yellow" style={[styles.stars, {opacity: 0.8}]}/>
+            <Ionicons name="star" size={30} color="yellow" style={[styles.stars, {opacity: 0.8}]}/>
+            <Ionicons name="star-outline" size={30} color="yellow" style={[styles.stars, {opacity: 0.3}]}/>
+            </View>
+            </View>
+        </View>
+        <View style={[styles.cardTextContainer ,{flex: 0.6, alignItems: 'flex-end'}]}>
+                <Text style={[styles.cardText, {fontSize: 30, textAlign: 'right'}]}>{card.wage + "€"}</Text>
+                <Text style={[styles.cardText, {fontSize: 30, textAlign: 'right'}]}>{card.hours + "h"}</Text>
+                <Text style={[styles.cardText, {fontSize: 25, textAlign: 'right'}]}>{card.address}</Text>
+            </View>
     </View>
 );
 export default function MainScreen() {
@@ -65,15 +80,37 @@ const styles = StyleSheet.create({
         shadowColor: "#000",
         shadowOpacity: 0.08,
         shadowOffset: {width: 0, height: 0},
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "red",
+        flexDirection: "row"
     },
     cardImage: {
         width: '100%',
         height: '100%',
         resizeMode:'cover',
         borderRadius: 8,
+        position: 'absolute'
+    },
+    cardText: {
+        color: "white",
+        fontFamily: 'Arial',
+        fontWeight: 'bold',
+        shadowOffset: {width: 0, height: 0},
+        shadowColor: "black",
+        shadowOpacity: 1,
+        shadowRadius: 4,
+    },
+    cardTextContainer: {
+        flex: 1,
+        flexDirection: "column",
+        justifyContent: "flex-end",
+        paddingHorizontal: 5,
+        paddingVertical: 25,
+    },
+    stars: {
+        shadowOffset: {width: 0, height: 0},
+        shadowColor: "black",
+        shadowOpacity: 1,
+        shadowRadius: 4,
+        marginHorizontal: 2,
     },
     backgroundContainer: {
         position: 'absolute',
@@ -93,10 +130,4 @@ const styles = StyleSheet.create({
         marginBottom: 40,
         justifyContent: 'center'
     },
-    linearGradient: {
-        flex: 1,
-        paddingLeft: 15,
-        paddingRight: 15,
-        borderRadius: 5
-      },
 })

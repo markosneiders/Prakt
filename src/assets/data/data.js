@@ -1,6 +1,6 @@
 export default [
     {
-      title: 'Pārdevējs',
+      position: 'Pārdevējs',
       name: 'Maxima',
       rating: 4,
       wage: 560,
