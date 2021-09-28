@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import data from "../assets/data/data";
 import Swiper from "react-native-deck-swiper";
 import {
@@ -9,8 +9,10 @@ import {
   useWindowDimensions,
   TouchableOpacity,
   Button,
+  Animated,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { Swipeable } from "react-native-gesture-handler";
 
 const Card = ({ card }) => (
   <View style={styles.card}>
@@ -69,23 +71,82 @@ const Card = ({ card }) => (
   </View>
 );
 export default function MainScreen() {
+  const image1 = useRef(new Animated.Value(1)).current
+  const image2 = useRef(new Animated.Value(0)).current
   const window = useWindowDimensions();
   const [index, setIndex] = React.useState(0);
+  const [aindex, setAindex] = React.useState(0);
+  const [bindex, setBindex] = React.useState(1);
+  const [swap, setSwap] = React.useState(false)
   const [op, setOp] = React.useState(0);
   const onSwiped = () => {
     setIndex(index + 1);
     setOp(0);
-  };
+    {swap == false ? fswap() : tswap()}
+  }
+
+    function fswap() {
+      Animated.timing(
+        image1,
+        {
+          toValue: 0,
+          duration: 500,
+          useNativeDriver: false
+        },
+      ).start()
+      Animated.timing(
+        image2,
+        {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: false
+        },
+      ).start(() =>[setAindex(aindex + 2), setSwap(true)]);
+      
+    };
+    function tswap() {
+      Animated.timing(
+        image1,
+        {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: false
+        },
+      ).start()
+      Animated.timing(
+        image2,
+        {
+          toValue: 0,
+          duration: 500,
+          useNativeDriver: false
+        },
+      ).start(() => [setBindex(bindex + 2), setSwap(false)]);
+      
+    };
+    
+    
+
+  
+
+ 
   return (
     <View style={styles.container}>
-      <View style={styles.backgroundContainer}>
+      <Animated.View style={[styles.backgroundContainer, {opacity: image1}]} >
         <Image
-          source={{ uri: data[index].image }}
+          source={{ uri: data[aindex].image }}
           blurRadius={3}
           style={[styles.backgroundImage, ]}
           resizeMode="cover"
         />
-      </View>
+      </Animated.View>
+      <Animated.View style={[styles.backgroundContainer, {opacity: image2}]} >
+        <Image
+          source={{ uri: data[bindex].image }}
+          blurRadius={3}
+          style={[styles.backgroundImage, ]}
+          resizeMode="cover"
+        />
+      </Animated.View>
       <View style={styles.backgroundContainer}>
         <Image
           source={{ uri: data[index].image }}
@@ -143,26 +204,6 @@ export default function MainScreen() {
         stackSeparation={40}
         disableTopSwipe
         disableBottomSwipe
-        overlayLabels={{
-          left: {
-            title: "NOPE",
-            style: {
-              label: {
-                backgroundColor: "black",
-                borderColor: "black",
-                color: "white",
-                borderWidth: 1,
-              },
-              wrapper: {
-                flexDirection: "column",
-                alignItems: "flex-end",
-                justifyContent: "flex-start",
-                marginTop: 30,
-                marginLeft: -30,
-              },
-            },
-          },
-        }}
         animateOverlayLabelsOpacity={true}
         animateCardOpacity={true}
       />
