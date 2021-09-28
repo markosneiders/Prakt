@@ -23,7 +23,7 @@ function WelcomeScreen({ navigation }) {
     <View style={styles.container}>
       <View style={styles.backgroundContainer}>
         <Image
-          source={{ uri: "https://reactnative.dev/img/tiny_logo.png" }}
+          source={require("../../assets/images/job-interview.jpg")}
           blurRadius={0.4}
           style={styles.backgroundImage}
           resizeMode="cover"
@@ -32,7 +32,7 @@ function WelcomeScreen({ navigation }) {
 
       <Image
         style={[styles.image, { bottom: 110 }]}
-        source={{ uri: "https://reactnative.dev/img/tiny_logo.png" }}
+        source={require("../../assets/prakt-logo.png")}
       />
       <View style={styles.titleTextView}>
         <Text style={styles.titleText}>Praktify</Text>
