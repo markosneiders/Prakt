@@ -74,6 +74,7 @@ export default function MainScreen() {
   const [op, setOp] = React.useState(0);
   const onSwiped = () => {
     setIndex(index + 1);
+    setOp(0);
   };
   return (
     <View style={styles.container}>
@@ -81,7 +82,23 @@ export default function MainScreen() {
         <Image
           source={{ uri: data[index].image }}
           blurRadius={3}
-          style={[styles.backgroundImage]}
+          style={[styles.backgroundImage, ]}
+          resizeMode="cover"
+        />
+      </View>
+      <View style={styles.backgroundContainer}>
+        <Image
+          source={{ uri: data[index].image }}
+          blurRadius={3}
+          style={[styles.backgroundImage,{tintColor: 'red', opacity: op/-600} ]}
+          resizeMode="cover"
+        />
+      </View>
+      <View style={styles.backgroundContainer}>
+        <Image
+          source={{ uri: data[index].image }}
+          blurRadius={3}
+          style={[styles.backgroundImage,{tintColor: 'green', opacity: op/600} ]}
           resizeMode="cover"
         />
       </View>
@@ -114,6 +131,8 @@ export default function MainScreen() {
       </View>
       <Swiper
         onSwiping={(cardIndex) => setOp(cardIndex)}
+        onSwiped={onSwiped}
+        onSwipedAborted={() => setOp(0)}
         cardVerticalMargin={140}
         backgroundColor="transparent"
         cards={data}
@@ -124,7 +143,6 @@ export default function MainScreen() {
         stackSeparation={40}
         disableTopSwipe
         disableBottomSwipe
-        onSwiped={onSwiped}
         overlayLabels={{
           left: {
             title: "NOPE",
