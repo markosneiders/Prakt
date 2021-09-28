@@ -31,15 +31,15 @@ const Card =({card}) => (
 export default function MainScreen() {
     const window = useWindowDimensions();
     const [index, setIndex] = React.useState(0);
+    const [op, setOp] = React.useState(0);
     const onSwiped = () => {
         setIndex(index+1)
     }
     return(
         
         <View style={styles.container} >
-            
             <View style={styles.backgroundContainer}>
-            <Image source={{uri: (data[index]).image}}  blurRadius={3} style={styles.backgroundImage} resizeMode="cover"/>
+            <Image source={{uri: (data[index]).image}}  blurRadius={3} style={[styles.backgroundImage]} resizeMode="cover"/>
             </View>
             <View style={{marginTop: 60 }}><Button title="Change mode"/></View>
             <View style={{flex:1}}/>
@@ -49,6 +49,7 @@ export default function MainScreen() {
             <TouchableOpacity><Ionicons name="ios-checkmark-circle-outline" size={80} color={'rgba(0,255,0,0.7)'}/></TouchableOpacity>
             </View>
             <Swiper
+            onSwiping={(cardIndex) => setOp(cardIndex)}
             cardVerticalMargin={140}
             backgroundColor="transparent"
             cards={data}
@@ -60,9 +61,29 @@ export default function MainScreen() {
             disableTopSwipe
             disableBottomSwipe
             onSwiped={onSwiped}
+            overlayLabels={{
+                left: {
+                    title: 'NOPE',
+                    style: {
+                      label: {
+                        backgroundColor: 'black',
+                        borderColor: 'black',
+                        color: 'white',
+                        borderWidth: 1
+                      },
+                      wrapper: {
+                        flexDirection: 'column',
+                        alignItems: 'flex-end',
+                        justifyContent: 'flex-start',
+                        marginTop: 30,
+                        marginLeft: -30
+                      }
+                    }
+                  },
+            }}
+            animateOverlayLabelsOpacity={true}
+            animateCardOpacity={true}
             />
-            
-  
         </View>
     );
 }
@@ -71,7 +92,6 @@ export default function MainScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,  
-        backgroundColor: "#FFF",
     },
     card: {
         flex: 0.7,
