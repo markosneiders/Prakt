@@ -1,4 +1,3 @@
-import { triggerFocus } from "antd/lib/input/Input";
 import React, { useState } from "react";
 import {
   StyleSheet,
@@ -28,6 +27,7 @@ const LoginScreen = () => {
           placeholder="Email"
           placeholderTextColor="#003f5c"
           secureTextEntry={false}
+          value={email}
           onChangeText={(email) => setEmail(email)}
         />
       </View>
@@ -38,8 +38,8 @@ const LoginScreen = () => {
           placeholder="Password"
           placeholderTextColor="#003f5c"
           secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)}
           value={password}
+          onChangeText={(password) => setPassword(password)}
         />
       </View>
 
@@ -49,6 +49,10 @@ const LoginScreen = () => {
 
       <TouchableOpacity style={styles.loginBtn}>
         <Text style={styles.loginText}>LOGIN</Text>
+      </TouchableOpacity>
+      <Text style={{ color: "#757575" }}>-- OR --</Text>
+      <TouchableOpacity style={styles.signupBtn}>
+        <Text style={styles.loginText}>SIGN UP</Text>
       </TouchableOpacity>
     </View>
   );
@@ -65,6 +69,7 @@ const styles = StyleSheet.create({
   },
 
   image: {
+    marginTop: 40,
     marginBottom: 40,
   },
 
@@ -85,7 +90,7 @@ const styles = StyleSheet.create({
 
   forgot_button: {
     height: 30,
-    marginBottom: 30,
+    marginBottom: 5,
   },
 
   loginBtn: {
@@ -94,7 +99,18 @@ const styles = StyleSheet.create({
     height: 50,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 40,
+    marginTop: 20,
+    marginBottom: 10,
+    backgroundColor: "#7CB8EA",
+  },
+
+  signupBtn: {
+    width: "80%",
+    borderRadius: 25,
+    height: 50,
+    marginTop: 10,
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: "#7CB8EA",
   },
 });
