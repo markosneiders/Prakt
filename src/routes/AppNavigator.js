@@ -13,6 +13,8 @@ import SettingsScreen from "../screens/SettingsScreen";
 import WelcomeScreen from "../screens/WelcomeScreens/WelcomeScreen";
 import WelcomeUse from "../screens/WelcomeScreens/WelcomeUse";
 import LoginScreen from "../screens/LoginScreen";
+import WelcomePersonal from "../screens/WelcomeScreens/WelcomePersonal";
+import WelcomeBusiness from "../screens/WelcomeScreens/WelcomeBusiness";
 
 //Imports for custom icons
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -26,7 +28,6 @@ const Tab = createBottomTabNavigator();
 // Main tab navigator containing home matches and settings
 function HomeNavigator() {
   return (
-    
     <Tab.Navigator initialRouteName="Home">
       <Tab.Screen //Matches/Chat screen
         name="Matches"
@@ -119,6 +120,8 @@ function WelcomeNavigator() {
         options={{ title: "Welcome" }}
       />
       <Stack.Screen name="Welcome Use" component={WelcomeUse} />
+      <Stack.Screen name="Welcome Personal" component={WelcomePersonal} />
+      <Stack.Screen name="Welcome Business" component={WelcomeBusiness} />
     </Stack.Navigator>
   );
 }

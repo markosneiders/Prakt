@@ -9,10 +9,10 @@ import {
   TouchableOpacity,
   StatusBar,
 } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-function WelcomeUse({ navigation }) {
+function WelcomeBusiness({ navigation }) {
+  const [compname, setCompName] = useState("");
+
   return (
     <View style={styles.container}>
       <Image
@@ -22,28 +22,25 @@ function WelcomeUse({ navigation }) {
 
       <StatusBar style="auto" />
 
-      <View>
-        <Text style={styles.forgot_button}>Use case</Text>
+      <View style={styles.inputView}>
+        <TextInput
+          style={styles.TextInput}
+          placeholder="Company name"
+          placeholderTextColor="#003f5c"
+          secureTextEntry={true}
+          onChangeText={(compname) => setCompName(compname)}
+          value={compname}
+        />
       </View>
 
-      <TouchableOpacity
-        style={styles.loginBtn}
-        onPress={() => navigation.navigate("Welcome Personal")}
-      >
-        <Text style={styles.loginText}>Personal</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={styles.loginBtn}
-        onPress={() => navigation.navigate("Welcome Business")}
-      >
-        <Text style={styles.loginText}>Business</Text>
+      <TouchableOpacity style={styles.loginBtn}>
+        <Text style={styles.loginText}>Submit</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
-export default WelcomeUse;
+export default WelcomeBusiness;
 
 const styles = StyleSheet.create({
   container: {

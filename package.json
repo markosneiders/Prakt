@@ -38,7 +38,7 @@
     "react-navigation": "^4.4.4",
     "react-redux": "^7.2.5",
     "redux": "^4.1.1",
-    "rn-slider-switch": "0.0.3"
+    "@react-native-community/datetimepicker": "3.5.2"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"
