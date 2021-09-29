@@ -12,6 +12,13 @@ import {
   Animated,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
+
+
+import TrippleToggleSwitch from "../../node_modules/react-native-triple-state-switch/index.js"
+import Icon from 'react-native-vector-icons/Ionicons';
+const AnimatedIcon = Animated.createAnimatedComponent(Icon);
+
+
 const Card = ({ card }) => (
   <View style={styles.card}>
     <Image source={{ uri: card.image }} style={styles.cardImage} />
@@ -66,7 +73,9 @@ const Card = ({ card }) => (
 );
 
 export default function MainScreen() {
-  
+
+
+
   const image1 = useRef(new Animated.Value(1)).current
   const image2 = useRef(new Animated.Value(0)).current
   const opc = useRef(new Animated.Value(0)).current
@@ -83,7 +92,7 @@ export default function MainScreen() {
       {
         toValue: 0,
         duration: 200,
-        useNativeDriver: false
+        useNativeDriver: true
       },
     ).start()
   }
@@ -94,7 +103,7 @@ export default function MainScreen() {
         {
           toValue: 0,
           duration: 500,
-          useNativeDriver: false
+          useNativeDriver: true
         },
       ).start()
       Animated.timing(
@@ -102,7 +111,7 @@ export default function MainScreen() {
         {
           toValue: 1,
           duration: 500,
-          useNativeDriver: false
+          useNativeDriver: true
         },
       ).start(() =>[setAindex(aindex + 2), setSwap(true)]);
       
@@ -113,7 +122,7 @@ export default function MainScreen() {
         {
           toValue: 1,
           duration: 500,
-          useNativeDriver: false
+          useNativeDriver: true
         },
       ).start()
       Animated.timing(
@@ -121,7 +130,7 @@ export default function MainScreen() {
         {
           toValue: 0,
           duration: 500,
-          useNativeDriver: false
+          useNativeDriver: true
         },
       ).start(() => [setBindex(bindex + 2), setSwap(false)]);
       
@@ -132,7 +141,7 @@ export default function MainScreen() {
         {
           toValue: 0,
           duration: 500,
-          useNativeDriver: false
+          useNativeDriver: true
         },
       ).start()
     }
@@ -172,12 +181,19 @@ export default function MainScreen() {
           resizeMode="cover"
         />
       </Animated.View>
-      <View style={{ marginTop: 60 }}>
-        <Button title="Change mode" />
-      </View>
-      <View style={{ flex: 1 }} />
+      <View style={styles.wholebuttoncontainer}>
+        <View style={styles.selectbuttoncontainer}>
+        <TrippleToggleSwitch
+        AnimatedIcon={AnimatedIcon}
+        middleStateIconName={'git-network-outline'}
+        leftStateIconName={'briefcase'}
+        rightStateIconName={'hammer-outline'}
+         />
+        </View>
+      <View >
       <Swiper
-      onSwiping={(cardIndex) => opc.setValue(cardIndex)}
+        onTapCard={() => console.log("Tap")}
+        onSwiping={(cardIndex) => opc.setValue(cardIndex)}
         onSwiped={() => [onSwiped(),opacityReset()]}
         onSwipedAborted={() => opacityReset()}
         cardVerticalMargin={140}
@@ -186,13 +202,17 @@ export default function MainScreen() {
         cardIndex={index}
         renderCard={(card) => <Card card={card} />}
         stackSize={5}
-        stackScale={10}
-        stackSeparation={40}
+        stackScale={9}
+        stackSeparation={50}
         disableTopSwipe
         disableBottomSwipe
         animateCardOpacity={true}
       />
-      <View style={styles.buttoncontainer}>
+      </View>
+
+      
+
+       {/*  <View style={styles.buttoncontainer}>
         <TouchableOpacity>
           <Ionicons
             name="ios-close-circle-outline"
@@ -214,6 +234,7 @@ export default function MainScreen() {
             color={"rgba(0,255,0,0.7)"}
           />
         </TouchableOpacity>
+       </View> */}
       </View>
     </View>
   );
@@ -222,9 +243,10 @@ export default function MainScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
   },
   card: {
-    flex: 0.7,
+    flex: 0.9,
     borderRadius: 8,
     shadowRadius: 25,
     shadowColor: "#000",
@@ -269,6 +291,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     justifyContent: "center",
+    flex:1
   },
   backgroundImage: {
     alignSelf: "center",
@@ -276,8 +299,22 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   buttoncontainer: {
-    flexDirection: "row",
-    marginBottom: 40,
-    justifyContent: "center",
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+
+    flex: 1,
+
   },
+  wholebuttoncontainer: {
+    flex: 1,
+    flexDirection: "column",
+  },
+  selectbuttoncontainer: {
+    alignItems: 'center',
+    flex: 1,
+    marginTop: 40,
+    position: 'absolute',
+    alignSelf: 'center'
+  }
 });
