@@ -13,6 +13,7 @@ import SettingsScreen from "../screens/SettingsScreen";
 import WelcomeScreen from "../screens/WelcomeScreens/WelcomeScreen";
 import WelcomeUse from "../screens/WelcomeScreens/WelcomeUse";
 import LoginScreen from "../screens/LoginScreen";
+import SignUpScreen from "../screens/SignUpScreen";
 import WelcomePersonal from "../screens/WelcomeScreens/WelcomePersonal";
 import WelcomeBusiness from "../screens/WelcomeScreens/WelcomeBusiness";
 
@@ -84,6 +85,17 @@ function HomeNavigator() {
           headerShown: null,
           tabBarIcon: () => (
             <AntDesign name="login" size={30} style={styles.tabbarstyle} />
+          ),
+        }}
+      />
+
+      <Tab.Screen //Sign Up screen
+        name="SignUp"
+        component={SignUpScreen}
+        options={{
+          headerShown: null,
+          tabBarIcon: () => (
+            <AntDesign name="paperclip" size={30} style={styles.tabbarstyle} />
           ),
         }}
       />
