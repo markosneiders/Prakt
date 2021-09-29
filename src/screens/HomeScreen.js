@@ -12,8 +12,6 @@ import {
   Animated,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { Swipeable } from "react-native-gesture-handler";
-
 const Card = ({ card }) => (
   <View style={styles.card}>
     <Image source={{ uri: card.image }} style={styles.cardImage} />
@@ -22,39 +20,35 @@ const Card = ({ card }) => (
         <Text style={[styles.cardText, { fontSize: 40 }]}>{card.position}</Text>
         <Text style={[styles.cardText, { fontSize: 30 }]}>{card.name}</Text>
         <View style={{ flexDirection: "row" }}>
-          <Ionicons
-            name="star"
-            size={30}
-            color="yellow"
-            style={[styles.stars, { opacity: 0.8 }]}
-          />
-          <Ionicons
-            name="star"
-            size={30}
-            color="yellow"
-            style={[styles.stars, { opacity: 0.8 }]}
-          />
-          <Ionicons
-            name="star"
-            size={30}
-            color="yellow"
-            style={[styles.stars, { opacity: 0.8 }]}
-          />
-          <Ionicons
-            name="star"
-            size={30}
-            color="yellow"
-            style={[styles.stars, { opacity: 0.8 }]}
-          />
-          <Ionicons
+        {[...Array(5)].map(i => { //Creates the rest of the empty stars
+            return(
+            <Ionicons
             name="star-outline"
+            key={Math.random().toString(36).substr(2, 9)}
             size={30}
             color="yellow"
             style={[styles.stars, { opacity: 0.3 }]}
-          />
+           />
+            );
+          })}
+          <View style={{position: 'absolute', flexDirection: 'row'}}>
+          {[...Array(card.rating)].map(i => { //Creates as many stars as card.rating
+            return(
+              <Ionicons
+              name="star"
+              key={Math.random().toString(36).substr(2, 9)}
+              size={30}
+              color="yellow"
+              style={[styles.stars, { opacity: 1 }]}
+            />
+            );
+          })} 
+          </View>
+
         </View>
       </View>
     </View>
+    
     <View
       style={[styles.cardTextContainer, { flex: 0.6, alignItems: "flex-end" }]}
     >
@@ -70,15 +64,16 @@ const Card = ({ card }) => (
     </View>
   </View>
 );
+
 export default function MainScreen() {
+  
   const image1 = useRef(new Animated.Value(1)).current
   const image2 = useRef(new Animated.Value(0)).current
   const opc = useRef(new Animated.Value(0)).current
-  const window = useWindowDimensions();
   const [index, setIndex] = React.useState(0);
   const [aindex, setAindex] = React.useState(0);
   const [bindex, setBindex] = React.useState(1);
-  const [swap, setSwap] = React.useState(false)
+  const [swap, setSwap] = React.useState(false);
 
   const onSwiped = () => {
     setIndex(index + 1);
@@ -181,6 +176,22 @@ export default function MainScreen() {
         <Button title="Change mode" />
       </View>
       <View style={{ flex: 1 }} />
+      <Swiper
+      onSwiping={(cardIndex) => opc.setValue(cardIndex)}
+        onSwiped={() => [onSwiped(),opacityReset()]}
+        onSwipedAborted={() => opacityReset()}
+        cardVerticalMargin={140}
+        backgroundColor="transparent"
+        cards={data}
+        cardIndex={index}
+        renderCard={(card) => <Card card={card} />}
+        stackSize={5}
+        stackScale={10}
+        stackSeparation={40}
+        disableTopSwipe
+        disableBottomSwipe
+        animateCardOpacity={true}
+      />
       <View style={styles.buttoncontainer}>
         <TouchableOpacity>
           <Ionicons
@@ -204,23 +215,6 @@ export default function MainScreen() {
           />
         </TouchableOpacity>
       </View>
-      <Swiper
-      onSwiping={(cardIndex) => opc.setValue(cardIndex)}
-        onSwiped={() => [onSwiped(),opacityReset()]}
-        onSwipedAborted={() => opacityReset()}
-        cardVerticalMargin={140}
-        backgroundColor="transparent"
-        cards={data}
-        cardIndex={index}
-        renderCard={(card) => <Card card={card} />}
-        stackSize={5}
-        stackScale={10}
-        stackSeparation={40}
-        disableTopSwipe
-        disableBottomSwipe
-        animateOverlayLabelsOpacity={true}
-        animateCardOpacity={true}
-      />
     </View>
   );
 }
