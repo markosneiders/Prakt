@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   StatusBar,
+  ScrollView
 } from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import RNDateTimePicker from "@react-native-community/datetimepicker";
@@ -29,7 +30,8 @@ function WelcomePersonal({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
+      <View style={{justifyContent: 'center', alignItems: "center"}}>
       <Image
         style={styles.image}
         source={require("../../assets/images/prakt-logo.png")}
@@ -65,7 +67,8 @@ function WelcomePersonal({ navigation }) {
       <TouchableOpacity style={styles.loginBtn} onPress={showDatepicker}>
         <Text style={styles.loginText}>SUBMIT</Text>
       </TouchableOpacity> 
-    </View>
+      </View>
+    </ScrollView>
   );
 }
 
@@ -75,8 +78,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
   },
 
   image: {

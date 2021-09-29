@@ -1,13 +1,17 @@
 export default [
     {
-      position: 'Pārdevējs',
-      name: 'Maxima',
+      position: 'Shelf restocker',
+      name: 'Maxima', 
       rating: 4,
       wage: 560,
       hours: 8,
-      address: 'Gaismas iela',
+      address: 'Gaismas iela 10',
       image: 'https://pic.la.lv/2019/12/Maxima-Gaigalas-iela-29-1-800x534.jpg',
-      description: 'Maxima meklē kasieri!',
+      position_description: 'Maxima is looking for shelf restockers!',
+      requierments: [
+        '16+ years',
+        '17+ years',
+      ],
       
     },
     {

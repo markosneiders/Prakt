@@ -21,7 +21,7 @@ const Card = ({ card }) => (
   <View style={styles.card}>
     <Image source={{ uri: card.image }} style={styles.cardImage} />
     <View style={styles.cardTextContainer}>
-      <View>
+      <View style={{flex: 1}}>
         <Text style={[styles.cardText, { fontSize: 40 }]}>{card.position}</Text>
         <Text style={[styles.cardText, { fontSize: 30 }]}>{card.name}</Text>
         <View style={{ flexDirection: "row" }}>
@@ -186,8 +186,8 @@ export default function MainScreen() {
         <ScrollView style={{ flex: 1,marginHorizontal: 25, marginVertical: 150, backgroundColor: 'white', borderRadius: 8}}>
 
 
-    <View style={styles.card}>
-    <Image source={{ uri: (data[index]).image }} style={styles.cardImage} />
+    <View style={[styles.card]}> 
+    <Image source={{ uri: (data[index]).image }} style={[styles.cardImage]} />
     <View style={styles.cardTextContainer}>
       <View>
         <Text style={[styles.cardText, { fontSize: 40 }]}>{(data[index]).position}</Text>
@@ -236,6 +236,11 @@ export default function MainScreen() {
       </Text>
     </View>
   </View>
+  <Text style={styles.popText}>{"Position description: "}</Text>
+  <Text style={styles.popBodyText}>{(data[index].position_description)}</Text>
+
+
+
         </ScrollView>
       </Modal>
     </View>
@@ -281,7 +286,7 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOpacity: 0.08,
     shadowOffset: { width: 0, height: 0 },
-    flexDirection: "row",
+    flexDirection: "column",
   },
   cardImage: {
     width: "100%",
@@ -304,7 +309,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "flex-end",
     paddingHorizontal: 5,
-    paddingVertical: 25,
+    paddingVertical: 10,
   },
   stars: {
     shadowOffset: { width: 0, height: 0 },
@@ -333,5 +338,13 @@ const styles = StyleSheet.create({
     marginTop: 40,
     position: 'absolute',
     alignSelf: 'center',
+  },
+  popText: {
+    fontSize: 30,
+    color: 'black',
+  },
+  popBodyText: {
+    fontSize: 20,
+    color: 'gray',
   }
 });
