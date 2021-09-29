@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import data from "../assets/data/data";
 import Swiper from "react-native-deck-swiper";
 import {
@@ -73,16 +73,24 @@ const Card = ({ card }) => (
 export default function MainScreen() {
   const image1 = useRef(new Animated.Value(1)).current
   const image2 = useRef(new Animated.Value(0)).current
+  const opc = useRef(new Animated.Value(0)).current
   const window = useWindowDimensions();
   const [index, setIndex] = React.useState(0);
   const [aindex, setAindex] = React.useState(0);
   const [bindex, setBindex] = React.useState(1);
   const [swap, setSwap] = React.useState(false)
-  const [op, setOp] = React.useState(0);
+
   const onSwiped = () => {
     setIndex(index + 1);
-    setOp(0);
     {swap == false ? fswap() : tswap()}
+    Animated.timing(
+      opc,
+      {
+        toValue: 0,
+        duration: 200,
+        useNativeDriver: false
+      },
+    ).start()
   }
 
     function fswap() {
@@ -123,11 +131,17 @@ export default function MainScreen() {
       ).start(() => [setBindex(bindex + 2), setSwap(false)]);
       
     };
+    function opacityReset() {
+      Animated.timing(
+        opc,
+        {
+          toValue: 0,
+          duration: 500,
+          useNativeDriver: false
+        },
+      ).start()
+    }
     
-    
-
-  
-
  
   return (
     <View style={styles.container}>
@@ -147,22 +161,22 @@ export default function MainScreen() {
           resizeMode="cover"
         />
       </Animated.View>
-      <View style={styles.backgroundContainer}>
+      <Animated.View style={[styles.backgroundContainer, {opacity: opc.interpolate({inputRange: [-300,0], outputRange: [0.5,0]})}]}>
         <Image
           source={{ uri: data[index].image }}
           blurRadius={3}
-          style={[styles.backgroundImage,{tintColor: 'red', opacity: op/-600} ]}
+          style={[styles.backgroundImage,{tintColor: 'red'}]}
           resizeMode="cover"
         />
-      </View>
-      <View style={styles.backgroundContainer}>
+      </Animated.View>
+      <Animated.View style={[styles.backgroundContainer, {opacity: opc.interpolate({inputRange: [0,300], outputRange: [0,0.5]})}]}>
         <Image
           source={{ uri: data[index].image }}
           blurRadius={3}
-          style={[styles.backgroundImage,{tintColor: 'green', opacity: op/600} ]}
+          style={[styles.backgroundImage,{tintColor: 'green'}]}
           resizeMode="cover"
         />
-      </View>
+      </Animated.View>
       <View style={{ marginTop: 60 }}>
         <Button title="Change mode" />
       </View>
@@ -191,9 +205,9 @@ export default function MainScreen() {
         </TouchableOpacity>
       </View>
       <Swiper
-        onSwiping={(cardIndex) => setOp(cardIndex)}
-        onSwiped={onSwiped}
-        onSwipedAborted={() => setOp(0)}
+      onSwiping={(cardIndex) => opc.setValue(cardIndex)}
+        onSwiped={() => [onSwiped(),opacityReset()]}
+        onSwipedAborted={() => opacityReset()}
         cardVerticalMargin={140}
         backgroundColor="transparent"
         cards={data}

@@ -26,19 +26,8 @@ const Tab = createBottomTabNavigator();
 // Main tab navigator containing home matches and settings
 function HomeNavigator() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen // Home screen
-        name="Home" //Screen name
-        component={HomeScreen} //What screen to navigate to
-        options={{
-          //Options
-          headerShown: null, //If the header is shown
-          tabBarIcon: () => (
-            //Tab bar icon options
-            <Fontisto name="home" size={30} style={styles.tabbarstyle} />
-          ),
-        }}
-      />
+    
+    <Tab.Navigator initialRouteName="Home">
       <Tab.Screen //Matches/Chat screen
         name="Matches"
         component={MatchesScreen}
@@ -49,6 +38,18 @@ function HomeNavigator() {
               size={30}
               style={styles.tabbarstyle}
             />
+          ),
+        }}
+      />
+      <Tab.Screen // Home screen
+        name="Home" //Screen name
+        component={HomeScreen} //What screen to navigate to
+        options={{
+          //Options
+          headerShown: null, //If the header is shown
+          tabBarIcon: () => (
+            //Tab bar icon options
+            <Fontisto name="home" size={30} style={styles.tabbarstyle} />
           ),
         }}
       />
