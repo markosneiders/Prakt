@@ -1,4 +1,3 @@
-import { triggerFocus } from "antd/lib/input/Input";
 import React, { useState } from "react";
 import {
   StyleSheet,
@@ -8,28 +7,25 @@ import {
   TextInput,
   TouchableOpacity,
   StatusBar,
-  Button,
-  Platform,
 } from "react-native";
-import DateTimePicker from "@react-native-community/datetimepicker";
+import DateTimePicker from '@react-native-community/datetimepicker';
+import RNDateTimePicker from "@react-native-community/datetimepicker";
+
 
 function WelcomePersonal({ navigation }) {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState(new Date(1598051730000));
+  const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
-  const [mode, setMode] = useState("date");
+
   const showMode = (currentMode) => {
     setShow(true);
     setMode(currentMode);
   };
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    setShow(Platform.OS === "ios");
-    setDate(currentDate);
-  };
+
   const showDatepicker = () => {
-    showMode("date");
+    showMode('date');
   };
 
   return (
@@ -60,24 +56,15 @@ function WelcomePersonal({ navigation }) {
           value={surname}
         />
       </View>
-      <TouchableOpacity onPress={showDatepicker} style={styles.inputView}>
-        <View>
-          <Text style={[{ top: 10, left: 21, color: "#003f5c" }]}></Text>
-        </View>
-      </TouchableOpacity>
-      {show && (
-        <DateTimePicker
-          testID="dateTimePicker"
-          value={date}
-          mode={mode}
-          is24Hour={true}
-          display="default"
-          onChange={onChange}
-        />
-      )}
-      <TouchableOpacity style={styles.loginBtn}>
+      <View style={styles.dateView}>
+      <Text style={{paddingHorizontal: 20,}}>
+        Birthdate
+      </Text>
+      <RNDateTimePicker style={styles.dateInput} value={new Date()} maximumDate={new Date(2100, 0, 1)} minimumDate={new Date(190, 0, 1)}/>
+      </View>
+      <TouchableOpacity style={styles.loginBtn} onPress={showDatepicker}>
         <Text style={styles.loginText}>SUBMIT</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> 
     </View>
   );
 }
@@ -103,6 +90,20 @@ const styles = StyleSheet.create({
     width: "70%",
     height: 45,
     marginBottom: 20,
+  },
+  dateView: {
+    borderWidth: 1,
+    backgroundColor: "#f0efeb",
+    borderRadius: 30,
+    width: "70%",
+    marginBottom: 20,
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  dateInput: {
+    marginVertical: 10,
+    width: 100,
+    alignSelf: 'center',
   },
 
   TextInput: {
