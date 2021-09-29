@@ -6,16 +6,14 @@ import {
   StyleSheet,
   Image,
   Text,
-  useWindowDimensions,
-  TouchableOpacity,
   Button,
   Animated,
+  ScrollView
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-
-
 import TrippleToggleSwitch from "../../node_modules/react-native-triple-state-switch/index.js"
 import Icon from 'react-native-vector-icons/Ionicons';
+import Modal from "react-native-modal";
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
 
@@ -73,9 +71,11 @@ const Card = ({ card }) => (
 );
 
 export default function MainScreen() {
+  const [isModalVisible, setModalVisible] = useState(false);
 
-
-
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
   const image1 = useRef(new Animated.Value(1)).current
   const image2 = useRef(new Animated.Value(0)).current
   const opc = useRef(new Animated.Value(0)).current
@@ -181,18 +181,66 @@ export default function MainScreen() {
           resizeMode="cover"
         />
       </Animated.View>
-      <View style={styles.wholebuttoncontainer}>
-        <View style={styles.selectbuttoncontainer}>
-        <TrippleToggleSwitch
-        AnimatedIcon={AnimatedIcon}
-        middleStateIconName={'git-network-outline'}
-        leftStateIconName={'briefcase'}
-        rightStateIconName={'hammer-outline'}
-         />
+      <View style={{ flex: 1, marginTop: 300, marginHorizontal: 0, paddingHorizontal: 0 }}>
+      <Modal isVisible={isModalVisible} useNativeDriver={true} useNativeDriverForBackdrop={true} style={{margin: 0}} onBackdropPress={() => setModalVisible(false)}>
+        <ScrollView style={{ flex: 1,marginHorizontal: 25, marginVertical: 150, backgroundColor: 'white', borderRadius: 8}}>
+
+
+    <View style={styles.card}>
+    <Image source={{ uri: (data[index]).image }} style={styles.cardImage} />
+    <View style={styles.cardTextContainer}>
+      <View>
+        <Text style={[styles.cardText, { fontSize: 40 }]}>{(data[index]).position}</Text>
+        <Text style={[styles.cardText, { fontSize: 30 }]}>{(data[index]).name}</Text>
+        <View style={{ flexDirection: "row" }}>
+        {[...Array(5)].map(i => { //Creates the rest of the empty stars
+            return(
+            <Ionicons
+            name="star-outline"
+            key={Math.random().toString(36).substr(2, 9)}
+            size={30}
+            color="yellow"
+            style={[styles.stars, { opacity: 0.3 }]}
+           />
+            );
+          })}
+          <View style={{position: 'absolute', flexDirection: 'row'}}>
+          {[...Array((data[index]).rating)].map(i => { //Creates as many stars as card.rating
+            return(
+              <Ionicons
+              name="star"
+              key={Math.random().toString(36).substr(2, 9)}
+              size={30}
+              color="yellow"
+              style={[styles.stars, { opacity: 1 }]}
+            />
+            );
+          })} 
+          </View>
+
         </View>
-      <View >
+      </View>
+    </View>
+    
+    <View
+      style={[styles.cardTextContainer, { flex: 0.6, alignItems: "flex-end" }]}
+    >
+      <Text style={[styles.cardText, { fontSize: 30, textAlign: "right" }]}>
+        {(data[index]).wage + "€"}
+      </Text>
+      <Text style={[styles.cardText, { fontSize: 30, textAlign: "right" }]}>
+        {(data[index]).hours + "h"}
+      </Text>
+      <Text style={[styles.cardText, { fontSize: 25, textAlign: "right" }]}>
+        {(data[index]).address}
+      </Text>
+    </View>
+  </View>
+        </ScrollView>
+      </Modal>
+    </View>
       <Swiper
-        onTapCard={() => console.log("Tap")}
+        onTapCard={() => toggleModal()}
         onSwiping={(cardIndex) => opc.setValue(cardIndex)}
         onSwiped={() => [onSwiped(),opacityReset()]}
         onSwipedAborted={() => opacityReset()}
@@ -208,35 +256,16 @@ export default function MainScreen() {
         disableBottomSwipe
         animateCardOpacity={true}
       />
+        <View style={styles.selectbuttoncontainer}>
+        <TrippleToggleSwitch
+        AnimatedIcon={AnimatedIcon}
+        middleStateIconName={'git-network-outline'}
+        leftStateIconName={'briefcase'}
+        rightStateIconName={'hammer-outline'}
+         />
+        </View>
       </View>
-
-      
-
-       {/*  <View style={styles.buttoncontainer}>
-        <TouchableOpacity>
-          <Ionicons
-            name="ios-close-circle-outline"
-            size={80}
-            color={"rgba(255,0,0,0.7)"}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Ionicons
-            name="md-arrow-back-circle-outline"
-            size={80}
-            color={"rgba(255,255,255,0.7)"}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Ionicons
-            name="ios-checkmark-circle-outline"
-            size={80}
-            color={"rgba(0,255,0,0.7)"}
-          />
-        </TouchableOpacity>
-       </View> */}
-      </View>
-    </View>
+    
   );
 }
 
@@ -298,23 +327,11 @@ const styles = StyleSheet.create({
     width: 1000,
     flex: 1,
   },
-  buttoncontainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-
-    flex: 1,
-
-  },
-  wholebuttoncontainer: {
-    flex: 1,
-    flexDirection: "column",
-  },
   selectbuttoncontainer: {
     alignItems: 'center',
     flex: 1,
     marginTop: 40,
     position: 'absolute',
-    alignSelf: 'center'
+    alignSelf: 'center',
   }
 });

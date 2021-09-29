@@ -16,6 +16,7 @@ import LoginScreen from "../screens/LoginScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 import WelcomePersonal from "../screens/WelcomeScreens/WelcomePersonal";
 import WelcomeBusiness from "../screens/WelcomeScreens/WelcomeBusiness";
+import CreateListingScreen from "../screens/CreateListingScreen";
 
 //Imports for custom icons
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -55,7 +56,18 @@ function HomeNavigator() {
           ),
         }}
       />
-
+      <Tab.Screen // Home screen
+        name="Create listing" //Screen name
+        component={CreateListingScreen} //What screen to navigate to
+        options={{
+          //Options
+          headerShown: null, //If the header is shown
+          tabBarIcon: () => (
+            //Tab bar icon options
+            <Fontisto name="home" size={30} style={styles.tabbarstyle} />
+          ),
+        }}
+      />
       <Tab.Screen //Welcome screen
         name="Welcome"
         component={WelcomeNavigator}

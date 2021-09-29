@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import {ScrollView} from 'react-native';
+import {ScrollView, } from 'react-native';
 import SettingsToggle from '../components/SettingsToggle/SettingsToggle';
+import Modal from "react-native-modal";
+
 function SearchSettings(props) {
     const [setting1, setSettings1] = useState(false);
     return (
