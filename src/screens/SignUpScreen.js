@@ -8,10 +8,20 @@ import {
   TouchableOpacity,
   StatusBar,
 } from "react-native";
+import { auth } from "../firebase";
 
 const SignUpScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const signUp = () => {
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((authUser) => {
+        authUser.user;
+      })
+      .catch((error) => alert(error.message));
+  };
 
   return (
     <View style={styles.container}>
@@ -43,7 +53,7 @@ const SignUpScreen = () => {
         />
       </View>
 
-      <TouchableOpacity style={styles.signupBtn}>
+      <TouchableOpacity style={styles.signupBtn} onPress={signUp}>
         <Text style={styles.loginText}>CREATE ACCOUNT</Text>
       </TouchableOpacity>
     </View>
