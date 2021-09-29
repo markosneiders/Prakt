@@ -7,18 +7,19 @@ import {
   TextInput,
   TouchableOpacity,
   StatusBar,
-  ScrollView
+  ScrollView,
 } from "react-native";
-import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker from "@react-native-community/datetimepicker";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
-
 
 function WelcomePersonal({ navigation }) {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [date, setDate] = useState(new Date(1598051730000));
-  const [mode, setMode] = useState('date');
+  const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
+  const [phone, setPhone] = useState("");
+  const [bio, setBio] = useState("");
 
   const showMode = (currentMode) => {
     setShow(true);
@@ -26,47 +27,74 @@ function WelcomePersonal({ navigation }) {
   };
 
   const showDatepicker = () => {
-    showMode('date');
+    showMode("date");
   };
 
   return (
     <ScrollView style={styles.container}>
-      <View style={{justifyContent: 'center', alignItems: "center"}}>
-      <Image
-        style={styles.image}
-        source={require("../../assets/images/prakt-logo.png")}
-      />
-
-      <StatusBar style="auto" />
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Name"
-          placeholderTextColor="#003f5c"
-          secureTextEntry={false}
-          onChangeText={(name) => setName(name)}
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <Image
+          style={styles.image}
+          source={require("../../assets/images/prakt-logo.png")}
         />
-      </View>
 
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Surname"
-          placeholderTextColor="#003f5c"
-          secureTextEntry={true}
-          onChangeText={(surname) => setSurname(surname)}
-          value={surname}
-        />
-      </View>
-      <View style={styles.dateView}>
-      <Text style={{paddingHorizontal: 20,}}>
-        Birthdate
-      </Text>
-      <RNDateTimePicker style={styles.dateInput} value={new Date()} maximumDate={new Date(2100, 0, 1)} minimumDate={new Date(190, 0, 1)}/>
-      </View>
-      <TouchableOpacity style={styles.loginBtn} onPress={showDatepicker}>
-        <Text style={styles.loginText}>SUBMIT</Text>
-      </TouchableOpacity> 
+        <StatusBar style="auto" />
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.TextInput}
+            placeholder="Name"
+            placeholderTextColor="#003f5c"
+            secureTextEntry={false}
+            onChangeText={(name) => setName(name)}
+          />
+        </View>
+
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.TextInput}
+            placeholder="Surname"
+            placeholderTextColor="#003f5c"
+            secureTextEntry={false}
+            onChangeText={(surname) => setSurname(surname)}
+            value={surname}
+          />
+        </View>
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.TextInput}
+            placeholder="Phone number"
+            placeholderTextColor="#003f5c"
+            secureTextEntry={false}
+            onChangeText={(phone) => setPhone(phone)}
+            value={phone}
+          />
+        </View>
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.TextInput}
+            placeholder="Bio"
+            placeholderTextColor="#003f5c"
+            secureTextEntry={false}
+            onChangeText={(bio) => setBio(bio)}
+            value={bio}
+          />
+        </View>
+        <View style={styles.dateView}>
+          <Text style={{ paddingHorizontal: 20 }}>Birthdate</Text>
+          <RNDateTimePicker
+            style={styles.dateInput}
+            value={new Date()}
+            maximumDate={new Date(2100, 0, 1)}
+            minimumDate={new Date(190, 0, 1)}
+          />
+        </View>
+
+        <TouchableOpacity
+          style={styles.loginBtn}
+          onPress={navigation.navigate("Home")}
+        >
+          <Text style={styles.loginText}>SUBMIT</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -98,13 +126,13 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     width: "70%",
     marginBottom: 20,
-    flexDirection: 'row',
-    alignItems: 'center'
+    flexDirection: "row",
+    alignItems: "center",
   },
   dateInput: {
     marginVertical: 10,
     width: 100,
-    alignSelf: 'center',
+    alignSelf: "center",
   },
 
   TextInput: {

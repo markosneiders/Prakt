@@ -15,7 +15,6 @@ import WelcomeUse from "../screens/WelcomeScreens/WelcomeUse";
 import LoginScreen from "../screens/LoginScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 import WelcomePersonal from "../screens/WelcomeScreens/WelcomePersonal";
-import WelcomeBusiness from "../screens/WelcomeScreens/WelcomeBusiness";
 import CreateListingScreen from "../screens/CreateListingScreen";
 
 //Imports for custom icons
@@ -145,7 +144,7 @@ function WelcomeNavigator() {
       />
       <Stack.Screen name="Welcome Use" component={WelcomeUse} />
       <Stack.Screen name="Welcome Personal" component={WelcomePersonal} />
-      <Stack.Screen name="Welcome Business" component={WelcomeBusiness} />
+      <Stack.Screen name="Home" component={HomeScreen} />
     </Stack.Navigator>
   );
 }
