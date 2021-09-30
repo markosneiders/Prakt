@@ -33,10 +33,7 @@ function WelcomeUse({ navigation }) {
         <Text style={styles.loginText}>Personal</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        style={styles.loginBtn}
-        onPress={() => navigation.navigate("Welcome Business")}
-      >
+      <TouchableOpacity style={styles.loginBtn}>
         <Text style={styles.loginText}>Business</Text>
       </TouchableOpacity>
     </View>

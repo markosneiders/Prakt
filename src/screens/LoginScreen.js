@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { auth } from "../firebase";
 
-const LoginScreen = ({ navigation }) => {
+function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -72,7 +72,7 @@ const LoginScreen = ({ navigation }) => {
       </TouchableOpacity>
     </View>
   );
-};
+}
 
 export default LoginScreen;
 

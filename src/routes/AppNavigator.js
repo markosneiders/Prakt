@@ -145,6 +145,8 @@ function WelcomeNavigator() {
       <Stack.Screen name="Welcome Use" component={WelcomeUse} />
       <Stack.Screen name="Welcome Personal" component={WelcomePersonal} />
       <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Login Screen" component={LoginScreen} />
+      <Stack.Screen name="Signup Screen" component={SignUpScreen} />
     </Stack.Navigator>
   );
 }
