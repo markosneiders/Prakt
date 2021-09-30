@@ -69,7 +69,7 @@ function LoginScreen({ navigation }) {
       <Text style={{ color: "#757575" }}>-- OR --</Text>
       <TouchableOpacity
         style={styles.signupBtn}
-        onPress={() => navigation.navigate("SignUp")}
+        onPress={() => navigation.navigate("signUp")}
       >
         <Text style={styles.loginText}>SIGN UP</Text>
       </TouchableOpacity>

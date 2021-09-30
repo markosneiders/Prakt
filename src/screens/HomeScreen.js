@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import data from "../assets/data/data";
 import Swiper from "react-native-deck-swiper";
 import {
@@ -17,7 +17,9 @@ import CardInfo from "../components/CardInfo/CardInfo";
 import Card1 from "../components/Card1/Index.js";
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
-const Card = ({ card }) => <Card1 card={card} />;
+const Card = React.memo(({ card }) => {
+  return <Card1 card={card} />;
+});
 
 export default function MainScreen() {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -159,9 +161,9 @@ export default function MainScreen() {
         cards={data}
         cardIndex={index}
         renderCard={(card) => <Card card={card} />}
-        stackSize={5}
-        stackScale={9}
-        stackSeparation={50}
+        stackSize={2}
+        stackScale={50}
+        stackSeparation={0}
         disableTopSwipe
         disableBottomSwipe
         animateCardOpacity={true}

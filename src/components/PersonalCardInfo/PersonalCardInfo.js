@@ -1,5 +1,5 @@
-import React from "react";
-import data from "../../assets/data/data.js";
+import React, { useState } from "react";
+
 import {
 	Text,
 	ScrollView,
@@ -9,7 +9,8 @@ import {
 	TextInput,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-const CardInfo = (props) => {
+
+const PersonalCardInfo = (props) => {
 	return (
 		<ScrollView
 			style={{
@@ -23,47 +24,53 @@ const CardInfo = (props) => {
 			<View>
 				<View style={[styles.card]}>
 					<Image
-						source={{ uri: data[props.index].image }}
+						source={
+							props.localData.image == ""
+								? require("../../assets/images/DefaultProfilePic.png")
+								: { uri: props.localData.image }
+						}
 						style={[styles.cardImage]}
 					/>
 					<View style={styles.cardTextContainer}>
 						<View>
 							<Text
-								style={[styles.cardText, { fontSize: 40, color: "dodgerblue" }]}
+								style={[styles.cardText, { fontSize: 40, color: "orange" }]}
 							>
-								{data[props.index].position}
+								{props.localData.position}
 							</Text>
 							<Text style={[styles.cardText, { fontSize: 30 }]}>
-								{data[props.index].name}
+								{props.localData.name}
 							</Text>
-							<View style={{ flexDirection: "row" }}>
-								{[...Array(5)].map((i) => {
-									//Creates the rest of the empty stars
-									return (
-										<Ionicons
-											name="star-outline"
-											key={Math.random().toString(36).substr(2, 9)}
-											size={30}
-											color="yellow"
-											style={[styles.stars, { opacity: 0.3 }]}
-										/>
-									);
-								})}
-								<View style={{ position: "absolute", flexDirection: "row" }}>
-									{[...Array(data[props.index].rating)].map((i) => {
-										//Creates as many stars as card.rating
+							{props.localData.rating == 0 ? null : (
+								<View style={{ flexDirection: "row" }}>
+									{[...Array(5)].map((i) => {
+										//Creates the rest of the empty stars
 										return (
 											<Ionicons
-												name="star"
+												name="star-outline"
 												key={Math.random().toString(36).substr(2, 9)}
 												size={30}
 												color="yellow"
-												style={[styles.stars, { opacity: 1 }]}
+												style={[styles.stars, { opacity: 0.3 }]}
 											/>
 										);
 									})}
+									<View style={{ position: "absolute", flexDirection: "row" }}>
+										{[...Array(props.localData.rating)].map((i) => {
+											//Creates as many stars as card.rating
+											return (
+												<Ionicons
+													name="star"
+													key={Math.random().toString(36).substr(2, 9)}
+													size={30}
+													color="yellow"
+													style={[styles.stars, { opacity: 1 }]}
+												/>
+											);
+										})}
+									</View>
 								</View>
-							</View>
+							)}
 						</View>
 					</View>
 
@@ -76,17 +83,17 @@ const CardInfo = (props) => {
 						<Text
 							style={[styles.cardText, { fontSize: 30, textAlign: "right" }]}
 						>
-							{data[props.index].wage + "€"}
+							{props.localData.wage == 0 ? "" : props.localData.wage + "€"}
 						</Text>
 						<Text
 							style={[styles.cardText, { fontSize: 30, textAlign: "right" }]}
 						>
-							{data[props.index].hours + "h"}
+							{props.localData.hours == 0 ? "" : props.localData.hours + "h"}
 						</Text>
 						<Text
 							style={[styles.cardText, { fontSize: 25, textAlign: "right" }]}
 						>
-							{data[props.index].address}
+							{props.localData.address}
 						</Text>
 					</View>
 				</View>
@@ -101,23 +108,23 @@ const CardInfo = (props) => {
 						<TextInput
 							editable={props.editable}
 							style={[styles.popText, { fontSize: 40 }]}
-						>
-							{data[props.index].position}
-						</TextInput>
+							value={props.localData.position}
+						/>
 					</View>
 					<View style={styles.infoline}>
-						<Text style={styles.popText}>{"Position description: "}</Text>
+						<Text style={styles.popText}>{"Job description: "}</Text>
 						<TextInput
 							style={styles.popBodyText}
 							multiline={true}
 							editable={props.editable}
+							placeholder={"..."}
 						>
-							{data[props.index].position_description}
+							{props.localData.position_description}
 						</TextInput>
 					</View>
 					<View style={styles.infoline}>
 						<Text style={styles.popText}>{"Requirments: "}</Text>
-						{[...Array(data[props.index].requirements.length)].map((i, x) => {
+						{[...Array(props.localData.requirements.length)].map((i, x) => {
 							//Renders requirements
 							return (
 								<View
@@ -129,58 +136,53 @@ const CardInfo = (props) => {
 										multiline={true}
 										style={styles.popBodyText}
 										editable={props.editable}
+										placeholder={"..."}
 									>
-										{data[props.index].requirements[x]}
+										{props.localData.requirements[x]}
 									</TextInput>
 								</View>
 							);
 						})}
 					</View>
 					<View style={styles.infoline}>
-						<Text style={styles.popText}>{"Shifts: "}</Text>
+						<Text style={styles.popText}>{"Pay: "}</Text>
 						<View style={{ flexDirection: "row" }}>
-							<TextInput editable={props.editable} style={styles.popBodyText}>
-								{data[props.index].hours}
+							<TextInput
+								editable={props.editable}
+								placeholder={"..."}
+								style={styles.popBodyText}
+							>
+								{props.localData.wage}
 							</TextInput>
-							<Text style={styles.popBodyText}> hour shifts</Text>
+							<Text style={styles.popBodyText}>€ per hour</Text>
 						</View>
-						<TextInput
-							editable={props.editable}
-							multiline={true}
-							style={styles.popBodyText}
-						>
-							{data[props.index].shift + " shift"}
-						</TextInput>
-					</View>
-					<View style={styles.infoline}>
-						<Text style={styles.popText}>{"Wage: "}</Text>
 						<View style={{ flexDirection: "row" }}>
-							<TextInput editable={props.editable} style={styles.popBodyText}>
-								{data[props.index].wage}
+							<TextInput
+								editable={props.editable}
+								placeholder={"..."}
+								style={styles.popBodyText}
+							>
+								{props.localData.hours}
 							</TextInput>
-							<Text style={styles.popBodyText}>€ monthly wage</Text>
+							<Text style={styles.popBodyText}> total hours</Text>
+						</View>
+						<View style={{ flexDirection: "row" }}>
+							<Text style={styles.popBodyText}>
+								={props.localData.hours * props.localData.wage} € total
+							</Text>
 						</View>
 					</View>
 					<View style={styles.infoline}>
 						<Text style={styles.popText}>{"Contact: "}</Text>
-						<View style={{ flexDirection: "row" }}>
-							<Text style={styles.popSText}>{"Website: "}</Text>
-							<TextInput
-								editable={props.editable}
-								multiline={true}
-								style={styles.popBodyText}
-							>
-								{data[props.index].website}
-							</TextInput>
-						</View>
 						<View style={{ flexDirection: "row" }}>
 							<Text style={styles.popSText}>{"Phone: "}</Text>
 							<TextInput
 								editable={props.editable}
 								multiline={true}
 								style={styles.popBodyText}
+								placeholder={"..."}
 							>
-								{data[props.index].phone}
+								{props.localData.phone}
 							</TextInput>
 						</View>
 						<View style={{ flexDirection: "row" }}>
@@ -189,8 +191,9 @@ const CardInfo = (props) => {
 								editable={props.editable}
 								multiline={true}
 								style={styles.popBodyText}
+								placeholder={"..."}
 							>
-								{data[props.index].email}
+								{props.localData.email}
 							</TextInput>
 						</View>
 						<View style={{ flexDirection: "row" }}>
@@ -199,8 +202,9 @@ const CardInfo = (props) => {
 								editable={props.editable}
 								multiline={true}
 								style={styles.popBodyText}
+								placeholder={"..."}
 							>
-								{data[props.index].address}
+								{props.localData.address}
 							</TextInput>
 						</View>
 					</View>
@@ -212,12 +216,12 @@ const CardInfo = (props) => {
 const styles = StyleSheet.create({
 	popText: {
 		fontSize: 30,
-		color: "dodgerblue",
+		color: "orange",
 		fontWeight: "bold",
 	},
 	popSText: {
 		fontSize: 20,
-		color: "dodgerblue",
+		color: "orange",
 		fontWeight: "bold",
 		top: 5,
 	},
@@ -270,4 +274,4 @@ const styles = StyleSheet.create({
 		marginHorizontal: 2,
 	},
 });
-export default CardInfo;
+export default PersonalCardInfo;

@@ -67,6 +67,16 @@ function HomeNavigator() {
           ),
         }}
       />
+      <Tab.Screen //Welcome screen
+        name="Welcome"
+        component={WelcomeNavigator}
+        options={{
+          headerShown: null,
+          tabBarIcon: () => (
+            <AntDesign name="info" size={30} style={styles.tabbarstyle} />
+          ),
+        }}
+      />
 
       <Tab.Screen //Settings screen
         name="Settings"
@@ -80,7 +90,7 @@ function HomeNavigator() {
       />
 
       <Tab.Screen //Login screen
-        name="Login"
+        name="login"
         component={LoginScreen}
         options={{
           headerShown: null,
@@ -91,7 +101,7 @@ function HomeNavigator() {
       />
 
       <Tab.Screen //Sign Up screen
-        name="SignUp"
+        name="signUp"
         component={SignUpScreen}
         options={{
           headerShown: null,
@@ -134,7 +144,7 @@ function WelcomeNavigator() {
       />
       <Stack.Screen name="Welcome Use" component={WelcomeUse} />
       <Stack.Screen name="Welcome Personal" component={WelcomePersonal} />
-      <Stack.Screen name="Home" component={SignUpScreen} />
+      <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Login Screen" component={LoginScreen} />
       <Stack.Screen name="Signup Screen" component={SignUpScreen} />
     </Stack.Navigator>

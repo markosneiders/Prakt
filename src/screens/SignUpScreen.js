@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import { auth } from "../firebase";
 
-const SignUpScreen = () => {
+const SignUpScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordconf, setPasswordConf] = useState("");
@@ -47,44 +47,18 @@ const SignUpScreen = () => {
           />
         </View>
 
-        <View style={styles.inputView}>
-          <TextInput
-            style={styles.TextInput}
-            placeholder="Password"
-            placeholderTextColor="#003f5c"
-            secureTextEntry={true}
-            value={password}
-            onChangeText={(password) => setPassword(password)}
-          />
-        </View>
+      <TouchableOpacity style={styles.signupBtn} onPress={signUp}>
+        <Text style={styles.loginText}>CREATE ACCOUNT</Text>
+      </TouchableOpacity>
 
-        <View style={styles.inputView}>
-          <TextInput
-            style={styles.TextInput}
-            placeholder="Password Confirmation"
-            placeholderTextColor="#003f5c"
-            secureTextEntry={true}
-            value={passwordconf}
-            onChangeText={(passwordconf) => setPasswordConf(passwordconf)}
-          />
-        </View>
+      <Text style={{ marginTop: 20 }}>Already have an account?</Text>
 
-        <TouchableOpacity
-          style={styles.signupBtn}
-          onPress={signUp}
-          disabled={password.length <= 2 || password !== passwordconf}
-        >
-          <Text
-            style={[
-              password.length <= 2 || password !== passwordconf
-                ? styles.signupTextInvalid
-                : styles.signupText,
-            ]}
-          >
-            CREATE ACCOUNT
-          </Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity
+        style={styles.signinBtn}
+        onPress={() => navigation.navigate("login")}
+      >
+        <Text style={styles.loginText}>SIGN IN</Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 };
@@ -135,6 +109,16 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     height: 50,
     marginTop: 30,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#7CB8EA",
+  },
+
+  signinBtn: {
+    width: "70%",
+    borderRadius: 25,
+    height: 45,
+    marginTop: 10,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#7CB8EA",

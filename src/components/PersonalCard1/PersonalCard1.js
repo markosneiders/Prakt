@@ -1,48 +1,55 @@
 import React from "react";
 import { Text, View, Image, StyleSheet } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-const Card1 = (props) => {
+const PersonalCard1 = (props) => {
 	return (
 		<View style={styles.card}>
-			<Image source={{ uri: props.card.image }} style={styles.cardImage} />
+			<Image
+				source={
+					props.card.image == ""
+						? require("../../assets/images/DefaultProfilePic.png")
+						: { uri: props.card.image }
+				}
+				style={styles.cardImage}
+			/>
 			<View style={styles.cardTextContainer}>
 				<View style={{ flex: 1 }}>
-					<Text
-						style={[styles.cardText, { fontSize: 40, color: "dodgerblue" }]}
-					>
+					<Text style={[styles.cardText, { fontSize: 40, color: "orange" }]}>
 						{props.card.position}
 					</Text>
 					<Text style={[styles.cardText, { fontSize: 30 }]}>
 						{props.card.name}
 					</Text>
-					<View style={{ flexDirection: "row" }}>
-						{[...Array(5)].map((i) => {
-							//Creates the rest of the empty stars
-							return (
-								<Ionicons
-									name="star-outline"
-									key={Math.random().toString(36).substr(2, 9)}
-									size={30}
-									color="yellow"
-									style={[styles.stars, { opacity: 0.3 }]}
-								/>
-							);
-						})}
-						<View style={{ position: "absolute", flexDirection: "row" }}>
-							{[...Array(props.card.rating)].map((i) => {
-								//Creates as many stars as card.rating
+					{props.card.rating == 0 ? null : (
+						<View style={{ flexDirection: "row" }}>
+							{[...Array(5)].map((i) => {
+								//Creates the rest of the empty stars
 								return (
 									<Ionicons
-										name="star"
+										name="star-outline"
 										key={Math.random().toString(36).substr(2, 9)}
 										size={30}
 										color="yellow"
-										style={[styles.stars, { opacity: 1 }]}
+										style={[styles.stars, { opacity: 0.3 }]}
 									/>
 								);
 							})}
+							<View style={{ position: "absolute", flexDirection: "row" }}>
+								{[...Array(props.card.rating)].map((i) => {
+									//Creates as many stars as card.rating
+									return (
+										<Ionicons
+											name="star"
+											key={Math.random().toString(36).substr(2, 9)}
+											size={30}
+											color="yellow"
+											style={[styles.stars, { opacity: 1 }]}
+										/>
+									);
+								})}
+							</View>
 						</View>
-					</View>
+					)}
 				</View>
 			</View>
 
@@ -53,10 +60,10 @@ const Card1 = (props) => {
 				]}
 			>
 				<Text style={[styles.cardText, { fontSize: 30, textAlign: "right" }]}>
-					{props.card.wage + "€/m"}
+					{props.card.wage == 0 ? "" : props.card.wage + "€/h"}
 				</Text>
 				<Text style={[styles.cardText, { fontSize: 30, textAlign: "right" }]}>
-					{props.card.hours + "h"}
+					{props.card.hours == 0 ? "" : props.card.hours + "h"}
 				</Text>
 				<Text style={[styles.cardText, { fontSize: 25, textAlign: "right" }]}>
 					{props.card.address}
@@ -106,4 +113,4 @@ const styles = StyleSheet.create({
 		marginHorizontal: 2,
 	},
 });
-export default Card1;
+export default PersonalCard1;
