@@ -161,9 +161,9 @@ export default function MainScreen() {
 				cards={data}
 				cardIndex={index}
 				renderCard={(card) => <Card card={card} />}
-				stackSize={5}
-				stackScale={9}
-				stackSeparation={50}
+				stackSize={2}
+				stackScale={50}
+				stackSeparation={0}
 				disableTopSwipe
 				disableBottomSwipe
 				animateCardOpacity={true}

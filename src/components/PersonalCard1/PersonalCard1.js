@@ -1,10 +1,17 @@
 import React from "react";
 import { Text, View, Image, StyleSheet } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-const Card1 = (props) => {
+const PersonalCard1 = (props) => {
 	return (
 		<View style={styles.card}>
-			<Image source={{ uri: props.card.image }} style={styles.cardImage} />
+			<Image
+				source={
+					props.card.image == ""
+						? require("../../assets/images/DefaultProfilePic.png")
+						: { uri: props.card.image }
+				}
+				style={styles.cardImage}
+			/>
 			<View style={styles.cardTextContainer}>
 				<View style={{ flex: 1 }}>
 					<Text style={[styles.cardText, { fontSize: 40 }]}>
@@ -104,4 +111,4 @@ const styles = StyleSheet.create({
 		marginHorizontal: 2,
 	},
 });
-export default Card1;
+export default PersonalCard1;

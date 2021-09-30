@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import data from "../../assets/data/data.js";
 import {
 	Text,
