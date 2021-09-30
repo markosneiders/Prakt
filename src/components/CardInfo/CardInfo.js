@@ -118,24 +118,13 @@ const CardInfo = (props) => {
 					</View>
 					<View style={styles.infoline}>
 						<Text style={styles.popText}>{"Requirments: "}</Text>
-						{[...Array(data[props.index].requirements.length)].map((i, x) => {
-							//Renders requirements
-							return (
-								<View
-									key={Math.random().toString(36).substr(2, 9)}
-									style={{ flexDirection: "row" }}
-								>
-									<Text style={[styles.popBodyText, { fontSize: 26 }]}>-</Text>
-									<TextInput
-										multiline={true}
-										style={styles.popBodyText}
-										editable={props.editable}
-									>
-										{data[props.index].requirements[x]}
-									</TextInput>
-								</View>
-							);
-						})}
+						<TextInput
+							style={styles.popBodyText}
+							multiline={true}
+							editable={props.editable}
+						>
+							{data[props.index].requirements}
+						</TextInput>
 					</View>
 					<View style={styles.infoline}>
 						<Text style={styles.popText}>{"Shifts: "}</Text>

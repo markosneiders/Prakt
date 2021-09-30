@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
 	Text,
@@ -9,8 +9,19 @@ import {
 	TextInput,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-
+import ImageChooser from "../ImageChooser/Index.js";
+import { setlistingimage } from "../../Redux/reducer.js";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 const EditPersonalCardInfo = (props) => {
+	const dispatch = useDispatch();
+
+	const listingImage = useSelector((state) => state.listingImage);
+	const [image, setImage] = useState(listingImage);
+
+	useEffect(() => {
+		image != null ? dispatch(setlistingimage(image)) : null; //Dispatches the image state
+	}, [image]);
 	return (
 		<ScrollView
 			style={{
@@ -25,9 +36,9 @@ const EditPersonalCardInfo = (props) => {
 				<View style={[styles.card]}>
 					<Image
 						source={
-							props.image == ""
+							listingImage == null
 								? require("../../assets/images/DefaultProfilePic.png")
-								: { uri: props.image }
+								: { uri: listingImage }
 						}
 						style={[styles.cardImage]}
 					/>
@@ -105,6 +116,11 @@ const EditPersonalCardInfo = (props) => {
 							top: -2,
 						}}
 					>
+						<ImageChooser
+							setimage={setImage}
+							image={image}
+							text={"Set picture"}
+						/>
 						<TextInput
 							editable={props.editable}
 							style={[styles.popText, { fontSize: 40 }]}
@@ -125,24 +141,15 @@ const EditPersonalCardInfo = (props) => {
 						/>
 					</View>
 					<View style={styles.infoline}>
-						<Text style={styles.popText}>{"Requirments: "}</Text>
-						{[...Array(props.requirements.length)].map((i, x) => {
-							//Renders requirements
-							return (
-								<View
-									key={Math.random().toString(36).substr(2, 9)}
-									style={{ flexDirection: "row" }}
-								>
-									<Text style={[styles.popBodyText, { fontSize: 26 }]}>-</Text>
-									<TextInput
-										multiline={true}
-										style={styles.popBodyText}
-										editable={props.editable}
-										placeholder={"..."}
-									/>
-								</View>
-							);
-						})}
+						<Text style={styles.popText}>{"Requirements: "}</Text>
+						<TextInput
+							style={styles.popBodyText}
+							multiline={true}
+							editable={props.editable}
+							placeholder={"..."}
+							value={props.requirements}
+							onChangeText={(text) => props.setRequirements(text)}
+						/>
 					</View>
 					<View style={styles.infoline}>
 						<Text style={styles.popText}>{"Pay: "}</Text>
@@ -198,9 +205,9 @@ const EditPersonalCardInfo = (props) => {
 								multiline={true}
 								style={styles.popBodyText}
 								placeholder={"..."}
-							>
-								{props.address}
-							</TextInput>
+								value={props.address}
+								onChangeText={(text) => props.setAddress(text)}
+							/>
 						</View>
 					</View>
 				</View>

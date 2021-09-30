@@ -13,6 +13,7 @@ import Modal from "react-native-modal";
 import PersonalCardInfo from "../components/EditPersonalCardInfo/EditPersonalCardInfo";
 import PersonalCard1 from "../components/EditPersonalCard1/EditPersonalCard1";
 
+import { useSelector } from "react-redux";
 export default function MainScreen() {
 	const [isModalVisible, setModalVisible] = useState(false);
 
@@ -23,13 +24,15 @@ export default function MainScreen() {
 	const opc = useRef(new Animated.Value(0)).current;
 	const [index, setIndex] = React.useState(0);
 
+	const listingImage = useSelector((state) => state.listingImage);
+
 	const [position, setPosition] = useState("New job");
 	const [name, setName] = useState("*Profile name*");
 	const [rating, setRating] = useState(0);
 	const [wage, setWage] = useState("0");
 	const [hours, setHours] = useState("0");
 	const [address, setAddress] = useState("");
-	const [image, setImage] = useState("");
+	const [image, setImage] = useState(listingImage);
 	const [position_description, setPosition_description] = useState("");
 	const [requirements, setRequirements] = useState([""]);
 	const [phone, setPhone] = useState("");
@@ -46,7 +49,7 @@ export default function MainScreen() {
 			address: "",
 			image: "",
 			position_description: "",
-			requirements: ["", ""],
+			requirements: "",
 			website: "",
 			phone: "",
 			email: "",
@@ -67,11 +70,11 @@ export default function MainScreen() {
 			<Animated.View style={[styles.backgroundContainer, { opacity: image1 }]}>
 				<Image
 					source={
-						localData[index].image == ""
+						listingImage == null
 							? require("../assets/images/DefaultProfilePic.png")
-							: { uri: localData[index].image }
+							: { uri: listingImage }
 					}
-					blurRadius={3}
+					blurRadius={20}
 					style={[styles.backgroundImage]}
 					resizeMode="cover"
 				/>
@@ -88,7 +91,7 @@ export default function MainScreen() {
 				]}
 			>
 				<Image
-					source={{ uri: data[index].image }}
+					source={{ uri: listingImage }}
 					blurRadius={3}
 					style={[styles.backgroundImage, { tintColor: "red" }]}
 					resizeMode="cover"
@@ -106,7 +109,7 @@ export default function MainScreen() {
 				]}
 			>
 				<Image
-					source={{ uri: data[index].image }}
+					source={{ uri: listingImage }}
 					blurRadius={3}
 					style={[styles.backgroundImage, { tintColor: "green" }]}
 					resizeMode="cover"
@@ -142,8 +145,6 @@ export default function MainScreen() {
 						setHours={setHours}
 						address={address}
 						setAddress={setAddress}
-						image={image}
-						setImage={setImage}
 						position_description={position_description}
 						setPosition_description={setPosition_description}
 						requirements={requirements}

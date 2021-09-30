@@ -1,14 +1,16 @@
 import React from "react";
 import { Text, View, Image, StyleSheet } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { useSelector } from "react-redux";
 const PersonalCard1 = (props) => {
+	const listingImage = useSelector((state) => state.listingImage);
 	return (
 		<View style={styles.card}>
 			<Image
 				source={
-					props.image == ""
+					listingImage == null
 						? require("../../assets/images/DefaultProfilePic.png")
-						: { uri: props.image }
+						: { uri: listingImage }
 				}
 				style={styles.cardImage}
 			/>
