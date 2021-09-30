@@ -24,7 +24,7 @@ function SettingsScreen({ navigation }) {
           auth
             .signOut()
             .then(() => {
-              navigation.navigate("login");
+              navigation.replace("login");
             })
             .catch((error) => alert(error.message)),
         style: "destructive",

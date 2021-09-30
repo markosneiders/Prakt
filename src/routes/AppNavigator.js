@@ -16,6 +16,7 @@ import LoginScreen from "../screens/LoginScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 import WelcomePersonal from "../screens/WelcomeScreens/WelcomePersonal";
 import CreateListingScreen from "../screens/CreateListingScreen";
+import ChatScreen from "../screens/ChatScreen";
 
 import ProfileScreen from "../screens/ProfileScreen"; // more screen imports
 import SearchSettings from "../screens/SearchSettings";
@@ -117,6 +118,15 @@ function HomeNavigator() {
           headerShown: null,
           tabBarIcon: () => (
             <FontAwesome name="user" size={30} style={styles.tabbarstyle} />
+          ),
+        }}
+      />
+      <Tab.Screen //Chat screen
+        name="Direct Messages"
+        component={ChatScreen}
+        options={{
+          tabBarIcon: () => (
+            <AntDesign name="phone" size={30} style={styles.tabbarstyle} />
           ),
         }}
       />
