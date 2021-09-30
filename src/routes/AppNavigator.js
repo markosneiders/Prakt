@@ -17,6 +17,9 @@ import SignUpScreen from "../screens/SignUpScreen";
 import WelcomePersonal from "../screens/WelcomeScreens/WelcomePersonal";
 import CreateListingScreen from "../screens/CreateListingScreen";
 
+import ProfileScreen from "../screens/ProfileScreen"; // more screen imports
+import SearchSettings from "../screens/SearchSettings";
+
 //Imports for custom icons
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Fontisto from "react-native-vector-icons/Fontisto";
@@ -25,8 +28,37 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 
 //defining variable for ease of reading
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator(); //defining variable for ease of reading again
 
 // Main tab navigator containing home matches and settings
+function AuthNavigator() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="login"
+        component={LoginScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="signUp"
+        component={SignUpScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="app_home"
+        component={HomeNavigator}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
 function HomeNavigator() {
   return (
     <Tab.Navigator initialRouteName="Home">
@@ -88,37 +120,9 @@ function HomeNavigator() {
           ),
         }}
       />
-
-      <Tab.Screen //Login screen
-        name="login"
-        component={LoginScreen}
-        options={{
-          headerShown: null,
-          tabBarIcon: () => (
-            <AntDesign name="login" size={30} style={styles.tabbarstyle} />
-          ),
-        }}
-      />
-
-      <Tab.Screen //Sign Up screen
-        name="signUp"
-        component={SignUpScreen}
-        options={{
-          headerShown: null,
-          tabBarIcon: () => (
-            <AntDesign name="paperclip" size={30} style={styles.tabbarstyle} />
-          ),
-        }}
-      />
     </Tab.Navigator>
   );
 }
-
-import ProfileScreen from "../screens/ProfileScreen"; // more screen imports
-import SearchSettings from "../screens/SearchSettings";
-import SettingsDropdown from "../components/SettingsDropdown/SettingsDropdown";
-
-const Stack = createNativeStackNavigator(); //defining variable for ease of reading again
 
 function SettingsNavigator() {
   // Settings navigator using stack instead of tab (Stack means the screens appear on top of eachother without a tab bar only back buttons)
@@ -156,7 +160,7 @@ function WelcomeNavigator() {
 export const AppNavigator = () => (
   //Exports navigator to be imported in App.js
   <NavigationContainer>
-    <HomeNavigator />
+    <AuthNavigator />
   </NavigationContainer>
 );
 

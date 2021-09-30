@@ -10,9 +10,10 @@ import {
 	ScrollView,
 } from "react-native";
 import Modal from "react-native-modal";
-import PersonalCardInfo from "../components/PersonalCardInfo/PersonalCardInfo";
-import PersonalCard1 from "../components/PersonalCard1/PersonalCard1";
+import PersonalCardInfo from "../components/EditPersonalCardInfo/EditPersonalCardInfo";
+import PersonalCard1 from "../components/EditPersonalCard1/EditPersonalCard1";
 
+import { useSelector } from "react-redux";
 export default function MainScreen() {
 	const [isModalVisible, setModalVisible] = useState(false);
 
@@ -22,17 +23,33 @@ export default function MainScreen() {
 	const image1 = useRef(new Animated.Value(1)).current;
 	const opc = useRef(new Animated.Value(0)).current;
 	const [index, setIndex] = React.useState(0);
+
+	const listingImage = useSelector((state) => state.listingImage);
+
+	const [position, setPosition] = useState("New job");
+	const [name, setName] = useState("*Profile name*");
+	const [rating, setRating] = useState(0);
+	const [wage, setWage] = useState("0");
+	const [hours, setHours] = useState("0");
+	const [address, setAddress] = useState("");
+	const [image, setImage] = useState(listingImage);
+	const [position_description, setPosition_description] = useState("");
+	const [requirements, setRequirements] = useState([""]);
+	const [phone, setPhone] = useState("");
+	const [email, setEmail] = useState("");
+	const [shift, setShift] = useState("");
+
 	const [localData, setlocalData] = React.useState([
 		{
 			position: "New job",
 			name: "*Profile name*",
-			rating: 0,
+			rating: "",
 			wage: 0,
 			hours: 0,
 			address: "",
 			image: "",
 			position_description: "",
-			requirements: [""],
+			requirements: "",
 			website: "",
 			phone: "",
 			email: "",
@@ -53,11 +70,11 @@ export default function MainScreen() {
 			<Animated.View style={[styles.backgroundContainer, { opacity: image1 }]}>
 				<Image
 					source={
-						localData[index].image == ""
+						listingImage == null
 							? require("../assets/images/DefaultProfilePic.png")
-							: { uri: localData[index].image }
+							: { uri: listingImage }
 					}
-					blurRadius={3}
+					blurRadius={20}
 					style={[styles.backgroundImage]}
 					resizeMode="cover"
 				/>
@@ -74,7 +91,7 @@ export default function MainScreen() {
 				]}
 			>
 				<Image
-					source={{ uri: data[index].image }}
+					source={{ uri: listingImage }}
 					blurRadius={3}
 					style={[styles.backgroundImage, { tintColor: "red" }]}
 					resizeMode="cover"
@@ -92,7 +109,7 @@ export default function MainScreen() {
 				]}
 			>
 				<Image
-					source={{ uri: data[index].image }}
+					source={{ uri: listingImage }}
 					blurRadius={3}
 					style={[styles.backgroundImage, { tintColor: "green" }]}
 					resizeMode="cover"
@@ -117,6 +134,27 @@ export default function MainScreen() {
 						index={index}
 						editable={true}
 						localData={localData[0]}
+						position={position}
+						setPosition={setPosition}
+						name={name}
+						rating={rating}
+						setRating={setRating}
+						wage={wage}
+						setWage={setWage}
+						hours={hours}
+						setHours={setHours}
+						address={address}
+						setAddress={setAddress}
+						position_description={position_description}
+						setPosition_description={setPosition_description}
+						requirements={requirements}
+						setRequirements={setRequirements}
+						phone={phone}
+						setPhone={setPhone}
+						email={email}
+						setEmail={setEmail}
+						shift={shift}
+						setShift={setShift}
 					/>
 				</Modal>
 			</View>
@@ -128,7 +166,19 @@ export default function MainScreen() {
 				backgroundColor="transparent"
 				cards={localData[0]}
 				cardIndex={index}
-				renderCard={() => <PersonalCard1 card={localData[0]} />}
+				renderCard={() => (
+					<PersonalCard1
+						position={position}
+						setPosition={setPosition}
+						name={name}
+						rating={rating}
+						wage={wage}
+						hours={hours}
+						address={address}
+						image={image}
+						shift={shift}
+					/>
+				)}
 				disableTopSwipe
 				disableBottomSwipe
 				disableLeftSwipe

@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, SafeAreaView, Image } from "react-native";
 import users from "../../src/assets/data/users";
+import ChatCard from "../components/ChatCard/ChatCard";
 
 const MathchesScreen = () => {
   return (
@@ -15,6 +16,9 @@ const MathchesScreen = () => {
               <Image source={{ uri: user.image }} style={styles.image} />
             </View>
           ))}
+        </View>
+        <View>
+          <ChatCard />
         </View>
       </View>
     </SafeAreaView>

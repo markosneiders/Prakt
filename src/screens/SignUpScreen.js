@@ -7,10 +7,13 @@ import {
   TextInput,
   TouchableOpacity,
   StatusBar,
+  ScrollView,
+  KeyboardAvoidingView,
 } from "react-native";
 import { auth } from "../firebase";
 
 const SignUpScreen = ({ navigation }) => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,13 +21,15 @@ const SignUpScreen = ({ navigation }) => {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((authUser) => {
-        authUser.user;
+        authUser.user.updateProfile({
+          displayName: name,
+        });
       })
       .catch((error) => alert(error.message));
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView behavior="padding" style={styles.container}>
       <Image
         style={styles.image}
         source={require("../assets/images/prakt-logo.png")}
@@ -34,11 +39,22 @@ const SignUpScreen = ({ navigation }) => {
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
+          placeholder="Name"
+          placeholderTextColor="#003f5c"
+          secureTextEntry={false}
+          value={name}
+          onChangeText={(text) => setName(text)}
+        />
+      </View>
+
+      <View style={styles.inputView}>
+        <TextInput
+          style={styles.TextInput}
           placeholder="Email"
           placeholderTextColor="#003f5c"
           secureTextEntry={false}
           value={email}
-          onChangeText={(email) => setEmail(email)}
+          onChangeText={(text) => setEmail(text)}
         />
       </View>
 
@@ -49,7 +65,7 @@ const SignUpScreen = ({ navigation }) => {
           placeholderTextColor="#003f5c"
           secureTextEntry={true}
           value={password}
-          onChangeText={(password) => setPassword(password)}
+          onChangeText={(text) => setPassword(text)}
         />
       </View>
 
@@ -65,7 +81,7 @@ const SignUpScreen = ({ navigation }) => {
       >
         <Text style={styles.loginText}>SIGN IN</Text>
       </TouchableOpacity>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -102,6 +118,14 @@ const styles = StyleSheet.create({
   forgot_button: {
     height: 30,
     marginBottom: 5,
+  },
+
+  signupText: {
+    color: "#000000",
+  },
+
+  signupTextInvalid: {
+    color: "#999999",
   },
 
   signupBtn: {

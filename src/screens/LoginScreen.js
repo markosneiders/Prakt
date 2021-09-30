@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   StatusBar,
+  KeyboardAvoidingView,
 } from "react-native";
 import { auth } from "../firebase";
 
@@ -17,7 +18,7 @@ function LoginScreen({ navigation }) {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        navigation.navigate("Home");
+        navigation.replace("app_home");
       }
     });
     return unsubscribe;
@@ -30,7 +31,7 @@ function LoginScreen({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView behavior="padding" style={styles.container}>
       <Image
         style={styles.image}
         source={require("../assets/images/prakt-logo.png")}
@@ -44,7 +45,7 @@ function LoginScreen({ navigation }) {
           placeholderTextColor="#003f5c"
           secureTextEntry={false}
           value={email}
-          onChangeText={(email) => setEmail(email)}
+          onChangeText={(text) => setEmail(text)}
         />
       </View>
 
@@ -55,7 +56,7 @@ function LoginScreen({ navigation }) {
           placeholderTextColor="#003f5c"
           secureTextEntry={true}
           value={password}
-          onChangeText={(password) => setPassword(password)}
+          onChangeText={(text) => setPassword(text)}
         />
       </View>
 
@@ -73,7 +74,7 @@ function LoginScreen({ navigation }) {
       >
         <Text style={styles.loginText}>SIGN UP</Text>
       </TouchableOpacity>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 

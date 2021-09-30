@@ -1,26 +1,26 @@
 import React from "react";
 import { Text, View, Image, StyleSheet } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { useSelector } from "react-redux";
 const PersonalCard1 = (props) => {
+	const listingImage = useSelector((state) => state.listingImage);
 	return (
 		<View style={styles.card}>
 			<Image
 				source={
-					props.card.image == ""
+					listingImage == null
 						? require("../../assets/images/DefaultProfilePic.png")
-						: { uri: props.card.image }
+						: { uri: listingImage }
 				}
 				style={styles.cardImage}
 			/>
 			<View style={styles.cardTextContainer}>
 				<View style={{ flex: 1 }}>
 					<Text style={[styles.cardText, { fontSize: 40, color: "orange" }]}>
-						{props.card.position}
+						{props.position}
 					</Text>
-					<Text style={[styles.cardText, { fontSize: 30 }]}>
-						{props.card.name}
-					</Text>
-					{props.card.rating == 0 ? null : (
+					<Text style={[styles.cardText, { fontSize: 30 }]}>{props.name}</Text>
+					{props.rating == 0 ? null : (
 						<View style={{ flexDirection: "row" }}>
 							{[...Array(5)].map((i) => {
 								//Creates the rest of the empty stars
@@ -35,7 +35,7 @@ const PersonalCard1 = (props) => {
 								);
 							})}
 							<View style={{ position: "absolute", flexDirection: "row" }}>
-								{[...Array(props.card.rating)].map((i) => {
+								{[...Array(props.rating)].map((i) => {
 									//Creates as many stars as card.rating
 									return (
 										<Ionicons
@@ -60,13 +60,13 @@ const PersonalCard1 = (props) => {
 				]}
 			>
 				<Text style={[styles.cardText, { fontSize: 30, textAlign: "right" }]}>
-					{props.card.wage == 0 ? "" : props.card.wage + "€/h"}
+					{props.wage == 0 ? "" : props.wage + "€/h"}
 				</Text>
 				<Text style={[styles.cardText, { fontSize: 30, textAlign: "right" }]}>
-					{props.card.hours == 0 ? "" : props.card.hours + "h"}
+					{props.hours == 0 ? "" : props.hours + "h"}
 				</Text>
 				<Text style={[styles.cardText, { fontSize: 25, textAlign: "right" }]}>
-					{props.card.address}
+					{props.address}
 				</Text>
 			</View>
 		</View>
