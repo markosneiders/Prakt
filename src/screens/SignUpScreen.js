@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   StatusBar,
+  ScrollView,
 } from "react-native";
 import { auth } from "../firebase";
 
@@ -27,59 +28,61 @@ const SignUpScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Image
-        style={styles.image}
-        source={require("../assets/images/prakt-logo.png")}
-      />
-
-      <StatusBar style="auto" />
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Name"
-          placeholderTextColor="#003f5c"
-          secureTextEntry={false}
-          value={name}
-          onChangeText={(text) => setName(text)}
+    <ScrollView style={styles.container}>
+      <View style={[{ alignItems: "center", justifyContent: "center" }]}>
+        <Image
+          style={styles.image}
+          source={require("../assets/images/prakt-logo.png")}
         />
+
+        <StatusBar style="auto" />
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.TextInput}
+            placeholder="Name"
+            placeholderTextColor="#003f5c"
+            secureTextEntry={false}
+            value={name}
+            onChangeText={(text) => setName(text)}
+          />
+        </View>
+
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.TextInput}
+            placeholder="Email"
+            placeholderTextColor="#003f5c"
+            secureTextEntry={false}
+            value={email}
+            onChangeText={(text) => setEmail(text)}
+          />
+        </View>
+
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.TextInput}
+            placeholder="Password"
+            placeholderTextColor="#003f5c"
+            secureTextEntry={true}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+          />
+        </View>
+
+        <TouchableOpacity style={styles.signupBtn} onPress={signUp}>
+          <Text style={styles.loginText}>CREATE ACCOUNT</Text>
+        </TouchableOpacity>
+
+        <Text style={{ marginTop: 20 }}>Already have an account?</Text>
+
+        <TouchableOpacity
+          style={styles.signinBtn}
+          onPress={() => navigation.navigate("login")}
+        >
+          <Text style={styles.loginText}>SIGN IN</Text>
+        </TouchableOpacity>
       </View>
-
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Email"
-          placeholderTextColor="#003f5c"
-          secureTextEntry={false}
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-        />
-      </View>
-
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Password"
-          placeholderTextColor="#003f5c"
-          secureTextEntry={true}
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-        />
-      </View>
-
-      <TouchableOpacity style={styles.signupBtn} onPress={signUp}>
-        <Text style={styles.loginText}>CREATE ACCOUNT</Text>
-      </TouchableOpacity>
-
-      <Text style={{ marginTop: 20 }}>Already have an account?</Text>
-
-      <TouchableOpacity
-        style={styles.signinBtn}
-        onPress={() => navigation.navigate("login")}
-      >
-        <Text style={styles.loginText}>SIGN IN</Text>
-      </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 };
 
