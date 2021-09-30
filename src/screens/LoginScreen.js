@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   StatusBar,
+  KeyboardAvoidingView,
 } from "react-native";
 import { auth } from "../firebase";
 
@@ -30,7 +31,7 @@ function LoginScreen({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView behavior="padding" style={styles.container}>
       <Image
         style={styles.image}
         source={require("../assets/images/prakt-logo.png")}
@@ -73,7 +74,7 @@ function LoginScreen({ navigation }) {
       >
         <Text style={styles.loginText}>SIGN UP</Text>
       </TouchableOpacity>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
