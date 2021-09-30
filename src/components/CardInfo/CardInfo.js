@@ -101,6 +101,7 @@ const CardInfo = (props) => {
 						<TextInput
 							editable={props.editable}
 							style={[styles.popText, { fontSize: 40 }]}
+							multiline={true}
 						>
 							{data[props.index].position}
 						</TextInput>

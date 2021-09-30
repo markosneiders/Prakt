@@ -89,8 +89,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
   },
 
   image: {
@@ -116,6 +114,14 @@ const styles = StyleSheet.create({
   forgot_button: {
     height: 30,
     marginBottom: 5,
+  },
+
+  signupText: {
+    color: "#000000",
+  },
+
+  signupTextInvalid: {
+    color: "#999999",
   },
 
   signupBtn: {
