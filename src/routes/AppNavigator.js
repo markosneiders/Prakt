@@ -28,90 +28,80 @@ const Tab = createBottomTabNavigator();
 
 // Main tab navigator containing home matches and settings
 function HomeNavigator() {
-	return (
-		<Tab.Navigator initialRouteName="Home">
-			<Tab.Screen //Matches/Chat screen
-				name="Matches"
-				component={MatchesScreen}
-				options={{
-					tabBarIcon: () => (
-						<Ionicons
-							name="ios-chatbubbles"
-							size={30}
-							style={styles.tabbarstyle}
-						/>
-					),
-				}}
-			/>
-			<Tab.Screen // Home screen
-				name="Home" //Screen name
-				component={HomeScreen} //What screen to navigate to
-				options={{
-					//Options
-					headerShown: null, //If the header is shown
-					tabBarIcon: () => (
-						//Tab bar icon options
-						<Fontisto name="home" size={30} style={styles.tabbarstyle} />
-					),
-				}}
-			/>
-			<Tab.Screen // Home screen
-				name="Create listing" //Screen name
-				component={CreateListingScreen} //What screen to navigate to
-				options={{
-					//Options
-					headerShown: null, //If the header is shown
-					tabBarIcon: () => (
-						//Tab bar icon options
-						<Fontisto name="home" size={30} style={styles.tabbarstyle} />
-					),
-				}}
-			/>
-			<Tab.Screen //Welcome screen
-				name="Welcome"
-				component={WelcomeNavigator}
-				options={{
-					headerShown: null,
-					tabBarIcon: () => (
-						<AntDesign name="info" size={30} style={styles.tabbarstyle} />
-					),
-				}}
-			/>
+  return (
+    <Tab.Navigator initialRouteName="Home">
+      <Tab.Screen //Matches/Chat screen
+        name="Matches"
+        component={MatchesScreen}
+        options={{
+          tabBarIcon: () => (
+            <Ionicons
+              name="ios-chatbubbles"
+              size={30}
+              style={styles.tabbarstyle}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen // Home screen
+        name="Home" //Screen name
+        component={HomeScreen} //What screen to navigate to
+        options={{
+          //Options
+          headerShown: null, //If the header is shown
+          tabBarIcon: () => (
+            //Tab bar icon options
+            <Fontisto name="home" size={30} style={styles.tabbarstyle} />
+          ),
+        }}
+      />
+      <Tab.Screen // Home screen
+        name="Create listing" //Screen name
+        component={CreateListingScreen} //What screen to navigate to
+        options={{
+          //Options
+          headerShown: null, //If the header is shown
+          tabBarIcon: () => (
+            //Tab bar icon options
+            <Fontisto name="home" size={30} style={styles.tabbarstyle} />
+          ),
+        }}
+      />
 
-			<Tab.Screen //Settings screen
-				name="Settings"
-				component={SettingsNavigator} //Instead of a screen we pass another navigator for settings so we can navigate inside settings pages
-				options={{
-					headerShown: null,
-					tabBarIcon: () => (
-						<FontAwesome name="user" size={30} style={styles.tabbarstyle} />
-					),
-				}}
-			/>
+      <Tab.Screen //Settings screen
+        name="Settings"
+        component={SettingsNavigator} //Instead of a screen we pass another navigator for settings so we can navigate inside settings pages
+        options={{
+          headerShown: null,
+          tabBarIcon: () => (
+            <FontAwesome name="user" size={30} style={styles.tabbarstyle} />
+          ),
+        }}
+      />
 
-			<Tab.Screen //Login screen
-				name="Login"
-				component={LoginScreen}
-				options={{
-					headerShown: null,
-					tabBarIcon: () => (
-						<AntDesign name="login" size={30} style={styles.tabbarstyle} />
-					),
-				}}
-			/>
+      <Tab.Screen //Login screen
+        name="Login"
+        component={LoginScreen}
+        options={{
+          headerShown: null,
+          tabBarIcon: () => (
+            <AntDesign name="login" size={30} style={styles.tabbarstyle} />
+          ),
+        }}
+      />
 
-			<Tab.Screen //Sign Up screen
-				name="SignUp"
-				component={SignUpScreen}
-				options={{
-					headerShown: null,
-					tabBarIcon: () => (
-						<AntDesign name="paperclip" size={30} style={styles.tabbarstyle} />
-					),
-				}}
-			/>
-		</Tab.Navigator>
-	);
+      <Tab.Screen //Sign Up screen
+        name="SignUp"
+        component={SignUpScreen}
+        options={{
+          headerShown: null,
+          tabBarIcon: () => (
+            <AntDesign name="paperclip" size={30} style={styles.tabbarstyle} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
 }
 
 import ProfileScreen from "../screens/ProfileScreen"; // more screen imports
@@ -120,48 +110,48 @@ import SearchSettings from "../screens/SearchSettings";
 const Stack = createNativeStackNavigator(); //defining variable for ease of reading again
 
 function SettingsNavigator() {
-	// Settings navigator using stack instead of tab (Stack means the screens appear on top of eachother without a tab bar only back buttons)
-	return (
-		<Stack.Navigator>
-			<Stack.Screen
-				name="Settings page"
-				component={SettingsScreen}
-				options={{ title: "Settings" }}
-			/>
-			<Stack.Screen name="Edit Profile" component={ProfileScreen} />
-			<Stack.Screen name="Search settings" component={SearchSettings} />
-		</Stack.Navigator>
-	);
+  // Settings navigator using stack instead of tab (Stack means the screens appear on top of eachother without a tab bar only back buttons)
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Settings page"
+        component={SettingsScreen}
+        options={{ title: "Settings" }}
+      />
+      <Stack.Screen name="Edit Profile" component={ProfileScreen} />
+      <Stack.Screen name="Search settings" component={SearchSettings} />
+    </Stack.Navigator>
+  );
 }
 
 function WelcomeNavigator() {
-	return (
-		<Stack.Navigator>
-			<Stack.Screen
-				name="Welcome Page"
-				component={WelcomeScreen}
-				options={{ title: "Welcome" }}
-			/>
-			<Stack.Screen name="Welcome Use" component={WelcomeUse} />
-			<Stack.Screen name="Welcome Personal" component={WelcomePersonal} />
-			<Stack.Screen name="Home" component={HomeScreen} />
-			<Stack.Screen name="Login Screen" component={LoginScreen} />
-			<Stack.Screen name="Signup Screen" component={SignUpScreen} />
-		</Stack.Navigator>
-	);
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Welcome Page"
+        component={WelcomeScreen}
+        options={{ title: "Welcome" }}
+      />
+      <Stack.Screen name="Welcome Use" component={WelcomeUse} />
+      <Stack.Screen name="Welcome Personal" component={WelcomePersonal} />
+      <Stack.Screen name="Home" component={SignUpScreen} />
+      <Stack.Screen name="Login Screen" component={LoginScreen} />
+      <Stack.Screen name="Signup Screen" component={SignUpScreen} />
+    </Stack.Navigator>
+  );
 }
 
 export const AppNavigator = () => (
-	//Exports navigator to be imported in App.js
-	<NavigationContainer>
-		<HomeNavigator />
-	</NavigationContainer>
+  //Exports navigator to be imported in App.js
+  <NavigationContainer>
+    <HomeNavigator />
+  </NavigationContainer>
 );
 
 const styles = StyleSheet.create({
-	//Style sheet
-	tabbarstyle: {
-		//Style which is applied to all tab navigator icons to style them easily
-		top: 2,
-	},
+  //Style sheet
+  tabbarstyle: {
+    //Style which is applied to all tab navigator icons to style them easily
+    top: 2,
+  },
 });

@@ -1,3 +1,5 @@
+import { NavigationContainer } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/core";
 import React, { useState } from "react";
 import {
   StyleSheet,
@@ -7,12 +9,14 @@ import {
   TextInput,
   TouchableOpacity,
   StatusBar,
+  ScrollView,
 } from "react-native";
 import { auth } from "../firebase";
 
 const SignUpScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordconf, setPasswordConf] = useState("");
 
   const signUp = () => {
     auth
@@ -24,39 +28,64 @@ const SignUpScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Image
-        style={styles.image}
-        source={require("../assets/images/prakt-logo.png")}
-      />
-
-      <StatusBar style="auto" />
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Email"
-          placeholderTextColor="#003f5c"
-          secureTextEntry={false}
-          value={email}
-          onChangeText={(email) => setEmail(email)}
+    <ScrollView style={styles.container}>
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <Image
+          style={styles.image}
+          source={require("../assets/images/prakt-logo.png")}
         />
-      </View>
 
-      <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder="Password"
-          placeholderTextColor="#003f5c"
-          secureTextEntry={true}
-          value={password}
-          onChangeText={(password) => setPassword(password)}
-        />
-      </View>
+        <StatusBar style="auto" />
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.TextInput}
+            placeholder="Email"
+            placeholderTextColor="#003f5c"
+            secureTextEntry={false}
+            value={email}
+            onChangeText={(email) => setEmail(email)}
+          />
+        </View>
 
-      <TouchableOpacity style={styles.signupBtn} onPress={signUp}>
-        <Text style={styles.loginText}>CREATE ACCOUNT</Text>
-      </TouchableOpacity>
-    </View>
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.TextInput}
+            placeholder="Password"
+            placeholderTextColor="#003f5c"
+            secureTextEntry={true}
+            value={password}
+            onChangeText={(password) => setPassword(password)}
+          />
+        </View>
+
+        <View style={styles.inputView}>
+          <TextInput
+            style={styles.TextInput}
+            placeholder="Password Confirmation"
+            placeholderTextColor="#003f5c"
+            secureTextEntry={true}
+            value={passwordconf}
+            onChangeText={(passwordconf) => setPasswordConf(passwordconf)}
+          />
+        </View>
+
+        <TouchableOpacity
+          style={styles.signupBtn}
+          onPress={signUp}
+          disabled={password.length <= 2 || password !== passwordconf}
+        >
+          <Text
+            style={[
+              password.length <= 2 || password !== passwordconf
+                ? styles.signupTextInvalid
+                : styles.signupText,
+            ]}
+          >
+            CREATE ACCOUNT
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
   );
 };
 
@@ -66,8 +95,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
   },
 
   image: {
@@ -93,6 +120,14 @@ const styles = StyleSheet.create({
   forgot_button: {
     height: 30,
     marginBottom: 5,
+  },
+
+  signupText: {
+    color: "#000000",
+  },
+
+  signupTextInvalid: {
+    color: "#999999",
   },
 
   signupBtn: {
