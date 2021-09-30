@@ -20,6 +20,7 @@ import ChatScreen from "../screens/ChatScreen";
 
 import ProfileScreen from "../screens/ProfileScreen"; // more screen imports
 import SearchSettings from "../screens/SearchSettings";
+import SettingsDropdown from "../components/SettingsDropdown/SettingsDropdown";
 
 //Imports for custom icons
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -145,6 +146,7 @@ function SettingsNavigator() {
       />
       <Stack.Screen name="Edit Profile" component={ProfileScreen} />
       <Stack.Screen name="Search settings" component={SearchSettings} />
+      <Stack.Screen name="Search Radius settings" component={SettingsDropdown} />
     </Stack.Navigator>
   );
 }
