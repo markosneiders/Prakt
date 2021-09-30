@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-const PersonalCardInfo = (props) => {
+const EditPersonalCardInfo = (props) => {
 	return (
 		<ScrollView
 			style={{
@@ -25,9 +25,9 @@ const PersonalCardInfo = (props) => {
 				<View style={[styles.card]}>
 					<Image
 						source={
-							props.localData.image == ""
+							props.image == ""
 								? require("../../assets/images/DefaultProfilePic.png")
-								: { uri: props.localData.image }
+								: { uri: props.image }
 						}
 						style={[styles.cardImage]}
 					/>
@@ -36,12 +36,12 @@ const PersonalCardInfo = (props) => {
 							<Text
 								style={[styles.cardText, { fontSize: 40, color: "orange" }]}
 							>
-								{props.localData.position}
+								{props.position}
 							</Text>
 							<Text style={[styles.cardText, { fontSize: 30 }]}>
-								{props.localData.name}
+								{props.name}
 							</Text>
-							{props.localData.rating == 0 ? null : (
+							{props.rating == 0 ? null : (
 								<View style={{ flexDirection: "row" }}>
 									{[...Array(5)].map((i) => {
 										//Creates the rest of the empty stars
@@ -56,7 +56,7 @@ const PersonalCardInfo = (props) => {
 										);
 									})}
 									<View style={{ position: "absolute", flexDirection: "row" }}>
-										{[...Array(props.localData.rating)].map((i) => {
+										{[...Array(props.rating)].map((i) => {
 											//Creates as many stars as card.rating
 											return (
 												<Ionicons
@@ -83,21 +83,21 @@ const PersonalCardInfo = (props) => {
 						<Text
 							style={[styles.cardText, { fontSize: 30, textAlign: "right" }]}
 						>
-							{props.localData.wage == 0 ? "" : props.localData.wage + "€"}
+							{props.wage == 0 ? "" : props.wage + "€"}
 						</Text>
 						<Text
 							style={[styles.cardText, { fontSize: 30, textAlign: "right" }]}
 						>
-							{props.localData.hours == 0 ? "" : props.localData.hours + "h"}
+							{props.hours == 0 ? "" : props.hours + "h"}
 						</Text>
 						<Text
 							style={[styles.cardText, { fontSize: 25, textAlign: "right" }]}
 						>
-							{props.localData.address}
+							{props.address}
 						</Text>
 					</View>
 				</View>
-				<View style={{ marginHorizontal: 8, marginTop: 15, marginBottom: 100 }}>
+				<View style={{ marginHorizontal: 8, marginTop: 15, marginBottom: 220 }}>
 					<View
 						style={{
 							borderBottomWidth: 2,
@@ -108,7 +108,9 @@ const PersonalCardInfo = (props) => {
 						<TextInput
 							editable={props.editable}
 							style={[styles.popText, { fontSize: 40 }]}
-							value={props.localData.position}
+							value={props.position}
+							multiline={true}
+							onChangeText={(text) => props.setPosition(text)}
 						/>
 					</View>
 					<View style={styles.infoline}>
@@ -118,13 +120,13 @@ const PersonalCardInfo = (props) => {
 							multiline={true}
 							editable={props.editable}
 							placeholder={"..."}
-						>
-							{props.localData.position_description}
-						</TextInput>
+							value={props.position_description}
+							onChangeText={(text) => props.setPosition_description(text)}
+						/>
 					</View>
 					<View style={styles.infoline}>
 						<Text style={styles.popText}>{"Requirments: "}</Text>
-						{[...Array(props.localData.requirements.length)].map((i, x) => {
+						{[...Array(props.requirements.length)].map((i, x) => {
 							//Renders requirements
 							return (
 								<View
@@ -137,9 +139,7 @@ const PersonalCardInfo = (props) => {
 										style={styles.popBodyText}
 										editable={props.editable}
 										placeholder={"..."}
-									>
-										{props.localData.requirements[x]}
-									</TextInput>
+									/>
 								</View>
 							);
 						})}
@@ -149,27 +149,20 @@ const PersonalCardInfo = (props) => {
 						<View style={{ flexDirection: "row" }}>
 							<TextInput
 								editable={props.editable}
-								placeholder={"..."}
 								style={styles.popBodyText}
-							>
-								{props.localData.wage}
-							</TextInput>
+								value={props.wage}
+								onChangeText={(text) => props.setWage(text)}
+							/>
 							<Text style={styles.popBodyText}>€ per hour</Text>
 						</View>
 						<View style={{ flexDirection: "row" }}>
 							<TextInput
 								editable={props.editable}
-								placeholder={"..."}
 								style={styles.popBodyText}
-							>
-								{props.localData.hours}
-							</TextInput>
+								value={props.hours}
+								onChangeText={(text) => props.setHours(text)}
+							/>
 							<Text style={styles.popBodyText}> total hours</Text>
-						</View>
-						<View style={{ flexDirection: "row" }}>
-							<Text style={styles.popBodyText}>
-								={props.localData.hours * props.localData.wage} € total
-							</Text>
 						</View>
 					</View>
 					<View style={styles.infoline}>
@@ -181,9 +174,10 @@ const PersonalCardInfo = (props) => {
 								multiline={true}
 								style={styles.popBodyText}
 								placeholder={"..."}
-							>
-								{props.localData.phone}
-							</TextInput>
+								value={props.phone}
+								onChangeText={(text) => props.setPhone(text)}
+								keyboardType="phone-pad"
+							/>
 						</View>
 						<View style={{ flexDirection: "row" }}>
 							<Text style={styles.popSText}>{"Email: "}</Text>
@@ -192,9 +186,10 @@ const PersonalCardInfo = (props) => {
 								multiline={true}
 								style={styles.popBodyText}
 								placeholder={"..."}
-							>
-								{props.localData.email}
-							</TextInput>
+								value={props.email}
+								onChangeText={(text) => props.setEmail(text)}
+								keyboardType="email-address"
+							/>
 						</View>
 						<View style={{ flexDirection: "row" }}>
 							<Text style={styles.popSText}>{"Adress: "}</Text>
@@ -204,7 +199,7 @@ const PersonalCardInfo = (props) => {
 								style={styles.popBodyText}
 								placeholder={"..."}
 							>
-								{props.localData.address}
+								{props.address}
 							</TextInput>
 						</View>
 					</View>
@@ -274,4 +269,4 @@ const styles = StyleSheet.create({
 		marginHorizontal: 2,
 	},
 });
-export default PersonalCardInfo;
+export default EditPersonalCardInfo;
