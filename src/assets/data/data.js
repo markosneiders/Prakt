@@ -8,10 +8,17 @@ export default [
       address: 'Gaismas iela 10',
       image: 'https://pic.la.lv/2019/12/Maxima-Gaigalas-iela-29-1-800x534.jpg',
       position_description: 'Maxima is looking for shelf restockers!',
-      requierments: [
-        '16+ years',
-        '17+ years',
+      requirements: [
+        'Requirement1',
+        'Requirement2',
+        'Requirement3',
+        'Requirement4',
+        'Requirement5',
+        'Requirement6',
       ],
+      webpage: 'https://www.maxima.lv',
+      shift: 'Day',
+
       
     },
     {
