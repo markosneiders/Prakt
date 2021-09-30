@@ -7,7 +7,9 @@ const Card1 = (props) => {
 			<Image source={{ uri: props.card.image }} style={styles.cardImage} />
 			<View style={styles.cardTextContainer}>
 				<View style={{ flex: 1 }}>
-					<Text style={[styles.cardText, { fontSize: 40 }]}>
+					<Text
+						style={[styles.cardText, { fontSize: 40, color: "dodgerblue" }]}
+					>
 						{props.card.position}
 					</Text>
 					<Text style={[styles.cardText, { fontSize: 30 }]}>
@@ -51,7 +53,7 @@ const Card1 = (props) => {
 				]}
 			>
 				<Text style={[styles.cardText, { fontSize: 30, textAlign: "right" }]}>
-					{props.card.wage + "€"}
+					{props.card.wage + "€/m"}
 				</Text>
 				<Text style={[styles.cardText, { fontSize: 30, textAlign: "right" }]}>
 					{props.card.hours + "h"}

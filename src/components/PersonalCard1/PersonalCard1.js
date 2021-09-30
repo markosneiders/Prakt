@@ -14,40 +14,42 @@ const PersonalCard1 = (props) => {
 			/>
 			<View style={styles.cardTextContainer}>
 				<View style={{ flex: 1 }}>
-					<Text style={[styles.cardText, { fontSize: 40 }]}>
+					<Text style={[styles.cardText, { fontSize: 40, color: "orange" }]}>
 						{props.card.position}
 					</Text>
 					<Text style={[styles.cardText, { fontSize: 30 }]}>
 						{props.card.name}
 					</Text>
-					<View style={{ flexDirection: "row" }}>
-						{[...Array(5)].map((i) => {
-							//Creates the rest of the empty stars
-							return (
-								<Ionicons
-									name="star-outline"
-									key={Math.random().toString(36).substr(2, 9)}
-									size={30}
-									color="yellow"
-									style={[styles.stars, { opacity: 0.3 }]}
-								/>
-							);
-						})}
-						<View style={{ position: "absolute", flexDirection: "row" }}>
-							{[...Array(props.card.rating)].map((i) => {
-								//Creates as many stars as card.rating
+					{props.card.rating == 0 ? null : (
+						<View style={{ flexDirection: "row" }}>
+							{[...Array(5)].map((i) => {
+								//Creates the rest of the empty stars
 								return (
 									<Ionicons
-										name="star"
+										name="star-outline"
 										key={Math.random().toString(36).substr(2, 9)}
 										size={30}
 										color="yellow"
-										style={[styles.stars, { opacity: 1 }]}
+										style={[styles.stars, { opacity: 0.3 }]}
 									/>
 								);
 							})}
+							<View style={{ position: "absolute", flexDirection: "row" }}>
+								{[...Array(props.card.rating)].map((i) => {
+									//Creates as many stars as card.rating
+									return (
+										<Ionicons
+											name="star"
+											key={Math.random().toString(36).substr(2, 9)}
+											size={30}
+											color="yellow"
+											style={[styles.stars, { opacity: 1 }]}
+										/>
+									);
+								})}
+							</View>
 						</View>
-					</View>
+					)}
 				</View>
 			</View>
 
@@ -58,10 +60,10 @@ const PersonalCard1 = (props) => {
 				]}
 			>
 				<Text style={[styles.cardText, { fontSize: 30, textAlign: "right" }]}>
-					{props.card.wage + "€"}
+					{props.card.wage == 0 ? "" : props.card.wage + "€/h"}
 				</Text>
 				<Text style={[styles.cardText, { fontSize: 30, textAlign: "right" }]}>
-					{props.card.hours + "h"}
+					{props.card.hours == 0 ? "" : props.card.hours + "h"}
 				</Text>
 				<Text style={[styles.cardText, { fontSize: 25, textAlign: "right" }]}>
 					{props.card.address}

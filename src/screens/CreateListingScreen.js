@@ -10,7 +10,7 @@ import {
 	ScrollView,
 } from "react-native";
 import Modal from "react-native-modal";
-import CardInfo from "../components/CardInfo/CardInfo";
+import PersonalCardInfo from "../components/PersonalCardInfo/PersonalCardInfo";
 import PersonalCard1 from "../components/PersonalCard1/PersonalCard1";
 
 export default function MainScreen() {
@@ -22,22 +22,23 @@ export default function MainScreen() {
 	const image1 = useRef(new Animated.Value(1)).current;
 	const opc = useRef(new Animated.Value(0)).current;
 	const [index, setIndex] = React.useState(0);
-	const [aindex, setAindex] = React.useState(0);
-	const [localData, setlocalData] = React.useState({
-		position: "",
-		name: "",
-		rating: 0,
-		wage: 0,
-		hours: 0,
-		address: "",
-		image: "",
-		position_description: "",
-		requirements: ["", "", "", "", "", ""],
-		website: "",
-		phone: "",
-		email: "",
-		shift: "",
-	});
+	const [localData, setlocalData] = React.useState([
+		{
+			position: "New job",
+			name: "*Profile name*",
+			rating: 0,
+			wage: 0,
+			hours: 0,
+			address: "",
+			image: "",
+			position_description: "",
+			requirements: [""],
+			website: "",
+			phone: "",
+			email: "",
+			shift: "",
+		},
+	]);
 
 	function opacityReset() {
 		Animated.timing(opc, {
@@ -52,9 +53,9 @@ export default function MainScreen() {
 			<Animated.View style={[styles.backgroundContainer, { opacity: image1 }]}>
 				<Image
 					source={
-						localData.image == ""
+						localData[index].image == ""
 							? require("../assets/images/DefaultProfilePic.png")
-							: { uri: localData.image }
+							: { uri: localData[index].image }
 					}
 					blurRadius={3}
 					style={[styles.backgroundImage]}
@@ -112,7 +113,11 @@ export default function MainScreen() {
 					style={{ margin: 0 }}
 					onBackdropPress={() => setModalVisible(false)}
 				>
-					<CardInfo index={index} editable={false} />
+					<PersonalCardInfo
+						index={index}
+						editable={true}
+						localData={localData[0]}
+					/>
 				</Modal>
 			</View>
 			<Swiper
@@ -121,9 +126,9 @@ export default function MainScreen() {
 				onSwipedAborted={() => opacityReset()}
 				cardVerticalMargin={140}
 				backgroundColor="transparent"
-				cards={localData}
+				cards={localData[0]}
 				cardIndex={index}
-				renderCard={() => <PersonalCard1 card={localData} />}
+				renderCard={() => <PersonalCard1 card={localData[0]} />}
 				disableTopSwipe
 				disableBottomSwipe
 				disableLeftSwipe
