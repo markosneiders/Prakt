@@ -17,7 +17,7 @@ function LoginScreen({ navigation }) {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        navigation.navigate("Home");
+        navigation.replace("app_home");
       }
     });
     return unsubscribe;
@@ -44,7 +44,7 @@ function LoginScreen({ navigation }) {
           placeholderTextColor="#003f5c"
           secureTextEntry={false}
           value={email}
-          onChangeText={(email) => setEmail(email)}
+          onChangeText={(text) => setEmail(text)}
         />
       </View>
 
@@ -55,7 +55,7 @@ function LoginScreen({ navigation }) {
           placeholderTextColor="#003f5c"
           secureTextEntry={true}
           value={password}
-          onChangeText={(password) => setPassword(password)}
+          onChangeText={(text) => setPassword(text)}
         />
       </View>
 

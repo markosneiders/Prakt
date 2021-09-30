@@ -11,6 +11,7 @@ import {
 import { auth } from "../firebase";
 
 const SignUpScreen = ({ navigation }) => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -18,7 +19,9 @@ const SignUpScreen = ({ navigation }) => {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((authUser) => {
-        authUser.user;
+        authUser.user.updateProfile({
+          displayName: name,
+        });
       })
       .catch((error) => alert(error.message));
   };
@@ -34,11 +37,22 @@ const SignUpScreen = ({ navigation }) => {
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
+          placeholder="Name"
+          placeholderTextColor="#003f5c"
+          secureTextEntry={false}
+          value={name}
+          onChangeText={(text) => setName(text)}
+        />
+      </View>
+
+      <View style={styles.inputView}>
+        <TextInput
+          style={styles.TextInput}
           placeholder="Email"
           placeholderTextColor="#003f5c"
           secureTextEntry={false}
           value={email}
-          onChangeText={(email) => setEmail(email)}
+          onChangeText={(text) => setEmail(text)}
         />
       </View>
 
@@ -49,7 +63,7 @@ const SignUpScreen = ({ navigation }) => {
           placeholderTextColor="#003f5c"
           secureTextEntry={true}
           value={password}
-          onChangeText={(password) => setPassword(password)}
+          onChangeText={(text) => setPassword(text)}
         />
       </View>
 
