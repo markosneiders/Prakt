@@ -17,6 +17,7 @@ function SettingsScreen({ navigation }) {
     <ScrollView style={styles.container}>
       <ProfileSettingsCard navigation={navigation} />
       <SettingsCard
+        screen={"Search settings"}
         icon={"crosshairs-gps"}
         color={"lightgreen"}
         title={"Search settings"}

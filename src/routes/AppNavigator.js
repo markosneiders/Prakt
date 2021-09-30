@@ -116,6 +116,7 @@ function HomeNavigator() {
 
 import ProfileScreen from "../screens/ProfileScreen"; // more screen imports
 import SearchSettings from "../screens/SearchSettings";
+import SettingsDropdown from "../components/SettingsDropdown/SettingsDropdown";
 
 const Stack = createNativeStackNavigator(); //defining variable for ease of reading again
 
@@ -130,6 +131,7 @@ function SettingsNavigator() {
       />
       <Stack.Screen name="Edit Profile" component={ProfileScreen} />
       <Stack.Screen name="Search settings" component={SearchSettings} />
+      <Stack.Screen name="Search Radius settings" component={SettingsDropdown} />
     </Stack.Navigator>
   );
 }
