@@ -19,6 +19,7 @@ import CreateListingScreen from "../screens/CreateListingScreen";
 
 import ProfileScreen from "../screens/ProfileScreen"; // more screen imports
 import SearchSettings from "../screens/SearchSettings";
+import SettingsDropdown from "../components/SettingsDropdown/SettingsDropdown";
 
 //Imports for custom icons
 import FontAwesome from "react-native-vector-icons/FontAwesome";
