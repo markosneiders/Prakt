@@ -1,6 +1,13 @@
 import React from "react";
 import data from "../../assets/data/data.js";
-import { Text, ScrollView, Image, View, StyleSheet } from "react-native";
+import {
+	Text,
+	ScrollView,
+	Image,
+	View,
+	StyleSheet,
+	TextInput,
+} from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 export default function CardInfo(props) {
 	return (
@@ -82,47 +89,89 @@ export default function CardInfo(props) {
 						top: -2,
 					}}
 				>
-					<Text style={[styles.popText, { fontSize: 40 }]}>
+					<TextInput
+						editable={props.editable}
+						style={[styles.popText, { fontSize: 40 }]}
+					>
 						{data[props.index].position}
-					</Text>
+					</TextInput>
 				</View>
 				<View style={styles.infoline}>
 					<Text style={styles.popText}>{"Position description: "}</Text>
-					<Text style={styles.popBodyText}>
+					<TextInput style={styles.popBodyText} multiline={true}>
 						{data[props.index].position_description}
-					</Text>
+					</TextInput>
 				</View>
 				<View style={styles.infoline}>
 					<Text style={styles.popText}>{"Requirments: "}</Text>
 					{[...Array(data[props.index].requirements.length)].map((i, x) => {
 						//Renders requirements
 						return (
-							<Text
-								style={styles.popBodyText}
-								key={Math.random().toString(36).substr(2, 9)}
-							>
-								{data[props.index].requirements[x]}
-							</Text>
+							<View style={{ flexDirection: "row" }}>
+								<Text
+									key={Math.random().toString(36).substr(2, 9)}
+									style={[styles.popBodyText, { fontSize: 26 }]}
+								>
+									-
+								</Text>
+								<TextInput
+									multiline={true}
+									style={styles.popBodyText}
+									key={Math.random().toString(36).substr(2, 9)}
+								>
+									{data[props.index].requirements[x]}
+								</TextInput>
+							</View>
 						);
 					})}
 				</View>
 				<View style={styles.infoline}>
 					<Text style={styles.popText}>{"Shifts: "}</Text>
-					<Text style={styles.popBodyText}>
-						{data[props.index].hours + " hour shifts"}
-					</Text>
-					<Text style={styles.popBodyText}>
+					<View style={{ flexDirection: "row" }}>
+						<TextInput style={styles.popBodyText}>
+							{data[props.index].hours}
+						</TextInput>
+						<Text style={styles.popBodyText}> hour shifts</Text>
+					</View>
+					<TextInput multiline={true} style={styles.popBodyText}>
 						{data[props.index].shift + " shift"}
-					</Text>
+					</TextInput>
 				</View>
 				<View style={styles.infoline}>
 					<Text style={styles.popText}>{"Wage: "}</Text>
-					<Text style={styles.popBodyText}>
-						{data[props.index].wage + "€ monthly wage"}
-					</Text>
+					<View style={{ flexDirection: "row" }}>
+						<TextInput style={styles.popBodyText}>
+							{data[props.index].wage}
+						</TextInput>
+						<Text style={styles.popBodyText}>€ monthly wage</Text>
+					</View>
 				</View>
 				<View style={styles.infoline}>
 					<Text style={styles.popText}>{"Contact: "}</Text>
+					<View style={{ flexDirection: "row" }}>
+						<Text style={styles.popSText}>{"Website: "}</Text>
+						<TextInput multiline={true} style={styles.popBodyText}>
+							{data[props.index].website}
+						</TextInput>
+					</View>
+					<View style={{ flexDirection: "row" }}>
+						<Text style={styles.popSText}>{"Phone: "}</Text>
+						<TextInput multiline={true} style={styles.popBodyText}>
+							{data[props.index].phone}
+						</TextInput>
+					</View>
+					<View style={{ flexDirection: "row" }}>
+						<Text style={styles.popSText}>{"Email: "}</Text>
+						<TextInput multiline={true} style={styles.popBodyText}>
+							{data[props.index].email}
+						</TextInput>
+					</View>
+					<View style={{ flexDirection: "row" }}>
+						<Text style={styles.popSText}>{"Adress: "}</Text>
+						<TextInput multiline={true} style={styles.popBodyText}>
+							{data[props.index].address}
+						</TextInput>
+					</View>
 				</View>
 			</View>
 		</ScrollView>
@@ -133,6 +182,12 @@ const styles = StyleSheet.create({
 		fontSize: 30,
 		color: "dodgerblue",
 		fontWeight: "bold",
+	},
+	popSText: {
+		fontSize: 20,
+		color: "dodgerblue",
+		fontWeight: "bold",
+		top: 5,
 	},
 	popBodyText: {
 		fontSize: 20,

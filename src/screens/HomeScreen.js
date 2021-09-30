@@ -146,7 +146,7 @@ export default function MainScreen() {
 					style={{ margin: 0 }}
 					onBackdropPress={() => setModalVisible(false)}
 				>
-					<CardInfo index={index} />
+					<CardInfo index={index} editable={true} />
 				</Modal>
 			</View>
 			<Swiper
