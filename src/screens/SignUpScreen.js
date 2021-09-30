@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { auth } from "../firebase";
 
-const SignUpScreen = () => {
+const SignUpScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -56,6 +56,15 @@ const SignUpScreen = () => {
       <TouchableOpacity style={styles.signupBtn} onPress={signUp}>
         <Text style={styles.loginText}>CREATE ACCOUNT</Text>
       </TouchableOpacity>
+
+      <Text style={{ marginTop: 20 }}>Already have an account?</Text>
+
+      <TouchableOpacity
+        style={styles.signinBtn}
+        onPress={() => navigation.navigate("login")}
+      >
+        <Text style={styles.loginText}>SIGN IN</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -100,6 +109,16 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     height: 50,
     marginTop: 30,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#7CB8EA",
+  },
+
+  signinBtn: {
+    width: "70%",
+    borderRadius: 25,
+    height: 45,
+    marginTop: 10,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#7CB8EA",
