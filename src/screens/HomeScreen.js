@@ -8,11 +8,11 @@ import Modal from "react-native-modal";
 import CardInfo from "../components/CardInfo/CardInfo";
 import Card1 from "../components/Card1/Index.js";
 import { db } from "../firebase";
-import PersonalCard1 from "../components/EditPersonalCard1/EditPersonalCard1";
+import ShowPersonalCard1 from "../components/ShowPersonalCard1.js/ShowPersonalCard1";
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
 const Card = React.memo(({ card }) => {
-	return <PersonalCard1 card={card} />;
+	return <ShowPersonalCard1 card={card} />;
 });
 
 export default function MainScreen() {
@@ -22,12 +22,10 @@ export default function MainScreen() {
 		const unsubscribe = db.collection("cards_personal").onSnapshot((snapshot) =>
 			setFcards(
 				snapshot.docs.map((doc) => ({
-					id: doc.id,
 					fdata: doc.data(),
 				}))
 			)
 		);
-
 		return unsubscribe;
 	}, []);
 
@@ -35,8 +33,12 @@ export default function MainScreen() {
 
 	const toggleModal = () => {
 		setModalVisible(!isModalVisible);
-		console.log(fcards[0].fdata.address);
+		for (let i = 0; i < 2; i++) {
+			tcards.push(fcards[0].fdata);
+		}
+		console.log(tcards);
 	};
+
 	const image1 = useRef(new Animated.Value(1)).current;
 	const image2 = useRef(new Animated.Value(0)).current;
 	const opc = useRef(new Animated.Value(0)).current;
@@ -44,6 +46,25 @@ export default function MainScreen() {
 	const [aindex, setAindex] = React.useState(0);
 	const [bindex, setBindex] = React.useState(1);
 	const [swap, setSwap] = React.useState(false);
+	const temp = [];
+	const tcards = [
+		{
+			position: null,
+			name: null,
+			rating: null,
+			wage: 0,
+			hours: 0,
+			address: null,
+			image: null,
+			position_description: null,
+			requirements: null,
+			website: null,
+			phone: null,
+			email: null,
+			shift: null,
+		},
+		{},
+	];
 
 	const onSwiped = () => {
 		setIndex(index + 1);
@@ -168,7 +189,7 @@ export default function MainScreen() {
 				onSwipedAborted={() => opacityReset()}
 				cardVerticalMargin={140}
 				backgroundColor="transparent"
-				cards={data}
+				cards={tcards}
 				cardIndex={index}
 				renderCard={(card) => <Card card={card} />}
 				stackSize={2}
