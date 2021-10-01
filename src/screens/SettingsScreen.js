@@ -38,17 +38,46 @@ function SettingsScreen({ navigation }) {
       <SettingsCard
         screen={"Search settings"}
         icon={"crosshairs-gps"}
-        color={"lightgreen"}
+        color={"lightblue"}
         title={"Search settings"}
         navigation={navigation}
       />
       <SettingsCard
         screen={"Theme"}
-        icon={"alpha-t"}
+        icon={"brush"}
         color={"lightblue"}
         title={"Theme"}
         navigation={navigation}
       />
+      <SettingsCard
+        screen={"About"}
+        icon={"alpha-i-circle-outline"}
+        color={"lightblue"}
+        title={"About"}
+        navigation={navigation}
+      />
+      <SettingsCard
+        screen={"Help"}
+        icon={"apple-finder"}
+        color={"lightblue"}
+        title={"Help"}
+        navigation={navigation}
+      />
+      <SettingsCard
+        screen={"Privacy"}
+        icon={"book-lock"}
+        color={"lightblue"}
+        title={"Privacy"}
+        navigation={navigation}
+      />
+      <SettingsCard
+        screen={"Security"}
+        icon={"shield-account"}
+        color={"lightblue"}
+        title={"Security"}
+        navigation={navigation}
+      />
+
       <TouchableOpacity
         style={styles.signOutTouchable}
         onPress={() => handleSignOut()}
