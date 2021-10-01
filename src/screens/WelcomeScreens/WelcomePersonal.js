@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useLayoutEffect, useSelector } from "react";
 import {
   StyleSheet,
   Text,
@@ -12,13 +12,22 @@ import {
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 
 function WelcomePersonal({ navigation }) {
-  const [name, setName] = useState("");
-  const [surname, setSurname] = useState("");
   const [date, setDate] = useState(new Date(1598051730000));
   const [mode, setMode] = useState("date");
   const [show, setShow] = useState(false);
   const [phone, setPhone] = useState("");
   const [bio, setBio] = useState("");
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: "Chat",
+      headerTintColor: "white",
+      headerStyle: {
+        backgroundColor: "#3d6ddb",
+      },
+      headerBackTitleVisible: false,
+    });
+  }, [navigation]);
 
   const showMode = (currentMode) => {
     setShow(true);
@@ -31,33 +40,19 @@ function WelcomePersonal({ navigation }) {
 
   return (
     <ScrollView style={styles.container}>
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
+      <View
+        style={{
+          marginTop: 40,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <Image
           style={styles.image}
           source={require("../../assets/images/prakt-logo.png")}
         />
 
         <StatusBar style="auto" />
-        <View style={styles.inputView}>
-          <TextInput
-            style={styles.TextInput}
-            placeholder="Name"
-            placeholderTextColor="#003f5c"
-            secureTextEntry={false}
-            onChangeText={(name) => setName(name)}
-          />
-        </View>
-
-        <View style={styles.inputView}>
-          <TextInput
-            style={styles.TextInput}
-            placeholder="Surname"
-            placeholderTextColor="#003f5c"
-            secureTextEntry={false}
-            onChangeText={(surname) => setSurname(surname)}
-            value={surname}
-          />
-        </View>
         <View style={styles.inputView}>
           <TextInput
             style={styles.TextInput}
