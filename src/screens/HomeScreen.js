@@ -44,6 +44,7 @@ export default function MainScreen() {
 	const [aindex, setAindex] = React.useState(0);
 	const [bindex, setBindex] = React.useState(1);
 	const [swap, setSwap] = React.useState(false);
+	const [curi, setCuri] = React.useState(data);
 	const onSwiped = () => {
 		setIndex(index + 1);
 		Animated.timing(opc, {
@@ -89,7 +90,7 @@ export default function MainScreen() {
 		<View style={styles.container}>
 			<Animated.View style={[styles.backgroundContainer, { opacity: image1 }]}>
 				<Image
-					source={{ uri: data[aindex].image }}
+					source={{ uri: curi[aindex].image }}
 					blurRadius={3}
 					style={[styles.backgroundImage]}
 					resizeMode="cover"
@@ -97,7 +98,7 @@ export default function MainScreen() {
 			</Animated.View>
 			<Animated.View style={[styles.backgroundContainer, { opacity: image2 }]}>
 				<Image
-					source={{ uri: data[bindex].image }}
+					source={{ uri: curi[bindex].image }}
 					blurRadius={3}
 					style={[styles.backgroundImage]}
 					resizeMode="cover"
@@ -115,7 +116,7 @@ export default function MainScreen() {
 				]}
 			>
 				<Image
-					source={{ uri: data[index].image }}
+					source={{ uri: curi[index].image }}
 					blurRadius={3}
 					style={[styles.backgroundImage, { tintColor: "red" }]}
 					resizeMode="cover"
@@ -133,7 +134,7 @@ export default function MainScreen() {
 				]}
 			>
 				<Image
-					source={{ uri: data[index].image }}
+					source={{ uri: curi[index].image }}
 					blurRadius={3}
 					style={[styles.backgroundImage, { tintColor: "green" }]}
 					resizeMode="cover"
@@ -219,8 +220,8 @@ export default function MainScreen() {
 					middleStateIconName={"code-outline"}
 					leftStateIconName={"briefcase-outline"}
 					rightStateIconName={"hammer-outline"}
-					onLeftState={() => setMode(false)}
-					onRightState={() => setMode(true)}
+					onLeftState={() => [setMode(false), setCuri(data)]}
+					onRightState={() => [setMode(true), setCuri(personal_data)]}
 				/>
 				<Text style={{ color: "lightgray" }}>Freelance</Text>
 			</View>

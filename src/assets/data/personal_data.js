@@ -7,7 +7,8 @@ export default [
 		wage: "20",
 		hours: "4",
 		address: "Lāčplēša iela 22",
-		image: "https://www.douxmariage.com/wp-content/uploads/2020/01/cheap-professional-wedding-photographers-videographers-1068x713-1.jpg",
+		image:
+			"https://www.douxmariage.com/wp-content/uploads/2020/01/cheap-professional-wedding-photographers-videographers-1068x713-1.jpg",
 		position_description: "Looking for a weding photographer!",
 		requirements: "A camera and photography experience",
 		phone: "23454765",
@@ -21,7 +22,8 @@ export default [
 		wage: "15",
 		hours: "3",
 		address: "Lielā iela 52",
-		image: "https://homemaidbetter.com/wp-content/uploads/2019/04/shutterstock_526418566.jpg",
+		image:
+			"https://homemaidbetter.com/wp-content/uploads/2019/04/shutterstock_526418566.jpg",
 		position_description: "Need a housekeeper to clean up after a party!",
 		requirements: "none",
 		phone: "25763547",
@@ -35,7 +37,8 @@ export default [
 		wage: "20",
 		hours: "2",
 		address: "Kaļķu iela 37",
-		image: "https://www.ziprecruiter.com/svc/fotomat/public-ziprecruiter/cms/152059480TeacherTutor.jpg",
+		image:
+			"https://www.ziprecruiter.com/svc/fotomat/public-ziprecruiter/cms/152059480TeacherTutor.jpg",
 		position_description: "Trying to find a math tutor for a 7th grader",
 		requirements: "Experience with teaching children.",
 		phone: "23557647",
@@ -49,7 +52,8 @@ export default [
 		wage: "30",
 		hours: "1",
 		address: "Kaļķu iela 37",
-		image: "https://www.channelfutures.com/files/2019/06/Security-System-Specialist-3-877x432.jpg",
+		image:
+			"https://www.channelfutures.com/files/2019/06/Security-System-Specialist-3-877x432.jpg",
 		position_description: "Need someone to fix my computer, quick!",
 		requirements: "IT education",
 		phone: "27964577",
