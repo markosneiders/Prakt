@@ -52,7 +52,6 @@ function ProfileScreen() {
 				setimage={setImage}
 				image={image}
 				text={"change profile picture"}
-				redux={false}
 			/>
 			<KeyboardAvoidingView style={styles.textcontainer}>
 				<BasicTextField

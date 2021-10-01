@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { ScrollView } from "react-native";
 import SettingsToggle from "../components/SettingsToggle/SettingsToggle";
-import SettingsDropdown from "../components/SettingsDropdown/SettingsDropdown";
 import SettingsCard from "../components/SettingsCard/Index";
 
 function SearchSettings({ navigation }, props) {
@@ -13,7 +12,7 @@ function SearchSettings({ navigation }, props) {
 				isEnabled={setting1}
 				setIsEnabled={setSettings1}
 			/>
-			<SettingsCard				
+			<SettingsCard
 				screen={"Search Radius settings"}
 				icon={"crosshairs-gps"}
 				color={"lightgreen"}
