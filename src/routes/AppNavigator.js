@@ -74,19 +74,6 @@ function AuthNavigator() {
 function HomeNavigator() {
   return (
     <Tab.Navigator initialRouteName="Home">
-      <Tab.Screen //Matches/Chat screen
-        name="Matches"
-        component={MatchesScreen}
-        options={{
-          tabBarIcon: () => (
-            <Ionicons
-              name="ios-chatbubbles"
-              size={30}
-              style={styles.tabbarstyle}
-            />
-          ),
-        }}
-      />
       <Tab.Screen // Home screen
         name="Home" //Screen name
         component={HomeScreen} //What screen to navigate to
