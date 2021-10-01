@@ -44,7 +44,6 @@ export default function MainScreen() {
 	const [aindex, setAindex] = React.useState(0);
 	const [bindex, setBindex] = React.useState(1);
 	const [swap, setSwap] = React.useState(false);
-	const [curi, setCuri] = React.useState(data);
 	const onSwiped = () => {
 		setIndex(index + 1);
 		Animated.timing(opc, {
@@ -52,9 +51,6 @@ export default function MainScreen() {
 			duration: 200,
 			useNativeDriver: true,
 		}).start();
-		{
-			swap == false ? fswap() : tswap();
-		}
 	};
 
 	function fswap() {
@@ -93,7 +89,7 @@ export default function MainScreen() {
 		<View style={styles.container}>
 			<Animated.View style={[styles.backgroundContainer, { opacity: image1 }]}>
 				<Image
-					source={{ uri: curi[aindex].image }}
+					source={{ uri: data[aindex].image }}
 					blurRadius={3}
 					style={[styles.backgroundImage]}
 					resizeMode="cover"
@@ -101,7 +97,7 @@ export default function MainScreen() {
 			</Animated.View>
 			<Animated.View style={[styles.backgroundContainer, { opacity: image2 }]}>
 				<Image
-					source={{ uri: curi[bindex].image }}
+					source={{ uri: data[bindex].image }}
 					blurRadius={3}
 					style={[styles.backgroundImage]}
 					resizeMode="cover"
@@ -119,7 +115,7 @@ export default function MainScreen() {
 				]}
 			>
 				<Image
-					source={{ uri: curi[index].image }}
+					source={{ uri: data[index].image }}
 					blurRadius={3}
 					style={[styles.backgroundImage, { tintColor: "red" }]}
 					resizeMode="cover"
@@ -137,7 +133,7 @@ export default function MainScreen() {
 				]}
 			>
 				<Image
-					source={{ uri: curi[index].image }}
+					source={{ uri: data[index].image }}
 					blurRadius={3}
 					style={[styles.backgroundImage, { tintColor: "green" }]}
 					resizeMode="cover"
@@ -217,16 +213,14 @@ export default function MainScreen() {
 				/>
 			)}
 			<View style={styles.selectbuttoncontainer}>
-				<Text style={{ color: "lightgray" }}> Perm job</Text>
 				<TrippleToggleSwitch
 					AnimatedIcon={AnimatedIcon}
 					middleStateIconName={"code-outline"}
 					leftStateIconName={"briefcase-outline"}
 					rightStateIconName={"hammer-outline"}
-					onLeftState={() => [setMode(false), setCuri(data)]}
-					onRightState={() => [setMode(true), setCuri(personal_data)]}
+					onLeftState={() => setMode(false)}
+					onRightState={() => setMode(true)}
 				/>
-				<Text style={{ color: "lightgray" }}>Freelance</Text>
 			</View>
 		</View>
 	);
@@ -257,6 +251,5 @@ const styles = StyleSheet.create({
 		marginTop: 40,
 		position: "absolute",
 		alignSelf: "center",
-		flexDirection: "row",
 	},
 });

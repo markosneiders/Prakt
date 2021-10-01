@@ -17,7 +17,6 @@ import SignUpScreen from "../screens/SignUpScreen";
 import WelcomePersonal from "../screens/WelcomeScreens/WelcomePersonal";
 import CreateListingScreen from "../screens/CreateListingScreen";
 import ChatScreen from "../screens/ChatScreen";
-import IntroScreen from "../screens/IntroScreen";
 
 import ProfileScreen from "../screens/ProfileScreen"; // more screen imports
 import SearchSettings from "../screens/SearchSettings";
@@ -28,7 +27,6 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Fontisto from "react-native-vector-icons/Fontisto";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
-import Entypo from "react-native-vector-icons/Entypo";
 import InChatScreen from "../screens/InChatScreen";
 
 //defining variable for ease of reading
@@ -39,13 +37,6 @@ const Stack = createNativeStackNavigator(); //defining variable for ease of read
 function AuthNavigator() {
   return (
     <Stack.Navigator>
-      <Stack.Screen
-        name="intro"
-        component={IntroScreen}
-        options={{
-          headerShown: false,
-        }}
-      />
       <Stack.Screen
         name="login"
         component={LoginScreen}
