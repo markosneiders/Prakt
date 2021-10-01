@@ -1,20 +1,13 @@
-import React, { useState, useRef, useEffect, useMemo } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import data from "../assets/data/data";
 import Swiper from "react-native-deck-swiper";
-import {
-	View,
-	StyleSheet,
-	Image,
-	Text,
-	Animated,
-	ScrollView,
-} from "react-native";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import { View, StyleSheet, Image, Text, Animated } from "react-native";
 import TrippleToggleSwitch from "../../node_modules/react-native-triple-state-switch/index.js";
 import Icon from "react-native-vector-icons/Ionicons";
 import Modal from "react-native-modal";
 import CardInfo from "../components/CardInfo/CardInfo";
 import Card1 from "../components/Card1/Index.js";
+import { db } from "../firebase";
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
 const Card = React.memo(({ card }) => {
@@ -22,10 +15,26 @@ const Card = React.memo(({ card }) => {
 });
 
 export default function MainScreen() {
+	const [cards, setCards] = useState([]);
+
+	useEffect(() => {
+		const unsubscribe = db.collection("cards_personal").onSnapshot((snapshot) =>
+			setCards(
+				snapshot.docs.map((doc) => ({
+					id: doc.id,
+					fdata: doc.data(),
+				}))
+			)
+		);
+
+		return unsubscribe;
+	}, []);
+
 	const [isModalVisible, setModalVisible] = useState(false);
 
 	const toggleModal = () => {
 		setModalVisible(!isModalVisible);
+		console.log(cards[0].fdata.address);
 	};
 	const image1 = useRef(new Animated.Value(1)).current;
 	const image2 = useRef(new Animated.Value(0)).current;
@@ -36,6 +45,7 @@ export default function MainScreen() {
 	const [swap, setSwap] = React.useState(false);
 
 	const onSwiped = () => {
+		firebasedoc();
 		setIndex(index + 1);
 		{
 			swap == false ? fswap() : tswap();
