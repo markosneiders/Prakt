@@ -34,7 +34,7 @@ function ImageChooser(props) {
 
 	useEffect(() => {
 		props.setimage(pic.localUri); //Updates picture state in Profile.js with the temporary variable
-	});
+	}, [pic]);
 
 	return (
 		//Everything in return is just a button which runs pickImage()
