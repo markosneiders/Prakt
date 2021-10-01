@@ -104,7 +104,7 @@ function HomeNavigator() {
       />
       <Tab.Screen //Welcome screen
         name="Welcome"
-        component={WelcomeUse}
+        component={WelcomeNavigator}
         options={{
           headerShown: null,
           tabBarIcon: () => (
