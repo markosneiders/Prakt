@@ -9,6 +9,7 @@ import Modal from "react-native-modal";
 import CardInfo from "../components/CardInfo/CardInfo";
 import ShowPersonalCard1 from "../components/ShowPersonalCard1.js/ShowPersonalCard1";
 import Card1 from "../components/Card1/Card1";
+import PersonalCardInfo from "../components/PersonalCardInfo/PersonalCardInfo";
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
 export default function MainScreen() {
@@ -27,9 +28,13 @@ export default function MainScreen() {
 	}
 
 	const [isModalVisible, setModalVisible] = useState(false);
+	const [isPersonalModalVisible, setPersonalModalVisible] = useState(false);
 
-	const toggleModal = () => {
+	const togglePersonalModal = () => {
 		setModalVisible(!isModalVisible);
+	};
+	const toggleModal = () => {
+		setPersonalModalVisible(!isPersonalModalVisible);
 	};
 
 	const image1 = useRef(new Animated.Value(1)).current;
@@ -152,6 +157,24 @@ export default function MainScreen() {
 					<CardInfo index={index} editable={false} />
 				</Modal>
 			</View>
+			<View
+				style={{
+					flex: 1,
+					marginTop: 300,
+					marginHorizontal: 0,
+					paddingHorizontal: 0,
+				}}
+			>
+				<Modal
+					isVisible={isPersonalModalVisible}
+					useNativeDriver={true}
+					useNativeDriverForBackdrop={true}
+					style={{ margin: 0 }}
+					onBackdropPress={() => setPersonalModalVisible(false)}
+				>
+					<PersonalCardInfo index={index} editable={false} />
+				</Modal>
+			</View>
 			{mode == true ? (
 				<Swiper
 					onTapCard={() => toggleModal()}
@@ -172,7 +195,7 @@ export default function MainScreen() {
 				/>
 			) : (
 				<Swiper
-					onTapCard={() => toggleModal()}
+					onTapCard={() => togglePersonalModal()}
 					onSwiping={(cardIndex) => opc.setValue(cardIndex)}
 					onSwiped={() => [onSwiped(), opacityReset()]}
 					onSwipedAborted={() => opacityReset()}
