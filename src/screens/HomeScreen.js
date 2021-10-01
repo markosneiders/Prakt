@@ -213,6 +213,7 @@ export default function MainScreen() {
 				/>
 			)}
 			<View style={styles.selectbuttoncontainer}>
+				<Text style={{ color: "lightgray" }}> Perm job</Text>
 				<TrippleToggleSwitch
 					AnimatedIcon={AnimatedIcon}
 					middleStateIconName={"code-outline"}
@@ -221,6 +222,7 @@ export default function MainScreen() {
 					onLeftState={() => setMode(false)}
 					onRightState={() => setMode(true)}
 				/>
+				<Text style={{ color: "lightgray" }}>Freelance</Text>
 			</View>
 		</View>
 	);
@@ -251,5 +253,6 @@ const styles = StyleSheet.create({
 		marginTop: 40,
 		position: "absolute",
 		alignSelf: "center",
+		flexDirection: "row",
 	},
 });
