@@ -111,16 +111,6 @@ function HomeNavigator() {
           ),
         }}
       />
-      <Tab.Screen //Welcome screen
-        name="Welcome"
-        component={WelcomeNavigator}
-        options={{
-          headerShown: null,
-          tabBarIcon: () => (
-            <AntDesign name="info" size={30} style={styles.tabbarstyle} />
-          ),
-        }}
-      />
 
       <Tab.Screen //Settings screen
         name="Settings"
