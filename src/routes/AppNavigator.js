@@ -27,6 +27,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Fontisto from "react-native-vector-icons/Fontisto";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import InChatScreen from "../screens/InChatScreen";
 
 //defining variable for ease of reading
 const Tab = createBottomTabNavigator();
@@ -123,15 +124,31 @@ function HomeNavigator() {
         }}
       />
       <Tab.Screen //Chat screen
-        name="Direct Messages"
-        component={ChatScreen}
+        name="Chats"
+        component={ChatNavigator}
         options={{
+          headerShown: null,
           tabBarIcon: () => (
             <AntDesign name="phone" size={30} style={styles.tabbarstyle} />
           ),
         }}
       />
     </Tab.Navigator>
+  );
+}
+
+function ChatNavigator() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Direct Messages" component={ChatScreen} />
+      <Stack.Screen
+        name="Chat"
+        component={InChatScreen}
+        navigationOptions={{
+          headerBackTitle: "back",
+        }}
+      />
+    </Stack.Navigator>
   );
 }
 
@@ -146,7 +163,10 @@ function SettingsNavigator() {
       />
       <Stack.Screen name="Edit Profile" component={ProfileScreen} />
       <Stack.Screen name="Search settings" component={SearchSettings} />
-      <Stack.Screen name="Search Radius settings" component={SettingsDropdown} />
+      <Stack.Screen
+        name="Search Radius settings"
+        component={SettingsDropdown}
+      />
     </Stack.Navigator>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -8,40 +8,52 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Avatar } from "react-native-elements";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 
 import CustomListItem from "../components/CustomListItem/CustomListItem";
 
 const ChatScreen = ({ navigation }) => {
+  const [chats, setChats] = useState([]);
+
+  useEffect(() => {
+    const unsubscribe = db.collection("chats").onSnapshot((snapshot) =>
+      setChats(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      )
+    );
+
+    return unsubscribe;
+  }, []);
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTintStyle: { color: "black" },
       headerTintColor: "black",
-      headerLeft: () => (
-        <View style={{ marginLeft: 20 }}>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("Settings");
-            }}
-          >
-            <Avatar
-              rounded
-              title="ms"
-              source={{
-                // uri: auth?.currentUser?.photoURL,
-                uri: "http://d279m997dpfwgl.cloudfront.net/wp/2020/02/krivak-1-1000x750.jpg",
-              }}
-            />
-          </TouchableOpacity>
-        </View>
-      ),
     });
   });
 
+  const enterChat = (id, chatName) => {
+    navigation.navigate("Chat", {
+      id,
+      chatName,
+    });
+  };
+
   return (
     <SafeAreaView>
-      <ScrollView>
-        <CustomListItem />
+      <ScrollView style={styles.container}>
+        {chats.map(({ id, data: { chatName } }) => (
+          <CustomListItem
+            key={id}
+            id={id}
+            chatName={chatName}
+            enterChat={enterChat}
+            onPress={() => navigation.navigate("inChat")}
+          />
+        ))}
       </ScrollView>
     </SafeAreaView>
   );
@@ -49,4 +61,8 @@ const ChatScreen = ({ navigation }) => {
 
 export default ChatScreen;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    height: "100%",
+  },
+});
