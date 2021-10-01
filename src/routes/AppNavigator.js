@@ -28,6 +28,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Fontisto from "react-native-vector-icons/Fontisto";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import Entypo from "react-native-vector-icons/Entypo";
 import InChatScreen from "../screens/InChatScreen";
 
 //defining variable for ease of reading
@@ -106,7 +107,7 @@ function HomeNavigator() {
           headerShown: null, //If the header is shown
           tabBarIcon: () => (
             //Tab bar icon options
-            <Fontisto name="home" size={30} style={styles.tabbarstyle} />
+            <Ionicons name="create" size={30} style={styles.tabbarstyle} />
           ),
         }}
       />
@@ -137,7 +138,7 @@ function HomeNavigator() {
         options={{
           headerShown: null,
           tabBarIcon: () => (
-            <AntDesign name="phone" size={30} style={styles.tabbarstyle} />
+            <Entypo name="phone" size={30} style={styles.tabbarstyle} />
           ),
         }}
       />
