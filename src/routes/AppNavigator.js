@@ -21,7 +21,6 @@ import ChatScreen from "../screens/ChatScreen";
 import ProfileScreen from "../screens/ProfileScreen"; // more screen imports
 import SearchSettings from "../screens/SearchSettings";
 import SettingsDropdown from "../components/SettingsDropdown/SettingsDropdown";
-import ThemeScreen from "../screens/SettingsScreens/ThemeScreen";
 
 //Imports for custom icons
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -168,7 +167,6 @@ function SettingsNavigator() {
         name="Search Radius settings"
         component={SettingsDropdown}
       />
-      <Stack.Screen name="Theme" component={ThemeScreen} />
     </Stack.Navigator>
   );
 }

@@ -1,24 +1,20 @@
 import React, { useState, useRef, useEffect } from "react";
 import data from "../assets/data/data";
+import personal_data from "../assets/data/personal_data";
 import Swiper from "react-native-deck-swiper";
 import { View, StyleSheet, Image, Text, Animated } from "react-native";
 import TrippleToggleSwitch from "../../node_modules/react-native-triple-state-switch/index.js";
 import Icon from "react-native-vector-icons/Ionicons";
 import Modal from "react-native-modal";
 import CardInfo from "../components/CardInfo/CardInfo";
-import Card1 from "../components/Card1/Index.js";
-import { db } from "../firebase";
 import ShowPersonalCard1 from "../components/ShowPersonalCard1.js/ShowPersonalCard1";
+import Card1 from "../components/Card1/Card1";
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
-const Card = React.memo(({ card }) => {
-	return <ShowPersonalCard1 card={card} />;
-});
-
 export default function MainScreen() {
-	const [fcards, setFcards] = useState([]);
-
-	useEffect(() => {
+	const [mode, setMode] = useState(false);
+	{
+		/*useEffect(() => {
 		const unsubscribe = db.collection("cards_personal").onSnapshot((snapshot) =>
 			setFcards(
 				snapshot.docs.map((doc) => ({
@@ -27,16 +23,13 @@ export default function MainScreen() {
 			)
 		);
 		return unsubscribe;
-	}, []);
+	}, []); */
+	}
 
 	const [isModalVisible, setModalVisible] = useState(false);
 
 	const toggleModal = () => {
 		setModalVisible(!isModalVisible);
-		for (let i = 0; i < 2; i++) {
-			tcards.push(fcards[0].fdata);
-		}
-		console.log(tcards);
 	};
 
 	const image1 = useRef(new Animated.Value(1)).current;
@@ -46,31 +39,8 @@ export default function MainScreen() {
 	const [aindex, setAindex] = React.useState(0);
 	const [bindex, setBindex] = React.useState(1);
 	const [swap, setSwap] = React.useState(false);
-	const temp = [];
-	const tcards = [
-		{
-			position: null,
-			name: null,
-			rating: null,
-			wage: 0,
-			hours: 0,
-			address: null,
-			image: null,
-			position_description: null,
-			requirements: null,
-			website: null,
-			phone: null,
-			email: null,
-			shift: null,
-		},
-		{},
-	];
-
 	const onSwiped = () => {
 		setIndex(index + 1);
-		{
-			swap == false ? fswap() : tswap();
-		}
 		Animated.timing(opc, {
 			toValue: 0,
 			duration: 200,
@@ -182,29 +152,51 @@ export default function MainScreen() {
 					<CardInfo index={index} editable={false} />
 				</Modal>
 			</View>
-			<Swiper
-				onTapCard={() => toggleModal()}
-				onSwiping={(cardIndex) => opc.setValue(cardIndex)}
-				onSwiped={() => [onSwiped(), opacityReset()]}
-				onSwipedAborted={() => opacityReset()}
-				cardVerticalMargin={140}
-				backgroundColor="transparent"
-				cards={tcards}
-				cardIndex={index}
-				renderCard={(card) => <Card card={card} />}
-				stackSize={2}
-				stackScale={50}
-				stackSeparation={0}
-				disableTopSwipe
-				disableBottomSwipe
-				animateCardOpacity={true}
-			/>
+			{mode == true ? (
+				<Swiper
+					onTapCard={() => toggleModal()}
+					onSwiping={(cardIndex) => opc.setValue(cardIndex)}
+					onSwiped={() => [onSwiped(), opacityReset()]}
+					onSwipedAborted={() => opacityReset()}
+					cardVerticalMargin={140}
+					backgroundColor="transparent"
+					cards={personal_data}
+					cardIndex={index}
+					renderCard={(card) => <ShowPersonalCard1 card={card} />}
+					stackSize={2}
+					stackScale={50}
+					stackSeparation={0}
+					disableTopSwipe
+					disableBottomSwipe
+					animateCardOpacity={true}
+				/>
+			) : (
+				<Swiper
+					onTapCard={() => toggleModal()}
+					onSwiping={(cardIndex) => opc.setValue(cardIndex)}
+					onSwiped={() => [onSwiped(), opacityReset()]}
+					onSwipedAborted={() => opacityReset()}
+					cardVerticalMargin={140}
+					backgroundColor="transparent"
+					cards={data}
+					cardIndex={index}
+					renderCard={(card) => <Card1 card={card} />}
+					stackSize={2}
+					stackScale={50}
+					stackSeparation={0}
+					disableTopSwipe
+					disableBottomSwipe
+					animateCardOpacity={true}
+				/>
+			)}
 			<View style={styles.selectbuttoncontainer}>
 				<TrippleToggleSwitch
 					AnimatedIcon={AnimatedIcon}
-					middleStateIconName={"git-network-outline"}
-					leftStateIconName={"briefcase"}
+					middleStateIconName={"code-outline"}
+					leftStateIconName={"briefcase-outline"}
 					rightStateIconName={"hammer-outline"}
+					onLeftState={() => setMode(false)}
+					onRightState={() => setMode(true)}
 				/>
 			</View>
 		</View>

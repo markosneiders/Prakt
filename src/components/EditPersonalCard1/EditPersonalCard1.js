@@ -7,7 +7,9 @@ const PersonalCard1 = (props) => {
 	const profileName = useSelector((state) => state.name);
 	const profileSurname = useSelector((state) => state.surname);
 
-	useEffect(() => {}, [listingImage]);
+	useEffect(() => {
+		console.log("IMG");
+	}, [listingImage]);
 	return (
 		<View style={styles.card}>
 			<Image

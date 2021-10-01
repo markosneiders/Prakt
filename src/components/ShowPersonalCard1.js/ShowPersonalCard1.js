@@ -3,14 +3,76 @@ import { Text, View, Image, StyleSheet } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useSelector } from "react-redux";
 const ShowPersonalCard1 = (props) => {
-	const listingImage = useSelector((state) => state.listingImage);
-	const profileName = useSelector((state) => state.name);
-	const profileSurname = useSelector((state) => state.surname);
-
-	useEffect(() => {}, [listingImage]);
 	return (
 		<View style={styles.card}>
-			<Text>{props.card.hours}</Text>
+			<Image
+				source={
+					props.card.image == null
+						? require("../../assets/images/TapToAdd.png")
+						: { uri: props.card.image }
+				}
+				style={styles.cardImage}
+			/>
+			<View style={styles.cardTextContainer}>
+				<View style={{ flex: 1 }}>
+					<Text style={[styles.cardText, { fontSize: 40, color: "orange" }]}>
+						{props.card.position}
+					</Text>
+					<Text style={[styles.cardText, { fontSize: 30 }]}>
+						{props.card.name}
+					</Text>
+					<Text style={[styles.cardText, { fontSize: 30 }]}>
+						{props.card.surname}
+					</Text>
+					{props.card.rating == 0 ? null : (
+						<View style={{ flexDirection: "row" }}>
+							{[...Array(5)].map((i) => {
+								//Creates the rest of the empty stars
+								return (
+									<Ionicons
+										name="star-outline"
+										key={Math.random().toString(36).substr(2, 9)}
+										size={30}
+										color="yellow"
+										style={[styles.stars, { opacity: 0.3 }]}
+									/>
+								);
+							})}
+							<View style={{ position: "absolute", flexDirection: "row" }}>
+								{[...Array(props.card.rating)].map((i) => {
+									//Creates as many stars as card.rating
+									return (
+										<Ionicons
+											name="star"
+											key={Math.random().toString(36).substr(2, 9)}
+											size={30}
+											color="yellow"
+											style={[styles.stars, { opacity: 1 }]}
+										/>
+									);
+								})}
+							</View>
+						</View>
+					)}
+				</View>
+			</View>
+
+			<View
+				style={[
+					styles.cardTextContainer,
+					{ flex: 0.6, alignItems: "flex-end" },
+				]}
+			>
+				<Text style={[styles.cardText, { fontSize: 30, textAlign: "right" }]}>
+					{props.card.wage == 0 ? "" : props.card.wage + "€/h"}
+				</Text>
+				<Text style={[styles.cardText, { fontSize: 30, textAlign: "right" }]}>
+					{props.card.hours == 0 ? "" : props.card.hours + "h"}
+				</Text>
+				<Text style={[styles.cardText, { fontSize: 25, textAlign: "right" }]}>
+					{props.card.address}
+				</Text>
+			</View>
 		</View>
 	);
 };

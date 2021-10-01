@@ -14,7 +14,6 @@ import {
 import Modal from "react-native-modal";
 import PersonalCardInfo from "../components/EditPersonalCardInfo/EditPersonalCardInfo";
 import PersonalCard1 from "../components/EditPersonalCard1/EditPersonalCard1";
-
 import { useSelector } from "react-redux";
 export default function MainScreen() {
 	const [isModalVisible, setModalVisible] = useState(false);
