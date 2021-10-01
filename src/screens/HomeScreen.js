@@ -8,18 +8,19 @@ import Modal from "react-native-modal";
 import CardInfo from "../components/CardInfo/CardInfo";
 import Card1 from "../components/Card1/Index.js";
 import { db } from "../firebase";
+import PersonalCard1 from "../components/EditPersonalCard1/EditPersonalCard1";
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
 const Card = React.memo(({ card }) => {
-	return <Card1 card={card} />;
+	return <PersonalCard1 card={card} />;
 });
 
 export default function MainScreen() {
-	const [cards, setCards] = useState([]);
+	const [fcards, setFcards] = useState([]);
 
 	useEffect(() => {
 		const unsubscribe = db.collection("cards_personal").onSnapshot((snapshot) =>
-			setCards(
+			setFcards(
 				snapshot.docs.map((doc) => ({
 					id: doc.id,
 					fdata: doc.data(),
@@ -34,7 +35,7 @@ export default function MainScreen() {
 
 	const toggleModal = () => {
 		setModalVisible(!isModalVisible);
-		console.log(cards[0].fdata.address);
+		console.log(fcards[0].fdata.address);
 	};
 	const image1 = useRef(new Animated.Value(1)).current;
 	const image2 = useRef(new Animated.Value(0)).current;
@@ -45,7 +46,6 @@ export default function MainScreen() {
 	const [swap, setSwap] = React.useState(false);
 
 	const onSwiped = () => {
-		firebasedoc();
 		setIndex(index + 1);
 		{
 			swap == false ? fswap() : tswap();
