@@ -104,7 +104,7 @@ function HomeNavigator() {
       />
       <Tab.Screen //Welcome screen
         name="Welcome"
-        component={WelcomeNavigator}
+        component={WelcomeUse}
         options={{
           headerShown: null,
           tabBarIcon: () => (
@@ -176,10 +176,9 @@ function WelcomeNavigator() {
     <Stack.Navigator>
       <Stack.Screen
         name="Welcome Page"
-        component={WelcomeScreen}
+        component={WelcomeUse}
         options={{ title: "Welcome" }}
       />
-      <Stack.Screen name="Welcome Use" component={WelcomeUse} />
       <Stack.Screen name="Welcome Personal" component={WelcomePersonal} />
       <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Login Screen" component={LoginScreen} />
