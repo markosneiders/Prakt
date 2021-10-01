@@ -173,7 +173,6 @@ export default function MainScreen() {
 						hours={hours}
 						address={address}
 						image={image}
-						shift={shift}
 					/>
 				)}
 				disableTopSwipe
