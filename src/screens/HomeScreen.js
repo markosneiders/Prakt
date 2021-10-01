@@ -52,6 +52,9 @@ export default function MainScreen() {
 			duration: 200,
 			useNativeDriver: true,
 		}).start();
+		{
+			swap == false ? fswap() : tswap();
+		}
 	};
 
 	function fswap() {
