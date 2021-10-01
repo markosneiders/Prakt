@@ -8,6 +8,8 @@ import {
 	Text,
 	Animated,
 	ScrollView,
+	Button,
+	TouchableOpacity,
 } from "react-native";
 import Modal from "react-native-modal";
 import PersonalCardInfo from "../components/EditPersonalCardInfo/EditPersonalCardInfo";
@@ -27,7 +29,7 @@ export default function MainScreen() {
 	const listingImage = useSelector((state) => state.listingImage);
 
 	const [position, setPosition] = useState("New job");
-	const [name, setName] = useState("*Profile name*");
+	const [name, setName] = useState();
 	const [rating, setRating] = useState(0);
 	const [wage, setWage] = useState("0");
 	const [hours, setHours] = useState("0");
@@ -35,9 +37,6 @@ export default function MainScreen() {
 	const [image, setImage] = useState(listingImage);
 	const [position_description, setPosition_description] = useState("");
 	const [requirements, setRequirements] = useState("");
-	const [phone, setPhone] = useState("");
-	const [email, setEmail] = useState("");
-	const [shift, setShift] = useState("");
 
 	const [localData, setlocalData] = React.useState([
 		{
@@ -67,7 +66,10 @@ export default function MainScreen() {
 
 	return (
 		<View style={styles.container}>
-			<Animated.View style={[styles.backgroundContainer, { opacity: image1 }]}>
+			<Animated.View
+				pointerEvents="none"
+				style={[styles.backgroundContainer, { opacity: image1 }]}
+			>
 				<Image
 					source={
 						listingImage == null
@@ -80,6 +82,7 @@ export default function MainScreen() {
 				/>
 			</Animated.View>
 			<Animated.View
+				pointerEvents="none"
 				style={[
 					styles.backgroundContainer,
 					{
@@ -98,6 +101,7 @@ export default function MainScreen() {
 				/>
 			</Animated.View>
 			<Animated.View
+				pointerEvents="none"
 				style={[
 					styles.backgroundContainer,
 					{
@@ -117,7 +121,7 @@ export default function MainScreen() {
 			</Animated.View>
 			<View
 				style={{
-					flex: 1,
+					flex: 0.1,
 					marginTop: 300,
 					marginHorizontal: 0,
 					paddingHorizontal: 0,
@@ -136,7 +140,6 @@ export default function MainScreen() {
 						localData={localData[0]}
 						position={position}
 						setPosition={setPosition}
-						name={name}
 						rating={rating}
 						setRating={setRating}
 						wage={wage}
@@ -149,15 +152,10 @@ export default function MainScreen() {
 						setPosition_description={setPosition_description}
 						requirements={requirements}
 						setRequirements={setRequirements}
-						phone={phone}
-						setPhone={setPhone}
-						email={email}
-						setEmail={setEmail}
-						shift={shift}
-						setShift={setShift}
 					/>
 				</Modal>
 			</View>
+
 			<Swiper
 				onTapCard={() => toggleModal()}
 				onSwiping={(cardIndex) => opc.setValue(cardIndex)}
@@ -170,21 +168,37 @@ export default function MainScreen() {
 					<PersonalCard1
 						position={position}
 						setPosition={setPosition}
-						name={name}
 						rating={rating}
 						wage={wage}
 						hours={hours}
 						address={address}
 						image={image}
-						shift={shift}
 					/>
 				)}
 				disableTopSwipe
 				disableBottomSwipe
 				disableLeftSwipe
 				disableRightSwipe
-				animateCardOpacity={true}
+				animateCard
+				Opacity={true}
 			/>
+			<View style={{ alignItems: "center", marginTop: 70 }}>
+				<TouchableOpacity
+					style={{
+						backgroundColor: "orange",
+						paddingHorizontal: 20,
+						paddingVertical: 5,
+						borderRadius: 10,
+						shadowRadius: 25,
+						shadowColor: "#000",
+						shadowOpacity: 0.08,
+						shadowOffset: { width: 0, height: 0 },
+					}}
+					onPress={() => console.log("Submit")}
+				>
+					<Text style={{ color: "white", fontSize: 30 }}>Submit</Text>
+				</TouchableOpacity>
+			</View>
 		</View>
 	);
 }
@@ -192,7 +206,8 @@ export default function MainScreen() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		flexDirection: "column",
+		flexDirection: "column-reverse",
+		justifyContent: "flex-end",
 	},
 	backgroundContainer: {
 		position: "absolute",
@@ -201,7 +216,6 @@ const styles = StyleSheet.create({
 		left: 0,
 		right: 0,
 		justifyContent: "center",
-		flex: 1,
 	},
 	backgroundImage: {
 		alignSelf: "center",
